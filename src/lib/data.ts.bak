@@ -1,0 +1,33 @@
+export const galleryItems = [
+    { id: 1, title: "무제 (Untitled)", desc: "먹의 농담이 만들어낸 우연의 미", src: "/images/g1.jpeg", size: "col-span-1 row-span-1" },
+    { id: 2, title: "비상 (Soar)", desc: "거침없는 붓터치의 에너지", src: "/images/g2.jpeg", size: "col-span-1 md:col-span-2 row-span-1" },
+    { id: 3, title: "정적 (Static)", desc: "채움보다 비움이 주는 무게", src: "/images/g3.JPG", size: "col-span-1 row-span-2" },
+    { id: 4, title: "흐름 (Flow)", desc: "물과 잉크의 자연스러운 섞임", src: "/images/g4.JPEG", size: "col-span-1 row-span-1" },
+    { id: 5, title: "공명 (Resonance)", desc: "소리 없는 울림", src: "/images/g5.JPG", size: "col-span-1 row-span-1" },
+    { id: 6, title: "여명 (Dawn)", desc: "어둠 속에서 피어나는 빛", src: "/images/g6.JPG", size: "col-span-1 md:col-span-2 row-span-1" },
+    { id: 7, title: "심연 (Abyss)", desc: "깊은 내면의 세계", src: "/images/g7.JPG", size: "col-span-1 row-span-1" },
+];
+
+export const scheduleCols = ["화요일", "수요일", "목요일", "금요일", "토요일"];
+export const scheduleRows = ["10:00 ~ 12:00", "12:00 ~ 2:00", "3:00~ 5:00", "5:00~ 7:00", "7:00 ~ 9:00"];
+
+// Data representation: Row -> Column -> Content
+// Rows: 10-12, 12-2, 3-5, 5-7, 7-9
+// Cols: Tue, Wed, Thu, Fri, Sat
+export const scheduleData = [
+    // 10:00 ~ 12:00
+    ["", "10:00 ~\n12:00", "", "10:00 ~\n12:00", "10:00 ~\n12:00"],
+    // 12:00 ~ 2:00 (Lunch / Break?)
+    ["", "", "", "", "12:00 ~\n2:00"],
+    // 3:00 ~ 5:00
+    ["3:00~\n5:00", "3:00~\n5:00", "3:00~\n5:00", "", ""],
+    // 5:00 ~ 7:00
+    ["", "5:00~\n7:00", "5:00~\n7:00", "", ""],
+    // 7:00 ~ 9:00
+    ["7:00 ~\n9:00", "", "", "", ""]
+];
+
+export const mergedCells = [
+    // Example for merging if needed. For now, we will render simple grid based on the image visual.
+    // The image has some large empty blocks. We can handle it by CSS grid or just rendering empty cells.
+];
