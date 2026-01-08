@@ -120,80 +120,80 @@ export function Navbar({ user, profile }: NavbarProps) {
                                 useSolidTheme
                                     ? (pathname === "/board" ? "text-black font-bold" : "text-gray-500 hover:text-black")
                                     : "text-white/80 hover:text-white" // If transparent theme (which means we are at Home and not scrolled), we are definitely NOT at /board, so no need to check.
-                                    >
-                                    게시판
-                            { pathname === "/board" && (
-                                    <motion.div
-                                        layoutId="underline"
-                                        className={cn(
-                                            "absolute left-0 bottom-0 w-full h-[1px]",
-                                            useSolidTheme ? "bg-black" : "bg-white"
-                                        )}
-                                    />
-                                )}
+                            )}>
+                            게시판
+                            {pathname === "/board" && (
+                                <motion.div
+                                    layoutId="underline"
+                                    className={cn(
+                                        "absolute left-0 bottom-0 w-full h-[1px]",
+                                        useSolidTheme ? "bg-black" : "bg-white"
+                                    )}
+                                />
+                            )}
                         </Link>
 
-                    <div className="w-[1px] h-4 bg-gray-300 mx-2"></div>
+                        <div className="w-[1px] h-4 bg-gray-300 mx-2"></div>
 
-                    {user ? (
-                        <div className="flex items-center gap-4">
-                            <div className={cn("flex flex-col items-end text-xs", useSolidTheme ? "text-black" : "text-white")}>
-                                <div className="flex items-center gap-2">
-                                    {getRoleBadge()}
-                                    <span className="opacity-90 font-medium">
-                                        {profile?.name || user.email?.split('@')[0]}님
-                                    </span>
+                        {user ? (
+                            <div className="flex items-center gap-4">
+                                <div className={cn("flex flex-col items-end text-xs", useSolidTheme ? "text-black" : "text-white")}>
+                                    <div className="flex items-center gap-2">
+                                        {getRoleBadge()}
+                                        <span className="opacity-90 font-medium">
+                                            {profile?.name || user.email?.split('@')[0]}님
+                                        </span>
+                                    </div>
+                                    {profile?.is_admin && (
+                                        <Link href="/admin" className="hover:underline opacity-70 hover:opacity-100 transition-opacity mt-0.5">
+                                            관리자 페이지 &rarr;
+                                        </Link>
+                                    )}
                                 </div>
-                                {profile?.is_admin && (
-                                    <Link href="/admin" className="hover:underline opacity-70 hover:opacity-100 transition-opacity mt-0.5">
-                                        관리자 페이지 &rarr;
-                                    </Link>
-                                )}
+                                <button
+                                    onClick={handleLogout}
+                                    className={cn(
+                                        "text-xs font-medium transition-colors border px-3 py-1.5 rounded-full hover:bg-black hover:border-black hover:text-white",
+                                        useSolidTheme
+                                            ? "border-gray-200 text-gray-500"
+                                            : "border-white/30 text-white/80 hover:border-white hover:bg-white hover:text-black"
+                                    )}
+                                >
+                                    로그아웃
+                                </button>
                             </div>
-                            <button
-                                onClick={handleLogout}
+                        ) : (
+                            <Link
+                                href="/login"
                                 className={cn(
-                                    "text-xs font-medium transition-colors border px-3 py-1.5 rounded-full hover:bg-black hover:border-black hover:text-white",
-                                    useSolidTheme
-                                        ? "border-gray-200 text-gray-500"
-                                        : "border-white/30 text-white/80 hover:border-white hover:bg-white hover:text-black"
+                                    "text-sm font-medium transition-colors hover:opacity-70",
+                                    useSolidTheme ? "text-gray-600" : "text-white"
                                 )}
                             >
-                                로그아웃
-                            </button>
-                        </div>
-                    ) : (
-                        <Link
-                            href="/login"
+                                로그인
+                            </Link>
+                        )}
+
+
+                        <button
+                            onClick={() => setIsContactOpen(true)}
                             className={cn(
-                                "text-sm font-medium transition-colors hover:opacity-70",
-                                useSolidTheme ? "text-gray-600" : "text-white"
+                                "px-5 py-2 text-sm font-medium rounded-full transition-colors",
+                                useSolidTheme
+                                    ? "bg-black text-white hover:bg-gray-800"
+                                    : "bg-white text-black hover:bg-white/90"
                             )}
                         >
-                            로그인
-                        </Link>
-                    )}
+                            문의하기
+                        </button>
+                    </div>
 
-
-                    <button
-                        onClick={() => setIsContactOpen(true)}
-                        className={cn(
-                            "px-5 py-2 text-sm font-medium rounded-full transition-colors",
-                            useSolidTheme
-                                ? "bg-black text-white hover:bg-gray-800"
-                                : "bg-white text-black hover:bg-white/90"
-                        )}
-                    >
-                        문의하기
-                    </button>
+                    {/* Mobile Menu Button - Placeholder */}
+                    <div className="md:hidden">
+                        {/* Mobile menu implementation would go here */}
+                    </div>
                 </div>
-
-                {/* Mobile Menu Button - Placeholder */}
-                <div className="md:hidden">
-                    {/* Mobile menu implementation would go here */}
-                </div>
-            </div>
-        </nav >
+            </nav >
 
             <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
         </>
