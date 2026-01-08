@@ -1,5 +1,6 @@
 import { getSiteConfig } from "@/lib/getSiteConfig";
 import { AboutContent } from "./AboutContent";
+import { DirectorProfile } from "@/components/DirectorProfile";
 
 export default async function AboutPage() {
     const config = await getSiteConfig();
@@ -12,6 +13,8 @@ export default async function AboutPage() {
                     content={config.about_content}
                 />
             </div>
+
+            <DirectorProfile />
         </div>
     );
 }
