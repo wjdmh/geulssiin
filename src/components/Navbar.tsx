@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -56,14 +57,18 @@ export function Navbar({ user, profile }: NavbarProps) {
                 )}
             >
                 <div className="container mx-auto px-6 flex items-center justify-between">
-                    <Link href="/" className={cn(
-                        "text-2xl font-serif font-bold tracking-tight transition-colors duration-300 group",
-                        useSolidTheme ? "text-black" : "text-white"
-                    )}>
-                        글씨인<span className={cn(
-                            "transition-colors duration-300",
-                            useSolidTheme ? "text-gray-500 group-hover:text-black" : "text-white/80 group-hover:text-white"
-                        )}>아트센터</span>
+                    <Link href="/" className="relative h-12 w-auto flex items-center">
+                        <Image
+                            src="/logo.png"
+                            alt="글씨인아트센터"
+                            width={200}
+                            height={60}
+                            className={cn(
+                                "h-full w-auto object-contain transition-all duration-300",
+                                useSolidTheme ? "" : "brightness-0 invert"
+                            )}
+                            priority
+                        />
                     </Link>
 
                     {/* Desktop Navigation */}
