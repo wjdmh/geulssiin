@@ -65,7 +65,9 @@ export function Navbar({ user, profile }: NavbarProps) {
                             height={60}
                             className={cn(
                                 "h-full w-auto object-contain transition-all duration-300",
-                                useSolidTheme ? "" : "brightness-0 invert"
+                                useSolidTheme
+                                    ? "mix-blend-multiply" // White bg becomes transparent, black text stays
+                                    : "brightness-0 invert mix-blend-screen" // Invert (Black->White, White->Black), then Screen (Black bg becomes transparent)
                             )}
                             priority
                         />
