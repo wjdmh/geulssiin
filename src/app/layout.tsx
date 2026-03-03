@@ -17,8 +17,19 @@ const notoSerif = Noto_Serif_KR({
 });
 
 export const metadata: Metadata = {
-  title: "Geulssiin Art Center | 글씨인아트센터",
-  description: "Calligraphy & Pen Drawing Studio",
+  title: {
+    default: "글씨인아트센터 | 캘리그라피 · 펜드로잉 · 서예",
+    template: "%s | 글씨인아트센터",
+  },
+  description: "김포 글씨인아트센터 — 붓캘리그라피, 펜드로잉, 서예 클래스. 전통의 깊이와 현대적 감각이 공존하는 예술 공간에서 나만의 감성을 표현하세요.",
+  keywords: ["글씨인아트센터", "김포 캘리그라피", "캘리그라피 학원", "펜드로잉", "서예", "붓글씨", "원데이클래스", "김포 미술"],
+  openGraph: {
+    title: "글씨인아트센터",
+    description: "예술이 되는 글씨, 감성이 되는 그림 — 김포 캘리그라피 · 펜드로잉 · 서예 클래스",
+    type: "website",
+    locale: "ko_KR",
+    siteName: "글씨인아트센터",
+  },
 };
 
 import { Navbar } from "@/components/Navbar";

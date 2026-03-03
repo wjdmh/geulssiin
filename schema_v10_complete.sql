@@ -105,7 +105,13 @@ create table if not exists public.gallery (
   description text,
   image_url text not null,
   category text default 'director',
-  created_at timestamptz default now()
+  created_at timestamptz default now(),
+  price text default '미정',
+  is_for_sale boolean default false,
+  is_sold boolean default false,
+  medium text,
+  dimensions text,
+  year text
 );
 alter table public.gallery enable row level security;
 drop policy if exists "Gallery is viewable by everyone" on gallery;
