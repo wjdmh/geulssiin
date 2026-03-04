@@ -2,10 +2,11 @@ import { Metadata } from "next";
 import { getSiteConfig } from "@/lib/getSiteConfig";
 import { AboutContent } from "./AboutContent";
 import { DirectorProfile } from "@/components/DirectorProfile";
+import { NameMeaning } from "@/components/NameMeaning";
 import { classCurriculum } from "@/lib/data";
 
 export const metadata: Metadata = {
-    title: "센터 소개 | 글씨인아트센터",
+    title: "센터 소개",
     description: "글씨인아트센터는 전통 서예의 깊이와 현대적 감각을 잇는 예술 공간입니다. 붓캘리그라피, 펜드로잉, 서예 클래스를 운영합니다.",
 };
 
@@ -24,10 +25,13 @@ export default async function AboutPage() {
                 </div>
             </section>
 
-            {/* Section 2: Director Profile */}
+            {/* Section 2: "글씨인" Name Meaning */}
+            <NameMeaning />
+
+            {/* Section 3: Director Profile */}
             <DirectorProfile />
 
-            {/* Section 3: Class Preview */}
+            {/* Section 4: Class Preview */}
             <section className="py-24 md:py-32 bg-white">
                 <div className="container mx-auto px-6 max-w-5xl">
                     <div className="text-center mb-16">
@@ -73,7 +77,7 @@ export default async function AboutPage() {
                 </div>
             </section>
 
-            {/* Section 4: CTA */}
+            {/* Section 5: CTA */}
             <section className="py-24 md:py-32 bg-gray-50 border-t border-black/5">
                 <div className="container mx-auto px-6 max-w-3xl text-center">
                     <h2 className="text-3xl md:text-4xl font-serif font-bold text-black mb-6">
