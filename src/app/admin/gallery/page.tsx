@@ -36,7 +36,7 @@ export default function GalleryUploadPage() {
 
     function startEdit(item: GalleryItem) {
         setEditingItem(item);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        globalThis.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function cancelEdit() {
