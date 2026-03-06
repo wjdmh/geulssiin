@@ -49,9 +49,9 @@ export function DirectorPreview() {
 
                         <div className="space-y-2 text-sm text-gray-600 mb-8">
                             <p>사범대 미술교육학과 졸업</p>
-                            <p>대한민국 미술대전(국전) 특선 다수</p>
-                            <p>KCDIA 정회원 및 인증강사</p>
-                            <p>대한민국 서예술인협회 초대작가</p>
+                            <p>대한민국 미술대전(국전) 특선 외 다수</p>
+                            <p>KCDA 교육위원</p>
+                            <p>대한민국 서예술대전 초대작가</p>
                         </div>
 
                         <blockquote className="border-l-2 border-gray-200 pl-4 italic text-gray-500 mb-8">

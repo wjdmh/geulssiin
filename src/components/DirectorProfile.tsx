@@ -3,6 +3,50 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+const careers = [
+    "사범대 미술교육학과 졸업",
+    "사단법인 한국캘리그라피디자인협회(KCDA) 교육위원",
+    "글씨인아트센터 대표 (2020~)",
+    "글씨인 커뮤니티 대표 운영작가",
+    "대한민국 서예술대전 초대작가",
+    "대한민국 김호연재 여성휘호대회 초대작가",
+    "대한민국 예술대전 초대작가",
+    "한국서화협회 추천작가",
+    "국가보훈문화예술협회 추천작가",
+    "대한민국 예술대전 심사위원",
+    "캘리그라피 디자인그룹 어울림 전문위원",
+    "묵묵히 먹아트센터 소속작가",
+];
+
+const awards = [
+    "대한민국 미술대전(국전) 캘리그라피 부문 특선 외 다수",
+    "대한민국 서예술대전 우수상",
+    "대한민국창작미술대전 금상",
+    "대한민국 여성미술대전 동상",
+    "국제현대미술대전 동상",
+    "대한민국 서예·문인화공모대전 우수상",
+    "대한민국 김호연재 여성휘호대회 차상",
+    "경기미술대전 특선",
+    "전국 각종 캘리그라피·서예대전 우수상 다수",
+];
+
+const activities = [
+    "KCDA 정기회원전 다수 참여",
+    "묵묵히 시리즈 전시 다수",
+    "글씨인아트센터 회원전시 아름다운 처음이여",
+    "공모전, 협회전, 초대전, 단체전 등 다양한 전시 활동",
+    "관공서 및 교육기관 캘리그라피 & 펜그림 출강 다수",
+];
+
+function TimelineItem({ text, dark = false }: { text: string; dark?: boolean }) {
+    return (
+        <div className="flex items-start gap-3">
+            <span className={`mt-[6px] w-1.5 h-1.5 rounded-full shrink-0 ${dark ? "bg-black" : "bg-gray-300"}`} />
+            <p className="text-[15px] text-gray-600 font-light leading-relaxed">{text}</p>
+        </div>
+    );
+}
+
 export function DirectorProfile() {
     return (
         <section className="py-24 md:py-32 bg-gray-50 border-t border-black/5">
@@ -32,7 +76,7 @@ export function DirectorProfile() {
                         <div className="relative aspect-[3/4] overflow-hidden bg-gray-200">
                             <Image
                                 src="/profile.jpeg"
-                                alt="그리운 작가 프로필"
+                                alt="이보영 대표 프로필"
                                 fill
                                 className="object-cover"
                             />
@@ -49,23 +93,15 @@ export function DirectorProfile() {
                         className="w-full md:w-7/12"
                     >
                         <div className="space-y-10">
-                            {/* Career Timeline */}
+                            {/* Career */}
                             <div>
                                 <h4 className="text-lg font-serif font-bold text-black mb-6 flex items-center gap-3">
                                     <span className="w-8 h-[1px] bg-black"></span>
                                     자격 및 경력
                                 </h4>
-                                <div className="space-y-4 border-l border-black/10 pl-6">
-                                    {[
-                                        { text: "사범대 미술교육학과 졸업", highlight: true },
-                                        { text: "사단법인 한국캘리그라피디자인협회(KCDIA) 정회원 및 인증강사", highlight: true },
-                                        { text: "글씨인아트센터 대표 (2020~)", highlight: true },
-                                        { text: "글씨인 커뮤니티 대표 운영작가", highlight: false },
-                                    ].map((item, index) => (
-                                        <div key={index} className="relative">
-                                            <div className={`absolute -left-[25px] top-[7px] w-2 h-2 rounded-full ${item.highlight ? "bg-black" : "bg-gray-300"}`}></div>
-                                            <p className="text-[15px] text-gray-700 font-light leading-relaxed">{item.text}</p>
-                                        </div>
+                                <div className="space-y-3">
+                                    {careers.map((item, index) => (
+                                        <TimelineItem key={index} text={item} dark={index < 3} />
                                     ))}
                                 </div>
                             </div>
@@ -76,22 +112,9 @@ export function DirectorProfile() {
                                     <span className="w-8 h-[1px] bg-black"></span>
                                     수상 경력
                                 </h4>
-                                <div className="space-y-4 border-l border-black/10 pl-6">
-                                    {[
-                                        "대한민국 미술대전(국전) 캘리그라피 부문 특선 다수",
-                                        "국제현대미술대전 동상",
-                                        "대한민국창작미술대전 삼채상",
-                                        "대한민국 서예술대전 특선",
-                                        "대한민국 서예·문인화공모대전 특선",
-                                        "경기미술대전 특선",
-                                        "대한민국 서예술인협회 우수상 다수",
-                                        "오원상 수상 (현대미술작든그룹전)",
-                                        "전국 각종 캘리그라피·서예대전 우수상 다수",
-                                    ].map((item, index) => (
-                                        <div key={index} className="relative">
-                                            <div className="absolute -left-[25px] top-[7px] w-2 h-2 rounded-full bg-gray-300"></div>
-                                            <p className="text-[15px] text-gray-600 font-light leading-relaxed">{item}</p>
-                                        </div>
+                                <div className="space-y-3">
+                                    {awards.map((item, index) => (
+                                        <TimelineItem key={index} text={item} />
                                     ))}
                                 </div>
                             </div>
@@ -102,20 +125,9 @@ export function DirectorProfile() {
                                     <span className="w-8 h-[1px] bg-black"></span>
                                     전시 및 활동
                                 </h4>
-                                <div className="space-y-4 border-l border-black/10 pl-6">
-                                    {[
-                                        "대한민국 서예술인협회 초대작가",
-                                        "서화협회 & 국가보훈문화예술협회 추천작가",
-                                        "KCDIA 정기회원전 다수 참여",
-                                        "\"묵묵히\" 시리즈 전시 다수",
-                                        "글씨인아트센터 회원전시 \"아름다운 처음이여\"",
-                                        "공모전, 협회전, 초대전, 단체전 등 다양한 전시 활동",
-                                        "관공서 및 교육기관 캘리그라피 & 펜그림 출강 다수",
-                                    ].map((item, index) => (
-                                        <div key={index} className="relative">
-                                            <div className="absolute -left-[25px] top-[7px] w-2 h-2 rounded-full bg-gray-300"></div>
-                                            <p className="text-[15px] text-gray-600 font-light leading-relaxed">{item}</p>
-                                        </div>
+                                <div className="space-y-3">
+                                    {activities.map((item, index) => (
+                                        <TimelineItem key={index} text={item} />
                                     ))}
                                 </div>
                             </div>
