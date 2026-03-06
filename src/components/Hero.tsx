@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-
 import Image from "next/image";
+import Link from "next/link";
 
 interface HeroProps {
     title?: string;
@@ -25,7 +25,7 @@ export function Hero({
                     className="object-cover"
                     priority
                 />
-                <div className="absolute inset-0 bg-black/50" /> {/* Dark Dim Layer 50% opacity */}
+                <div className="absolute inset-0 bg-black/50" />
             </div>
 
             <div className="container mx-auto px-6 h-full flex flex-col items-center justify-center text-center z-10 relative">
@@ -53,16 +53,38 @@ export function Hero({
                     </p>
                 </motion.div>
 
-                {/* Scroll Indicator */}
+                {/* CTA Buttons */}
                 <motion.div
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.5, duration: 1, repeat: Infinity, repeatType: "reverse" }}
-                    className="absolute bottom-12 flex flex-col items-center gap-2"
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                    className="flex flex-col sm:flex-row items-center gap-4 mt-10"
                 >
-                    <span className="text-[10px] uppercase tracking-widest text-white/40">아래로 스크롤</span>
-                    <div className="w-[1px] h-12 bg-white/20"></div>
+                    <a
+                        href="https://pf.kakao.com/_xkETdn"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-8 py-3.5 bg-white text-black text-sm font-medium rounded-full hover:bg-white/90 transition-colors"
+                    >
+                        체험 수업 문의
+                    </a>
+                    <Link
+                        href="/class"
+                        className="px-8 py-3.5 border border-white/30 text-white text-sm font-medium rounded-full hover:bg-white/10 transition-colors"
+                    >
+                        수업 안내 보기
+                    </Link>
                 </motion.div>
+
+                {/* Trust Badge */}
+                <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 1.4 }}
+                    className="absolute bottom-12 text-white/40 text-xs tracking-widest"
+                >
+                    KCDA 인증 교육기관
+                </motion.p>
 
             </div>
         </section>

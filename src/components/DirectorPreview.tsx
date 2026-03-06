@@ -49,8 +49,9 @@ export function DirectorPreview() {
                         <p className="text-sm text-gray-400 mb-6">글씨인아트센터 대표 작가</p>
 
                         <div className="space-y-2 text-sm text-gray-600 mb-8">
-                            <p>대한민국 미술대전(국전) 특선</p>
-                            <p>한국캘리그라피디자인협회(KCDIA) 정회원 및 인증강사</p>
+                            <p>사범대 미술교육학과 졸업</p>
+                            <p>대한민국 미술대전(국전) 특선 다수</p>
+                            <p>KCDIA 정회원 및 인증강사</p>
                             <p>대한민국 서예술인협회 초대작가</p>
                         </div>
 

@@ -57,24 +57,17 @@ export function DirectorProfile() {
                                     자격 및 경력
                                 </h4>
                                 <div className="space-y-4 border-l border-black/10 pl-6">
-                                    <div className="relative">
-                                        <div className="absolute -left-[25px] top-1.5 w-2 h-2 rounded-full bg-black"></div>
-                                        <p className="text-[15px] text-gray-700 font-light leading-relaxed">
-                                            사단법인 한국캘리그라피디자인협회(KCDIA) 정회원 및 인증강사
-                                        </p>
-                                    </div>
-                                    <div className="relative">
-                                        <div className="absolute -left-[25px] top-1.5 w-2 h-2 rounded-full bg-black"></div>
-                                        <p className="text-[15px] text-gray-700 font-light leading-relaxed">
-                                            &apos;글씨인아트센터&apos; 대표 <span className="text-gray-400">(2020~)</span>
-                                        </p>
-                                    </div>
-                                    <div className="relative">
-                                        <div className="absolute -left-[25px] top-1.5 w-2 h-2 rounded-full bg-black"></div>
-                                        <p className="text-[15px] text-gray-700 font-light leading-relaxed">
-                                            &apos;글씨인&apos; 커뮤니티 대표 운영작가
-                                        </p>
-                                    </div>
+                                    {[
+                                        { text: "사범대 미술교육학과 졸업", highlight: true },
+                                        { text: "사단법인 한국캘리그라피디자인협회(KCDIA) 정회원 및 인증강사", highlight: true },
+                                        { text: "글씨인아트센터 대표 (2020~)", highlight: true },
+                                        { text: "글씨인 커뮤니티 대표 운영작가", highlight: false },
+                                    ].map((item, index) => (
+                                        <div key={index} className="relative">
+                                            <div className={`absolute -left-[25px] top-1.5 w-2 h-2 rounded-full ${item.highlight ? "bg-black" : "bg-gray-300"}`}></div>
+                                            <p className="text-[15px] text-gray-700 font-light leading-relaxed">{item.text}</p>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
 
@@ -82,15 +75,41 @@ export function DirectorProfile() {
                             <div>
                                 <h4 className="text-lg font-serif font-bold text-black mb-6 flex items-center gap-3">
                                     <span className="w-8 h-[1px] bg-black"></span>
-                                    수상 경력 및 활동
+                                    수상 경력
                                 </h4>
                                 <div className="space-y-4 border-l border-black/10 pl-6">
                                     {[
-                                        "대한민국 미술대전(국전) 특선 및 다수수상",
-                                        "대한민국 서예술인협회 우수상 및 다수 수상",
+                                        "대한민국 미술대전(국전) 캘리그라피 부문 특선 다수",
+                                        "국제현대미술대전 동상",
+                                        "대한민국창작미술대전 삼채상",
+                                        "대한민국 서예술대전 특선",
+                                        "대한민국 서예·문인화공모대전 특선",
+                                        "경기미술대전 특선",
+                                        "대한민국 서예술인협회 우수상 다수",
+                                        "오원상 수상 (현대미술작든그룹전)",
+                                        "전국 각종 캘리그라피·서예대전 우수상 다수",
+                                    ].map((item, index) => (
+                                        <div key={index} className="relative">
+                                            <div className="absolute -left-[25px] top-1.5 w-2 h-2 rounded-full bg-gray-300"></div>
+                                            <p className="text-[15px] text-gray-600 font-light leading-relaxed">{item}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Activities */}
+                            <div>
+                                <h4 className="text-lg font-serif font-bold text-black mb-6 flex items-center gap-3">
+                                    <span className="w-8 h-[1px] bg-black"></span>
+                                    전시 및 활동
+                                </h4>
+                                <div className="space-y-4 border-l border-black/10 pl-6">
+                                    {[
                                         "대한민국 서예술인협회 초대작가",
                                         "서화협회 & 국가보훈문화예술협회 추천작가",
-                                        "전국 각종 캘리그라피 서예대전 및 휘호대회 우수상 및 다수 수상",
+                                        "KCDIA 정기회원전 다수 참여",
+                                        "\"묵묵히\" 시리즈 전시 다수",
+                                        "글씨인아트센터 회원전시 \"아름다운 처음이여\"",
                                         "공모전, 협회전, 초대전, 단체전 등 다양한 전시 활동",
                                         "관공서 및 교육기관 캘리그라피 & 펜그림 출강 다수",
                                     ].map((item, index) => (

@@ -11,15 +11,13 @@ export function CTASection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8 }}
-                    className="space-y-6"
+                    className="space-y-4"
                 >
                     <h2 className="text-3xl md:text-4xl font-serif font-bold">
-                        첫 수업을 시작해보세요
+                        궁금한 게 있으신가요?
                     </h2>
-                    <p className="text-white/60 text-sm md:text-base leading-relaxed">
-                        붓 한 자루로 시작되는 당신만의 예술 여정.
-                        <br />
-                        부담 없이 문의해 주세요.
+                    <p className="text-white/60 text-sm md:text-base">
+                        부담 없이 물어보세요.
                     </p>
                 </motion.div>
 
@@ -31,18 +29,18 @@ export function CTASection() {
                     className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10"
                 >
                     <a
-                        href="tel:010-2497-4310"
-                        className="w-full sm:w-auto px-8 py-3.5 border border-white/30 text-white text-sm font-medium rounded-full hover:bg-white hover:text-black transition-colors text-center"
-                    >
-                        전화 문의
-                    </a>
-                    <a
                         href="https://pf.kakao.com/_xkETdn"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-full sm:w-auto px-8 py-3.5 bg-white text-black text-sm font-medium rounded-full hover:bg-white/90 transition-colors text-center"
                     >
                         카카오톡 문의
+                    </a>
+                    <a
+                        href="tel:010-2497-4310"
+                        className="w-full sm:w-auto px-8 py-3.5 border border-white/30 text-white text-sm font-medium rounded-full hover:bg-white hover:text-black transition-colors text-center"
+                    >
+                        전화 문의
                     </a>
                 </motion.div>
 

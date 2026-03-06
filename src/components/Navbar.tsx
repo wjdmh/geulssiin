@@ -9,11 +9,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ContactModal } from "./ContactModal";
 import { signout } from "@/app/auth/signout/actions";
 
-const navLinks = [
-    { href: "/", label: "홈" },
+const desktopNavLinks = [
+    { href: "/class", label: "수업 안내" },
     { href: "/gallery", label: "갤러리" },
     { href: "/about", label: "센터 소개" },
+];
+
+const mobileNavLinks = [
     { href: "/class", label: "수업 안내" },
+    { href: "/gallery", label: "갤러리" },
+    { href: "/about", label: "센터 소개" },
     { href: "/board", label: "게시판" },
 ];
 
@@ -90,7 +95,7 @@ export function Navbar({ user, profile }: NavbarProps) {
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-8">
-                        {navLinks.map((link) => (
+                        {desktopNavLinks.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
@@ -201,7 +206,7 @@ export function Navbar({ user, profile }: NavbarProps) {
                         className="fixed inset-0 z-40 bg-white flex flex-col pt-24 px-8 pb-12 md:hidden"
                     >
                         <nav className="flex flex-col gap-1 flex-1">
-                            {navLinks.map((link, i) => (
+                            {mobileNavLinks.map((link, i) => (
                                 <motion.div
                                     key={link.href}
                                     initial={{ opacity: 0, x: -20 }}

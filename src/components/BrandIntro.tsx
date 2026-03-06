@@ -21,28 +21,18 @@ export function BrandIntro() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-lg md:text-xl leading-relaxed text-gray-600 font-light"
+                    className="text-2xl md:text-3xl leading-relaxed text-gray-800 font-serif"
                 >
-                    디지털이 모든 것을 대체하는 시대,
+                    잘 쓴 글씨보다, 마음이 담긴 글씨.
                     <br />
-                    손으로 쓴 글씨에는 대체할 수 없는 온기가 있습니다.
-                </motion.p>
-
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="text-lg md:text-xl leading-relaxed text-gray-800 font-light"
-                >
-                    글씨인아트센터는 그 온기를 지키는 공간입니다.
+                    그것이 글씨인이 걷는 길입니다.
                 </motion.p>
 
                 <motion.div
                     initial={{ opacity: 0, scaleX: 0 }}
                     whileInView={{ opacity: 1, scaleX: 1 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
                     className="w-12 h-[1px] bg-gray-300 mx-auto"
                 />
 
@@ -50,12 +40,10 @@ export function BrandIntro() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8, delay: 0.7 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
                     className="text-sm md:text-base leading-relaxed text-gray-500 font-light"
                 >
-                    붓끝에서 퍼지는 먹의 농담, 펜촉이 종이를 스치는 사각거림 —
-                    <br />
-                    그 안에 담긴 당신의 호흡과 감정이 예술이 됩니다.
+                    붓끝에서 시작되는 당신만의 시간을 경험해보세요.
                 </motion.p>
             </div>
         </section>
