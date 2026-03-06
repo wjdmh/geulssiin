@@ -23,7 +23,7 @@ export function BrandIntro() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="text-2xl md:text-3xl leading-relaxed text-gray-800 font-serif"
                 >
-                    잘 쓴 글씨보다, 마음이 담긴 글씨.
+                    마음이 담긴 글씨,
                     <br />
                     그것이 글씨인이 걷는 길입니다.
                 </motion.p>

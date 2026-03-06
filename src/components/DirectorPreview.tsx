@@ -15,8 +15,7 @@ export function DirectorPreview() {
                     transition={{ duration: 0.8 }}
                     className="text-center mb-16"
                 >
-                    <p className="text-gray-400 text-xs tracking-[0.3em] uppercase mb-4">Director</p>
-                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900">글씨인아트센터를 이끄는 사람</h2>
+                    <p className="text-gray-700 text-xs tracking-[0.3em] uppercase mb-4 font-medium">Director</p>
                 </motion.div>
 
                 <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
@@ -56,9 +55,9 @@ export function DirectorPreview() {
                         </div>
 
                         <blockquote className="border-l-2 border-gray-200 pl-4 italic text-gray-500 mb-8">
-                            &ldquo;글씨는 마음의 거울입니다.
+                            글씨는 마음의 거울입니다.
                             <br />
-                            진실된 마음으로 쓰고, 아름답게 표현하는 길을 함께 걷겠습니다.&rdquo;
+                            진실된 마음으로 쓰고, 아름답게 표현하는 길을 함께 걷겠습니다.
                         </blockquote>
 
                         <Link

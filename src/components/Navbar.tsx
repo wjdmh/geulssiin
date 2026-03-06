@@ -10,6 +10,7 @@ import { ContactModal } from "./ContactModal";
 import { signout } from "@/app/auth/signout/actions";
 
 const desktopNavLinks = [
+    { href: "/", label: "홈" },
     { href: "/class", label: "수업 안내" },
     { href: "/gallery", label: "갤러리" },
     { href: "/about", label: "센터 소개" },

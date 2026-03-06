@@ -43,8 +43,7 @@ export function GalleryHighlight() {
                     transition={{ duration: 0.8 }}
                     className="text-center mb-16"
                 >
-                    <p className="text-gray-400 text-xs tracking-[0.3em] uppercase mb-4">Gallery</p>
-                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900">작품으로 말하다</h2>
+                    <p className="text-gray-700 text-xs tracking-[0.3em] uppercase mb-4 font-medium">Gallery</p>
                 </motion.div>
 
                 {/* Asymmetric layout: 1 large + 3 small */}

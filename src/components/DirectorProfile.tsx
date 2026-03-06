@@ -17,8 +17,7 @@ export function DirectorProfile() {
                     className="text-center mb-16"
                 >
                     <span className="text-gray-400 text-xs tracking-[0.3em] uppercase mb-4 block">Director</span>
-                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-black mb-4">그리운 작가</h2>
-                    <p className="text-sm text-gray-400 font-light tracking-wide">글씨인아트센터 대표 · 캘리그라피 작가</p>
+                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-black mb-4">글씨인아트센터 대표 이보영</h2>
                 </motion.div>
 
                 <div className="flex flex-col md:flex-row items-start gap-12 md:gap-20">
@@ -64,7 +63,7 @@ export function DirectorProfile() {
                                         { text: "글씨인 커뮤니티 대표 운영작가", highlight: false },
                                     ].map((item, index) => (
                                         <div key={index} className="relative">
-                                            <div className={`absolute -left-[25px] top-1.5 w-2 h-2 rounded-full ${item.highlight ? "bg-black" : "bg-gray-300"}`}></div>
+                                            <div className={`absolute -left-[25px] top-[7px] w-2 h-2 rounded-full ${item.highlight ? "bg-black" : "bg-gray-300"}`}></div>
                                             <p className="text-[15px] text-gray-700 font-light leading-relaxed">{item.text}</p>
                                         </div>
                                     ))}
@@ -90,7 +89,7 @@ export function DirectorProfile() {
                                         "전국 각종 캘리그라피·서예대전 우수상 다수",
                                     ].map((item, index) => (
                                         <div key={index} className="relative">
-                                            <div className="absolute -left-[25px] top-1.5 w-2 h-2 rounded-full bg-gray-300"></div>
+                                            <div className="absolute -left-[25px] top-[7px] w-2 h-2 rounded-full bg-gray-300"></div>
                                             <p className="text-[15px] text-gray-600 font-light leading-relaxed">{item}</p>
                                         </div>
                                     ))}
@@ -114,7 +113,7 @@ export function DirectorProfile() {
                                         "관공서 및 교육기관 캘리그라피 & 펜그림 출강 다수",
                                     ].map((item, index) => (
                                         <div key={index} className="relative">
-                                            <div className="absolute -left-[25px] top-1.5 w-2 h-2 rounded-full bg-gray-300"></div>
+                                            <div className="absolute -left-[25px] top-[7px] w-2 h-2 rounded-full bg-gray-300"></div>
                                             <p className="text-[15px] text-gray-600 font-light leading-relaxed">{item}</p>
                                         </div>
                                     ))}
@@ -131,8 +130,8 @@ export function DirectorProfile() {
                             className="mt-12 pt-8 border-t border-black/10"
                         >
                             <p className="text-gray-400 italic font-serif text-sm leading-relaxed">
-                                &quot;글씨는 마음의 거울입니다. <br />
-                                진실된 마음으로 쓰고, 아름답게 표현하는 길을 함께 걷겠습니다.&quot;
+                                글씨는 마음의 거울입니다. <br />
+                                진실된 마음으로 쓰고, 아름답게 표현하는 길을 함께 걷겠습니다.
                             </p>
                         </motion.div>
                     </motion.div>

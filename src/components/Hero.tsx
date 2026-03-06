@@ -25,7 +25,7 @@ export function Hero({
                     className="object-cover"
                     priority
                 />
-                <div className="absolute inset-0 bg-black/50" />
+                <div className="absolute inset-0 bg-black/65" />
             </div>
 
             <div className="container mx-auto px-6 h-full flex flex-col items-center justify-center text-center z-10 relative">

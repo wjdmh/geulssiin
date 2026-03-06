@@ -12,6 +12,7 @@ const classKeywords: Record<string, string> = {
 };
 
 const regularClasses = classCurriculum.filter(c => c.title !== "원데이 클래스");
+const onedayClass = classCurriculum.find(c => c.title === "원데이 클래스");
 
 export function ClassPreview() {
     return (
@@ -26,28 +27,6 @@ export function ClassPreview() {
                 >
                     <p className="text-gray-400 text-xs tracking-[0.3em] uppercase mb-4">Classes</p>
                     <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900">나에게 맞는 수업 찾기</h2>
-                </motion.div>
-
-                {/* One-day Class Banner */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.6 }}
-                    className="mb-10 p-8 bg-white border border-gray-200 text-center"
-                >
-                    <p className="text-xs text-gray-400 tracking-wide mb-3">한 번 체험해보고 싶은 분들을 위해</p>
-                    <h3 className="text-xl font-serif font-bold text-gray-900 mb-2">원데이 클래스</h3>
-                    <p className="text-sm text-gray-500 mb-1">2시간 · 50,000원 · 재료 포함</p>
-                    <p className="text-xs text-gray-400 mb-6">부채, 캘리액자, 엽서 & 족자 등 계절별 소품 제작</p>
-                    <a
-                        href="https://pf.kakao.com/_xkETdn"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block px-6 py-2.5 bg-black text-white text-sm rounded-full hover:bg-gray-800 transition-colors"
-                    >
-                        일정 문의
-                    </a>
                 </motion.div>
 
                 {/* Regular Classes */}
@@ -92,6 +71,30 @@ export function ClassPreview() {
                         </motion.div>
                     ))}
                 </div>
+
+                {/* One-day Class Banner — Bottom */}
+                {onedayClass && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.6 }}
+                        className="mt-10 p-8 bg-white border border-gray-200 text-center"
+                    >
+                        <p className="text-xs text-gray-400 tracking-wide mb-3">한 번 체험해보고 싶은 분들을 위해</p>
+                        <h3 className="text-xl font-serif font-bold text-gray-900 mb-2">원데이 클래스</h3>
+                        <p className="text-sm text-gray-500 mb-1">2시간 · 50,000원 · 재료 포함</p>
+                        <p className="text-xs text-gray-400 mb-6">부채, 캘리액자, 엽서 & 족자 등 계절별 소품 제작</p>
+                        <a
+                            href="https://pf.kakao.com/_xkETdn"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block px-6 py-2.5 bg-black text-white text-sm rounded-full hover:bg-gray-800 transition-colors"
+                        >
+                            일정 문의
+                        </a>
+                    </motion.div>
+                )}
 
                 <motion.div
                     initial={{ opacity: 0 }}

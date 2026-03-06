@@ -11,7 +11,7 @@ const meanings = [
     {
         key: "人",
         label: "글씨 + 인(人)",
-        description: "글씨를 쓰는 사람. 모든 수강생은 '글씨를 쓰는 사람'이다",
+        description: "글씨를 쓰는 사람. 모든 수강생은 글씨를 쓰는 사람이다",
     },
     {
         key: "因",
@@ -38,7 +38,7 @@ export function NameMeaning() {
                 >
                     <p className="text-gray-400 text-xs tracking-[0.3em] uppercase mb-4">Name</p>
                     <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900">
-                        &ldquo;글씨인&rdquo;이라는 이름
+                        <span className="font-bold">글씨인</span>이라는 이름
                     </h2>
                 </motion.div>
 
@@ -63,15 +63,6 @@ export function NameMeaning() {
                     ))}
                 </div>
 
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                    className="text-center text-sm text-gray-400 mt-16"
-                >
-                    이 이름은 단순한 상호가 아니라, 센터가 지향하는 방향 그 자체입니다.
-                </motion.p>
             </div>
         </section>
     );
