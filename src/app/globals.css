@@ -1,29 +1,170 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&family=Cormorant+Garamond:wght@300;400&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 @import "tailwindcss";
 
 :root {
-  /* Enforcing White Theme */
-  --background: #FFFFFF;
-  --foreground: #111111;
-  /* Deep Black for high legibility */
-  --muted: #666666;
-  --accent: #E5E5E5;
+  /* ── 색상: Ink (먹) ── */
+  --ink-950: #0f0e0d;
+  --ink-800: #2a2825;
+  --ink-500: #6b6764;
+  --ink-300: #b5b1ae;
+  --ink-100: #e8e5e2;
+
+  /* ── 색상: Paper (한지) ── */
+  --paper-50:  #faf8f5;
+  --paper-100: #f2efe9;
+  --paper-200: #e5e0d8;
+
+  /* ── 레거시 매핑 (기존 코드 호환) ── */
+  --background: var(--paper-50);
+  --foreground: var(--ink-950);
+  --muted: var(--ink-500);
+  --accent: var(--ink-100);
+
+  /* ── 폰트 ── */
+  --font-serif: 'Noto Serif KR', 'Cormorant Garamond', Georgia, serif;
+  --font-sans:  'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* ── 타이포 스케일 ── */
+  --text-xs:   11px;
+  --text-sm:   13px;
+  --text-base: 15px;
+  --text-lg:   18px;
+  --text-xl:   24px;
+  --text-2xl:  32px;
+  --text-3xl:  40px;
+  --text-4xl:  56px;
+  --text-5xl:  72px;
+
+  /* ── 줄간격 ── */
+  --lh-tight:   1.2;
+  --lh-snug:    1.4;
+  --lh-normal:  1.7;
+  --lh-relaxed: 1.8;
+  --lh-loose:   2.0;
+
+  /* ── 자간 ── */
+  --ls-tight:  -0.02em;
+  --ls-snug:   -0.01em;
+  --ls-normal:  0.01em;
+  --ls-wide:    0.06em;
+  --ls-wider:   0.10em;
+
+  /* ── 스페이싱 (8px 그리드) ── */
+  --space-1:    4px;
+  --space-2:    8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-16:  64px;
+  --space-20:  80px;
+  --space-24:  96px;
+  --space-30: 120px;
+  --space-40: 160px;
+  --space-48: 192px;
+
+  /* ── 선 ── */
+  --line-strong:  1px solid #2a2825;
+  --line-default: 1px solid #e8e5e2;
+  --line-subtle:  1px solid #f0ece6;
+
+  /* ── 레이아웃 ── */
+  --container-max:         960px;
+  --container-pad-mobile:   24px;
+  --container-pad-tablet:   48px;
+  --container-pad-desktop:  80px;
+
+  /* ── 모션 ── */
+  --ease-default:    cubic-bezier(0.25, 0.0, 0.0, 1.0);
+  --duration-fast:   300ms;
+  --duration-base:   400ms;
+  --duration-slow:   600ms;
+  --duration-slower: 800ms;
+
+  /* ── Border radius ── */
+  --radius-none: 0;
+  --radius-xs:   2px;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-serif: 'Noto Serif KR', serif;
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+}
+
+/* ── 기본 리셋 ── */
+html {
+  background-color: var(--paper-50);
+  color: var(--ink-950);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-serif);
+  min-height: 100vh;
+  overflow-x: hidden;
   position: relative;
 }
 
-/* Subtle Paper/Noise Texture */
+/* 헤드라인은 기본으로 serif / weight 300 */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  letter-spacing: var(--ls-tight);
+}
+
+h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+
+/* 한국어 줄바꿈 */
+* {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 선택 색상 */
+::selection {
+  background: var(--ink-950);
+  color: var(--paper-50);
+}
+
+/* 스크롤바 */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--paper-50); }
+::-webkit-scrollbar-thumb { background: var(--ink-300); }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-500); }
+
+/* ── 컨테이너 ── */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad-mobile);
+}
+
+@media (min-width: 768px) {
+  .container { padding-inline: var(--container-pad-tablet); }
+}
+
+@media (min-width: 1024px) {
+  .container { padding-inline: var(--container-pad-desktop); }
+}
+
+/* ── 섹션 패딩 ── */
+.section-sm { padding-block: var(--space-20); }  /* 80px */
+.section-md { padding-block: var(--space-30); }  /* 120px */
+.section-lg { padding-block: var(--space-40); }  /* 160px */
+
+/* ── 노이즈 텍스처 ── */
 body::before {
   content: "";
   position: fixed;
@@ -38,7 +179,7 @@ body::before {
   mix-blend-mode: multiply;
 }
 
-/* Vertical Writing Utilities (Optional now, but kept just in case) */
+/* ── 세로쓰기 유틸리티 ── */
 .writing-vertical-rl {
   writing-mode: vertical-rl;
   text-orientation: upright;
