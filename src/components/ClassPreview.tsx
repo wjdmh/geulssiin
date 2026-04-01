@@ -4,6 +4,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { classCurriculum } from "@/lib/data";
 
+const ease = [0.25, 0.0, 0.0, 1.0] as const;
+const viewport = { once: true, margin: "-80px" };
+
 const classKeywords: Record<string, string> = {
     "붓 캘리그라피 클래스": "전통의 깊이",
     "붓펜 캘리그라피 클래스": "일상의 실용",
@@ -16,99 +19,239 @@ const onedayClass = classCurriculum.find(c => c.title === "원데이 클래스")
 
 export function ClassPreview() {
     return (
-        <section className="py-24 md:py-32 px-6 bg-[#faf8f5]">
-            <div className="max-w-5xl mx-auto">
+        <section className="section-lg" style={{ borderBottom: "var(--line-default)", backgroundColor: "var(--paper-50)" }}>
+            <div className="container">
+
+                {/* Header */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8 }}
-                    className="text-center mb-16"
+                    viewport={viewport}
+                    transition={{ duration: 0.6, ease }}
+                    style={{ marginBottom: "var(--space-12)" }}
                 >
-                    <p className="text-gray-400 text-xs tracking-[0.3em] uppercase mb-4">Classes</p>
-                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900">나에게 맞는 수업 찾기</h2>
+                    <p style={{
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "var(--text-xs)",
+                        color: "var(--ink-300)",
+                        letterSpacing: "var(--ls-wider)",
+                        marginBottom: "var(--space-5)",
+                    }}>
+                        CLASSES
+                    </p>
+                    <h2 style={{
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "clamp(var(--text-xl), 3vw, var(--text-3xl))",
+                        fontWeight: 300,
+                        color: "var(--ink-950)",
+                        letterSpacing: "var(--ls-snug)",
+                        lineHeight: "var(--lh-snug)",
+                    }}>
+                        나에게 맞는 수업 찾기
+                    </h2>
                 </motion.div>
 
                 {/* Regular Classes */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                    gap: "1px",
+                    backgroundColor: "var(--ink-100)",
+                    border: "var(--line-default)",
+                    marginBottom: "var(--space-2)",
+                }}>
                     {regularClasses.map((cls, i) => (
                         <motion.div
                             key={cls.title}
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 12 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.6, delay: i * 0.1 }}
-                            className="bg-white p-8 border border-gray-100 hover:border-gray-300 transition-colors group flex flex-col"
+                            viewport={viewport}
+                            transition={{ duration: 0.6, delay: i * 0.08, ease }}
+                            style={{
+                                backgroundColor: "var(--paper-50)",
+                                padding: "var(--space-8)",
+                                display: "flex",
+                                flexDirection: "column",
+                            }}
                         >
-                            <p className="text-[10px] tracking-[0.2em] text-gray-400 uppercase mb-4">
+                            <p style={{
+                                fontFamily: "var(--font-sans)",
+                                fontSize: "var(--text-xs)",
+                                color: "var(--ink-300)",
+                                letterSpacing: "var(--ls-wider)",
+                                marginBottom: "var(--space-4)",
+                            }}>
                                 {classKeywords[cls.title] || ""}
                             </p>
-                            <h3 className="text-lg font-serif font-bold text-gray-900 mb-3">
+                            <h3 style={{
+                                fontFamily: "var(--font-serif)",
+                                fontSize: "var(--text-lg)",
+                                fontWeight: 300,
+                                color: "var(--ink-950)",
+                                letterSpacing: "var(--ls-snug)",
+                                marginBottom: "var(--space-4)",
+                            }}>
                                 {cls.title.replace(" 클래스", "")}
                             </h3>
-                            <p className="text-sm text-gray-500 leading-relaxed mb-4">
+                            <p style={{
+                                fontFamily: "var(--font-sans)",
+                                fontSize: "var(--text-sm)",
+                                color: "var(--ink-500)",
+                                lineHeight: "var(--lh-relaxed)",
+                                letterSpacing: "var(--ls-normal)",
+                                marginBottom: "var(--space-6)",
+                            }}>
                                 {cls.description}
                             </p>
-                            <div className="flex flex-wrap gap-2 mb-6">
+
+                            {/* Level tags */}
+                            <div style={{
+                                display: "flex",
+                                flexWrap: "wrap",
+                                gap: "var(--space-2)",
+                                marginBottom: "var(--space-6)",
+                            }}>
                                 {cls.details.map((d) => (
-                                    <span key={d.level} className="text-[11px] text-gray-400 border border-gray-200 px-2.5 py-1 rounded-full">
+                                    <span key={d.level} style={{
+                                        fontFamily: "var(--font-sans)",
+                                        fontSize: "var(--text-xs)",
+                                        color: "var(--ink-300)",
+                                        border: "var(--line-default)",
+                                        borderRadius: "var(--radius-xs)",
+                                        padding: "3px 10px",
+                                        letterSpacing: "var(--ls-wide)",
+                                    }}>
                                         {d.level}
                                     </span>
                                 ))}
                             </div>
 
-                            <div className="mt-auto pt-4 border-t border-gray-100">
-                                <p className="text-xs text-gray-400 mb-3">월 150,000원 · 주 1회 · 120분</p>
+                            <div style={{
+                                marginTop: "auto",
+                                paddingTop: "var(--space-5)",
+                                borderTop: "var(--line-default)",
+                            }}>
+                                <p style={{
+                                    fontFamily: "var(--font-sans)",
+                                    fontSize: "var(--text-xs)",
+                                    color: "var(--ink-300)",
+                                    letterSpacing: "var(--ls-normal)",
+                                    marginBottom: "var(--space-3)",
+                                }}>
+                                    월 150,000원 · 주 1회 · 120분
+                                </p>
                                 <a
                                     href="https://pf.kakao.com/_xkETdn"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-sm text-gray-500 hover:text-black transition-colors"
+                                    style={{
+                                        fontFamily: "var(--font-sans)",
+                                        fontSize: "var(--text-sm)",
+                                        color: "var(--ink-500)",
+                                        textDecoration: "none",
+                                        transition: "opacity var(--duration-fast) var(--ease-default)",
+                                    }}
+                                    onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.4"; }}
+                                    onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
                                 >
-                                    이 수업 문의하기 &rarr;
+                                    수업 문의하기 →
                                 </a>
                             </div>
                         </motion.div>
                     ))}
                 </div>
 
-                {/* One-day Class Banner — Bottom */}
+                {/* One-day Class */}
                 {onedayClass && (
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.6 }}
-                        className="mt-10 p-8 bg-white border border-gray-200 text-center"
+                        viewport={viewport}
+                        transition={{ duration: 0.6, ease }}
+                        style={{
+                            border: "var(--line-default)",
+                            padding: "var(--space-10)",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "flex-start",
+                            gap: "var(--space-4)",
+                            marginBottom: "var(--space-10)",
+                        }}
                     >
-                        <p className="text-xs text-gray-400 tracking-wide mb-3">한 번 체험해보고 싶은 분들을 위해</p>
-                        <h3 className="text-xl font-serif font-bold text-gray-900 mb-2">원데이 클래스</h3>
-                        <p className="text-sm text-gray-500 mb-1">2시간 · 50,000원 · 재료 포함</p>
-                        <p className="text-xs text-gray-400 mb-6">부채, 캘리액자, 엽서 & 족자 등 계절별 소품 제작</p>
+                        <p style={{
+                            fontFamily: "var(--font-sans)",
+                            fontSize: "var(--text-xs)",
+                            color: "var(--ink-300)",
+                            letterSpacing: "var(--ls-wider)",
+                        }}>
+                            한 번 체험해보고 싶은 분들을 위해
+                        </p>
+                        <h3 style={{
+                            fontFamily: "var(--font-serif)",
+                            fontSize: "var(--text-xl)",
+                            fontWeight: 300,
+                            color: "var(--ink-950)",
+                            letterSpacing: "var(--ls-snug)",
+                        }}>
+                            원데이 클래스
+                        </h3>
+                        <p style={{
+                            fontFamily: "var(--font-sans)",
+                            fontSize: "var(--text-sm)",
+                            color: "var(--ink-500)",
+                            letterSpacing: "var(--ls-normal)",
+                        }}>
+                            2시간 · 50,000원 · 재료 포함<br />
+                            부채, 캘리액자, 엽서 & 족자 등 계절별 소품 제작
+                        </p>
                         <a
                             href="https://pf.kakao.com/_xkETdn"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-block px-6 py-2.5 bg-black text-white text-sm rounded-full hover:bg-gray-800 transition-colors"
+                            style={{
+                                padding: "12px 28px",
+                                backgroundColor: "var(--ink-950)",
+                                color: "var(--paper-50)",
+                                fontFamily: "var(--font-sans)",
+                                fontSize: "var(--text-sm)",
+                                fontWeight: 400,
+                                letterSpacing: "var(--ls-wide)",
+                                textDecoration: "none",
+                                borderRadius: 0,
+                                marginTop: "var(--space-2)",
+                                transition: "opacity var(--duration-base) var(--ease-default)",
+                            }}
+                            onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.7"; }}
+                            onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
                         >
                             일정 문의
                         </a>
                     </motion.div>
                 )}
 
+                {/* More link */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
-                    className="text-center mt-12"
+                    viewport={viewport}
+                    transition={{ duration: 0.6, delay: 0.3, ease }}
                 >
                     <Link
                         href="/class"
-                        className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-black transition-colors border-b border-gray-300 hover:border-black pb-1"
+                        style={{
+                            fontFamily: "var(--font-sans)",
+                            fontSize: "var(--text-sm)",
+                            color: "var(--ink-500)",
+                            textDecoration: "none",
+                            letterSpacing: "var(--ls-wide)",
+                            borderBottom: "var(--line-default)",
+                            paddingBottom: "2px",
+                            transition: "opacity var(--duration-fast) var(--ease-default)",
+                        }}
+                        onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.4"; }}
+                        onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
                     >
-                        수업 안내 전체 보기
-                        <span>&rarr;</span>
+                        수업 안내 전체 보기 →
                     </Link>
                 </motion.div>
             </div>

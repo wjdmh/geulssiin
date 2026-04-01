@@ -14,6 +14,9 @@ interface GalleryItem {
     year: string | null;
 }
 
+const ease = [0.25, 0.0, 0.0, 1.0] as const;
+const viewport = { once: true, margin: "-80px" };
+
 export function GalleryHighlight() {
     const [items, setItems] = useState<GalleryItem[]>([]);
 
@@ -34,86 +37,163 @@ export function GalleryHighlight() {
     if (items.length === 0) return null;
 
     return (
-        <section className="py-24 md:py-32 px-6 bg-white">
-            <div className="max-w-6xl mx-auto">
+        <section className="section-lg" style={{ borderBottom: "var(--line-default)", backgroundColor: "var(--paper-100)" }}>
+            <div className="container">
+
+                {/* Header */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8 }}
-                    className="text-center mb-16"
+                    viewport={viewport}
+                    transition={{ duration: 0.6, ease }}
+                    style={{ marginBottom: "var(--space-12)" }}
                 >
-                    <p className="text-gray-700 text-xs tracking-[0.3em] uppercase mb-4 font-medium">Gallery</p>
+                    <p style={{
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "var(--text-xs)",
+                        color: "var(--ink-300)",
+                        letterSpacing: "var(--ls-wider)",
+                        marginBottom: "var(--space-5)",
+                    }}>
+                        GALLERY
+                    </p>
+                    <h2 style={{
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "clamp(var(--text-xl), 3vw, var(--text-3xl))",
+                        fontWeight: 300,
+                        color: "var(--ink-950)",
+                        letterSpacing: "var(--ls-snug)",
+                        lineHeight: "var(--lh-snug)",
+                    }}>
+                        작품
+                    </h2>
                 </motion.div>
 
-                {/* Asymmetric layout: 1 large + 3 small */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                    {/* Large featured image */}
+                {/* Grid: 1 large + 3 small */}
+                <div style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(2, 1fr)",
+                    gap: "1px",
+                    backgroundColor: "var(--ink-100)",
+                    border: "var(--line-default)",
+                    marginBottom: "var(--space-10)",
+                }}>
+                    {/* Large featured */}
                     {items[0] && (
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 12 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.7 }}
-                            className="md:row-span-2 group cursor-pointer"
+                            viewport={viewport}
+                            transition={{ duration: 0.7, ease }}
+                            style={{
+                                gridRow: "span 2",
+                                backgroundColor: "var(--paper-100)",
+                                overflow: "hidden",
+                            }}
                         >
-                            <div className="relative overflow-hidden bg-gray-50 aspect-[3/4]">
+                            <div style={{ position: "relative", aspectRatio: "3/4", overflow: "hidden" }}>
                                 <Image
                                     src={items[0].image_url}
                                     alt={items[0].title}
                                     fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                                    style={{ objectFit: "cover", transition: "opacity var(--duration-slow) var(--ease-default)" }}
                                     sizes="(max-width: 768px) 100vw, 50vw"
+                                    onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.85"; }}
+                                    onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
                                 />
                             </div>
-                            <div className="mt-3">
-                                <p className="font-serif text-base text-gray-900">{items[0].title}</p>
-                                {items[0].medium && <p className="text-xs text-gray-400 mt-1">{items[0].medium}{items[0].year && ` · ${items[0].year}`}</p>}
+                            <div style={{ padding: "var(--space-5) var(--space-6)" }}>
+                                <p style={{
+                                    fontFamily: "var(--font-serif)",
+                                    fontSize: "var(--text-base)",
+                                    fontWeight: 300,
+                                    color: "var(--ink-950)",
+                                    letterSpacing: "var(--ls-snug)",
+                                    marginBottom: "var(--space-1)",
+                                }}>
+                                    {items[0].title}
+                                </p>
+                                {items[0].medium && (
+                                    <p style={{
+                                        fontFamily: "var(--font-sans)",
+                                        fontSize: "var(--text-xs)",
+                                        color: "var(--ink-300)",
+                                        letterSpacing: "var(--ls-wide)",
+                                    }}>
+                                        {items[0].medium}{items[0].year && ` · ${items[0].year}`}
+                                    </p>
+                                )}
                             </div>
                         </motion.div>
                     )}
 
                     {/* Smaller images */}
-                    <div className="grid grid-cols-2 gap-4 md:gap-6">
-                        {items.slice(1, 4).map((item, i) => (
-                            <motion.div
-                                key={item.id}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-50px" }}
-                                transition={{ duration: 0.7, delay: (i + 1) * 0.1 }}
-                                className={`group cursor-pointer ${i === 2 ? 'col-span-2' : ''}`}
-                            >
-                                <div className={`relative overflow-hidden bg-gray-50 ${i === 2 ? 'aspect-[2/1]' : 'aspect-square'}`}>
-                                    <Image
-                                        src={item.image_url}
-                                        alt={item.title}
-                                        fill
-                                        className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                                        sizes="(max-width: 768px) 50vw, 25vw"
-                                    />
-                                </div>
-                                <div className="mt-2">
-                                    <p className="font-serif text-sm text-gray-900">{item.title}</p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                    {items.slice(1, 4).map((item, i) => (
+                        <motion.div
+                            key={item.id}
+                            initial={{ opacity: 0, y: 12 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={viewport}
+                            transition={{ duration: 0.7, delay: (i + 1) * 0.08, ease }}
+                            style={{
+                                backgroundColor: "var(--paper-100)",
+                                overflow: "hidden",
+                                gridColumn: i === 2 ? "span 1" : undefined,
+                            }}
+                        >
+                            <div style={{
+                                position: "relative",
+                                aspectRatio: "1/1",
+                                overflow: "hidden",
+                            }}>
+                                <Image
+                                    src={item.image_url}
+                                    alt={item.title}
+                                    fill
+                                    style={{ objectFit: "cover", transition: "opacity var(--duration-slow) var(--ease-default)" }}
+                                    sizes="(max-width: 768px) 50vw, 25vw"
+                                    onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.85"; }}
+                                    onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
+                                />
+                            </div>
+                            <div style={{ padding: "var(--space-4) var(--space-5)" }}>
+                                <p style={{
+                                    fontFamily: "var(--font-serif)",
+                                    fontSize: "var(--text-sm)",
+                                    fontWeight: 300,
+                                    color: "var(--ink-950)",
+                                    letterSpacing: "var(--ls-snug)",
+                                }}>
+                                    {item.title}
+                                </p>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
 
+                {/* More link */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
-                    className="text-center mt-12"
+                    viewport={viewport}
+                    transition={{ duration: 0.6, delay: 0.3, ease }}
                 >
                     <Link
                         href="/gallery"
-                        className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-black transition-colors border-b border-gray-300 hover:border-black pb-1"
+                        style={{
+                            fontFamily: "var(--font-sans)",
+                            fontSize: "var(--text-sm)",
+                            color: "var(--ink-500)",
+                            textDecoration: "none",
+                            letterSpacing: "var(--ls-wide)",
+                            borderBottom: "var(--line-default)",
+                            paddingBottom: "2px",
+                            transition: "opacity var(--duration-fast) var(--ease-default)",
+                        }}
+                        onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.4"; }}
+                        onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
                     >
-                        갤러리 전체 보기
-                        <span>&rarr;</span>
+                        갤러리 전체 보기 →
                     </Link>
                 </motion.div>
             </div>
