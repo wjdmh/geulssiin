@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>글씨인아트센터 — 인스타그램 레이아웃 가이드</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ══════════════════════════════════════════════════════
+       타이포그래피 변수 — 자간(letter-spacing) · 줄간(line-height)
+    ══════════════════════════════════════════════════════ */
+    :root {
+      /* Brand Colors */
+      --ink:        #1a1a1a;
+      --cream:      #f7f3ee;
+      --warm-bg:    #f0ebe4;
+      --beige:      #d9cfc4;
+      --brown:      #8b7355;
+      --soft-brown: #c4a882;
+      --accent:     #3d3530;
+      --white:      #ffffff;
+      --gray:       #888;
+      --light-gray: #e8e4df;
+      --gold:       #b8975a;
+
+      /* ── 자간 (Letter Spacing) ── */
+      --ls-tight:   -0.03em;   /* 큰 제목, 임팩트 헤드라인 */
+      --ls-base:    -0.01em;   /* 본문 기본 */
+      --ls-relaxed:  0.02em;   /* 소제목, 레이블 */
+      --ls-wide:     0.08em;   /* 영문 캡션, 배지 */
+      --ls-wider:    0.14em;   /* 영문 강조, 태그 */
+      --ls-widest:   0.22em;   /* 로고, 브랜드 텍스트 */
+
+      /* ── 줄간 (Line Height) ── */
+      --lh-heading:  1.25;     /* 대형 제목 */
+      --lh-title:    1.4;      /* 중형 제목 */
+      --lh-body:     1.75;     /* 본문 */
+      --lh-loose:    2.0;      /* 인용구, 시 */
+      --lh-caption:  1.55;     /* 캡션, 소형 텍스트 */
+
+      /* ── 폰트 크기 스케일 ── */
+      --fs-2xs:  0.625rem;   /* 10px */
+      --fs-xs:   0.688rem;   /* 11px */
+      --fs-sm:   0.75rem;    /* 12px */
+      --fs-base: 0.875rem;   /* 14px */
+      --fs-md:   1rem;       /* 16px */
+      --fs-lg:   1.125rem;   /* 18px */
+      --fs-xl:   1.375rem;   /* 22px */
+      --fs-2xl:  1.75rem;    /* 28px */
+      --fs-3xl:  2.25rem;    /* 36px */
+      --fs-4xl:  3rem;       /* 48px */
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+      font-size: var(--fs-base);
+      background: var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ════════════════════════════════
+       HEADER
+    ════════════════════════════════ */
+    .site-header {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 36px 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .site-header h1 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: var(--fs-2xl);
+      font-weight: 300;
+      letter-spacing: var(--ls-tight);
+      line-height: var(--lh-heading);
+    }
+    .site-header .sub {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-xs);
+      font-weight: 300;
+      letter-spacing: var(--ls-wider);
+      color: var(--beige);
+      text-transform: uppercase;
+      margin-top: 6px;
+      line-height: var(--lh-caption);
+    }
+
+    /* ════════════════════════════════
+       NAV TABS
+    ════════════════════════════════ */
+    .tab-nav {
+      display: flex;
+      background: var(--accent);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tab-nav::-webkit-scrollbar { display: none; }
+    .tab-nav button {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--beige);
+      padding: 15px 26px;
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-xs);
+      font-weight: 400;
+      letter-spacing: var(--ls-relaxed);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .tab-nav button:hover {
+      color: var(--cream);
+      background: rgba(255,255,255,0.06);
+    }
+    .tab-nav button.active {
+      color: var(--cream);
+      background: rgba(255,255,255,0.04);
+      border-bottom: 2px solid var(--gold);
+      font-weight: 500;
+    }
+
+    /* ════════════════════════════════
+       SECTIONS
+    ════════════════════════════════ */
+    .section { display: none; padding: 52px; }
+    .section.active { display: block; }
+
+    .section-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: var(--fs-xl);
+      font-weight: 400;
+      letter-spacing: var(--ls-tight);
+      line-height: var(--lh-heading);
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+    .section-desc {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-sm);
+      font-weight: 300;
+      color: var(--gray);
+      margin-bottom: 44px;
+      line-height: var(--lh-body);
+      letter-spacing: var(--ls-base);
+      max-width: 700px;
+    }
+
+    /* ════════════════════════════════
+       ① 디자인 시스템 — 색상 & 타이포
+    ════════════════════════════════ */
+    .palette-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 52px; }
+    .swatch { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .swatch .color-box {
+      width: 84px; height: 84px; border-radius: 6px;
+      border: 1px solid rgba(0,0,0,0.07);
+    }
+    .swatch span {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-xs);
+      font-weight: 400;
+      color: var(--gray);
+      text-align: center;
+      letter-spacing: var(--ls-base);
+      line-height: var(--lh-caption);
+    }
+    .swatch .hex {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: var(--fs-2xs);
+      color: var(--brown);
+      letter-spacing: 0.04em;
+    }
+
+    .type-system { display: flex; flex-direction: column; gap: 28px; }
+    .type-row {
+      display: flex;
+      align-items: baseline;
+      gap: 28px;
+      border-bottom: 1px solid var(--light-gray);
+      padding-bottom: 24px;
+    }
+    .type-label {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-xs);
+      font-weight: 400;
+      color: var(--gray);
+      width: 140px;
+      flex-shrink: 0;
+      letter-spacing: var(--ls-wide);
+      line-height: var(--lh-caption);
+    }
+
+    /* 타이포그래피 상세 패널 */
+    .typo-detail {
+      background: var(--warm-bg);
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+    }
+    .typo-detail-title {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      letter-spacing: var(--ls-wider);
+      color: var(--brown);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .typo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .typo-item {
+      background: var(--cream);
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .typo-item-label {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-2xs);
+      font-weight: 500;
+      letter-spacing: var(--ls-wide);
+      color: var(--brown);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .typo-item-value {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: var(--fs-xs);
+      color: var(--accent);
+    }
+    .typo-item-demo {
+      margin-top: 8px;
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-sm);
+      color: var(--ink);
+      border-top: 1px solid var(--light-gray);
+      padding-top: 8px;
+    }
+
+    /* ════════════════════════════════
+       ② 피드 그리드 전략
+    ════════════════════════════════ */
+    .grid-strategy { margin-bottom: 52px; }
+    .strategy-label {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      letter-spacing: var(--ls-wider);
+      color: var(--brown);
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+    .feed-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      max-width: 420px;
+      margin-bottom: 14px;
+    }
+    .feed-cell {
+      aspect-ratio: 3/4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    .feed-cell .type-tag {
+      position: absolute; bottom: 7px; left: 7px;
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-2xs);
+      font-weight: 500;
+      background: rgba(0,0,0,0.38);
+      color: white;
+      padding: 2px 6px;
+      border-radius: 3px;
+      letter-spacing: var(--ls-relaxed);
+    }
+    .fc-work      { background: #e8ddd0; color: var(--ink); }
+    .fc-class     { background: var(--ink); color: var(--cream); }
+    .fc-tip       { background: #d4c9bc; color: var(--ink); }
+    .fc-quote     { background: var(--accent); color: var(--cream); }
+    .fc-community { background: #ede7df; color: var(--ink); }
+    .cell-text {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-xs);
+      font-weight: 400;
+      line-height: var(--lh-title);
+      letter-spacing: var(--ls-base);
+    }
+    .grid-legend { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 10px; }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-xs);
+      font-weight: 300;
+      color: var(--gray);
+      letter-spacing: var(--ls-base);
+    }
+    .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+
+    /* ════════════════════════════════
+       카드 공통
+    ════════════════════════════════ */
+    .card-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(288px, 1fr));
+      gap: 36px;
+      margin-bottom: 52px;
+    }
+    .card-wrapper { display: flex; flex-direction: column; gap: 14px; }
+    .card-label-top {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      letter-spacing: var(--ls-wider);
+      color: var(--brown);
+      text-transform: uppercase;
+    }
+    .card-label-sub {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-xs);
+      font-weight: 300;
+      color: var(--gray);
+      line-height: var(--lh-body);
+      letter-spacing: var(--ls-base);
+    }
+    .ig-card {
+      width: 100%;
+      aspect-ratio: 4/5;
+      position: relative;
+      overflow: hidden;
+      border-radius: 3px;
+      box-shadow: 0 6px 28px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    /* ════════════════════════════════
+       ③ 작품 카드
+    ════════════════════════════════ */
+    .card-work {
+      background: #f2ede6;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-work .artwork-area {
+      flex: 1;
+      background: linear-gradient(145deg, #ede4d8 0%, #ddd0c2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-work .artwork-area::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 30%, rgba(255,255,255,0.18) 0%, transparent 60%);
+    }
+    .card-work .artwork-text {
+      font-family: 'Noto Serif KR', serif;
+      font-size: var(--fs-4xl);
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: var(--ls-tight);
+      line-height: var(--lh-heading);
+      text-align: center;
+      padding: 24px;
+      opacity: 0.82;
+      position: relative;
+      z-index: 1;
+    }
+    .card-work .work-info {
+      padding: 16px 20px;
+      background: #f2ede6;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .card-work .work-title {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-sm);
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: var(--ls-base);
+      line-height: var(--lh-caption);
+    }
+    .card-work .work-meta {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-xs);
+      font-weight: 300;
+      color: var(--gray);
+      margin-top: 4px;
+      letter-spacing: var(--ls-relaxed);
+      line-height: var(--lh-caption);
+    }
+
+    /* ════════════════════════════════
+       ④ 수업 안내 카드
+    ════════════════════════════════ */
+    .card-class {
+      background: var(--ink);
+      display: flex;
+      flex-direction: column;
+      padding: 36px 30px;
+      justify-content: space-between;
+    }
+    .card-class .class-badge {
+      display: inline-block;
+      border: 1px solid var(--brown);
+      color: var(--soft-brown);
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-2xs);
+      font-weight: 500;
+      letter-spacing: var(--ls-wider);
+      padding: 5px 11px;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+    .card-class .class-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: var(--fs-2xl);
+      font-weight: 300;
+      color: var(--cream);
+      letter-spacing: var(--ls-tight);
+      line-height: var(--lh-title);
+      margin: 24px 0 8px;
+    }
+    .card-class .class-sub {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-sm);
+      font-weight: 300;
+      color: var(--beige);
+      letter-spacing: var(--ls-base);
+      line-height: var(--lh-body);
+    }
+    .card-class .class-details {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 32px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+    }
+    .card-class .class-detail-row {
+      display: flex;
+      gap: 14px;
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-sm);
+      font-weight: 300;
+      letter-spacing: var(--ls-base);
+      line-height: var(--lh-caption);
+    }
+    .card-class .class-detail-row span:first-child {
+      color: rgba(255,255,255,0.35);
+      width: 52px;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+    .card-class .class-detail-row span:last-child { color: var(--cream); }
+    .card-class .class-cta {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-xs);
+      font-weight: 500;
+      letter-spacing: var(--ls-wide);
+      padding: 11px 22px;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* ════════════════════════════════
+       ⑤ 팁 카드
+    ════════════════════════════════ */
+    .card-tip {
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      padding: 32px 28px;
+      border: 1px solid var(--light-gray);
+    }
+    .card-tip .tip-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--fs-3xl);
+      font-weight: 300;
+      color: var(--beige);
+      letter-spacing: var(--ls-tight);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .card-tip .tip-category {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      letter-spacing: var(--ls-wider);
+      color: var(--brown);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      line-height: var(--lh-caption);
+    }
+    .card-tip .tip-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: var(--fs-xl);
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: var(--ls-tight);
+      line-height: var(--lh-title);
+      margin-bottom: 28px;
+    }
+    .card-tip .tip-steps { flex: 1; }
+    .card-tip .step {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 16px;
+      align-items: flex-start;
+    }
+    .card-tip .step-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--cream);
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      letter-spacing: 0;
+    }
+    .card-tip .step-text {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-sm);
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: var(--ls-base);
+      line-height: var(--lh-body);
+    }
+    .card-tip .tip-footer {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--light-gray);
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-2xs);
+      font-weight: 400;
+      letter-spacing: var(--ls-wide);
+      color: var(--gray);
+    }
+
+    /* ════════════════════════════════
+       ⑥ 글귀 카드
+    ════════════════════════════════ */
+    .card-quote {
+      background: var(--accent);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px 34px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-quote::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .card-quote::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .card-quote .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem;
+      font-weight: 300;
+      color: var(--brown);
+      line-height: 0.7;
+      opacity: 0.6;
+    }
+    .card-quote .quote-text {
+      font-family: 'Noto Serif KR', serif;
+      font-size: var(--fs-lg);
+      font-weight: 300;
+      color: var(--cream);
+      letter-spacing: var(--ls-tight);
+      line-height: var(--lh-loose);
+      position: relative;
+      z-index: 1;
+    }
+    .card-quote .quote-source {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-xs);
+      font-weight: 300;
+      color: var(--beige);
+      letter-spacing: var(--ls-wide);
+      margin-top: 28px;
+      opacity: 0.75;
+      position: relative;
+      z-index: 1;
+    }
+    .card-quote .brand-tag {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--fs-sm);
+      font-weight: 300;
+      color: var(--soft-brown);
+      letter-spacing: var(--ls-widest);
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ════════════════════════════════
+       ⑦ 커뮤니티 카드
+    ════════════════════════════════ */
+    .card-community {
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+    }
+    .card-community .comm-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .card-community .comm-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--beige) 0%, var(--brown) 100%);
+    }
+    .card-community .comm-user {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-sm);
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: var(--ls-base);
+      line-height: var(--lh-caption);
+    }
+    .card-community .comm-user span {
+      display: block;
+      font-size: var(--fs-xs);
+      font-weight: 300;
+      color: var(--gray);
+      margin-top: 2px;
+    }
+    .card-community .comm-artwork {
+      flex: 1;
+      min-height: 160px;
+      background: linear-gradient(145deg, #e8ddd0 0%, #d4c9bc 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      border-radius: 2px;
+    }
+    .card-community .comm-artwork-text {
+      font-family: 'Noto Serif KR', serif;
+      font-size: var(--fs-3xl);
+      font-weight: 600;
+      color: var(--ink);
+      opacity: 0.7;
+      letter-spacing: var(--ls-tight);
+    }
+    .card-community .comm-footer {}
+    .card-community .comm-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .card-community .tag {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-xs);
+      font-weight: 400;
+      color: var(--brown);
+      letter-spacing: var(--ls-relaxed);
+      line-height: var(--lh-caption);
+    }
+    .card-community .comm-caption {
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-sm);
+      font-weight: 300;
+      color: var(--gray);
+      letter-spacing: var(--ls-base);
+      line-height: var(--lh-body);
+    }
+
+    /* ════════════════════════════════
+       릴스 카드 (보너스)
+    ════════════════════════════════ */
+    .card-reel {
+      background: var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-reel .reel-bg-text {
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 9rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.03);
+      right: -20px; top: 50%;
+      transform: translateY(-50%);
+      line-height: 1;
+      user-select: none;
+    }
+    .card-reel .reel-content { position: relative; z-index: 1; }
+    .card-reel .reel-tag {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.6);
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-2xs);
+      font-weight: 500;
+      letter-spacing: var(--ls-wider);
+      padding: 5px 11px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .card-reel .reel-main {
+      font-family: 'Noto Serif KR', serif;
+      font-size: var(--fs-2xl);
+      font-weight: 300;
+      color: var(--cream);
+      letter-spacing: var(--ls-tight);
+      line-height: var(--lh-title);
+    }
+    .card-reel .reel-cta {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--soft-brown);
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-xs);
+      font-weight: 400;
+      letter-spacing: var(--ls-wide);
+    }
+    .card-reel .play-icon {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--brown);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+    }
+
+    /* ════════════════════════════════
+       ⑧ 콘텐츠 전략표
+    ════════════════════════════════ */
+    .strategy-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-family: 'Pretendard', sans-serif;
+      font-size: var(--fs-sm);
+    }
+    .strategy-table th {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 13px 16px;
+      text-align: left;
+      font-size: var(--fs-xs);
+      font-weight: 500;
+      letter-spacing: var(--ls-wide);
+    }
+    .strategy-table td {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--light-gray);
+      vertical-align: top;
+      font-weight: 300;
+      letter-spacing: var(--ls-base);
+      line-height: var(--lh-caption);
+      color: var(--ink);
+    }
+    .strategy-table tr:nth-child(even) td { background: var(--warm-bg); }
+    .content-type-badge {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 3px;
+      font-size: var(--fs-2xs);
+      font-weight: 500;
+      letter-spacing: var(--ls-relaxed);
+    }
+    .badge-work      { background: #e8ddd0; color: var(--ink); }
+    .badge-class     { background: var(--ink); color: var(--cream); }
+    .badge-tip       { background: var(--light-gray); color: var(--accent); }
+    .badge-quote     { background: var(--accent); color: var(--cream); }
+    .badge-community { background: var(--warm-bg); color: var(--brown); border: 1px solid var(--beige); }
+    .ratio-pill {
+      display: inline-block;
+      border: 1px solid var(--brown);
+      color: var(--brown);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: var(--fs-2xs);
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .site-header { padding: 22px; flex-direction: column; gap: 6px; align-items: flex-start; }
+      .section { padding: 28px 20px; }
+      .card-showcase { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div>
+    <h1>글씨인아트센터</h1>
+    <div class="sub">Instagram Layout Design Guide · 2026</div>
+  </div>
+  <div class="sub" style="text-align:right; line-height:1.8;">글씨인: 글씨쓰는사람들<br>Powered by Pretendard</div>
+</header>
+
+<!-- NAV -->
+<nav class="tab-nav">
+  <button class="active" onclick="showSection('overview')">① 디자인 시스템</button>
+  <button onclick="showSection('grid')">② 피드 그리드 전략</button>
+  <button onclick="showSection('work')">③ 작품 카드</button>
+  <button onclick="showSection('class')">④ 수업 안내 카드</button>
+  <button onclick="showSection('tip')">⑤ 팁/과정 카드</button>
+  <button onclick="showSection('quote')">⑥ 글귀 카드</button>
+  <button onclick="showSection('community')">⑦ 커뮤니티 카드</button>
+  <button onclick="showSection('strategy')">⑧ 콘텐츠 전략표</button>
+</nav>
+
+<!-- ════════════════════════════════════════════════
+     ① 디자인 시스템
+════════════════════════════════════════════════ -->
+<section id="overview" class="section active">
+  <div class="section-title">디자인 시스템</div>
+  <div class="section-desc">글씨인아트센터의 인스타그램 콘텐츠에 적용되는 색상 팔레트, 타이포그래피 스케일, 자간·줄간 규칙을 정의합니다. 주 폰트는 Pretendard, 전통·감성 텍스트에는 Noto Serif KR을 병행 사용합니다.</div>
+
+  <!-- 색상 팔레트 -->
+  <div style="font-family:'Pretendard',sans-serif; font-size:var(--fs-xs); font-weight:600; letter-spacing:var(--ls-wider); color:var(--brown); text-transform:uppercase; margin-bottom:20px;">Color Palette</div>
+  <div class="palette-row">
+    <div class="swatch"><div class="color-box" style="background:#1a1a1a;"></div><span>Ink<br><span class="hex">#1a1a1a</span></span></div>
+    <div class="swatch"><div class="color-box" style="background:#3d3530;"></div><span>Accent<br><span class="hex">#3d3530</span></span></div>
+    <div class="swatch"><div class="color-box" style="background:#8b7355;"></div><span>Brown<br><span class="hex">#8b7355</span></span></div>
+    <div class="swatch"><div class="color-box" style="background:#b8975a;"></div><span>Gold<br><span class="hex">#b8975a</span></span></div>
+    <div class="swatch"><div class="color-box" style="background:#c4a882;"></div><span>Soft Brown<br><span class="hex">#c4a882</span></span></div>
+    <div class="swatch"><div class="color-box" style="background:#d9cfc4;"></div><span>Beige<br><span class="hex">#d9cfc4</span></span></div>
+    <div class="swatch"><div class="color-box" style="background:#f0ebe4;"></div><span>Warm BG<br><span class="hex">#f0ebe4</span></span></div>
+    <div class="swatch"><div class="color-box" style="background:#f7f3ee; border:1px solid #ddd;"></div><span>Cream<br><span class="hex">#f7f3ee</span></span></div>
+  </div>
+
+  <!-- 타이포그래피 스케일 -->
+  <div style="font-family:'Pretendard',sans-serif; font-size:var(--fs-xs); font-weight:600; letter-spacing:var(--ls-wider); color:var(--brown); text-transform:uppercase; margin-bottom:20px; margin-top:8px;">Typography Scale</div>
+  <div class="type-system" style="margin-bottom:44px;">
+    <div class="type-row">
+      <div class="type-label">D1 · Display</div>
+      <div style="font-family:'Noto Serif KR',serif; font-size:3rem; font-weight:300; letter-spacing:-0.03em; line-height:1.25; color:var(--accent);">글씨인아트센터</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">H1 · Heading</div>
+      <div style="font-family:'Pretendard',sans-serif; font-size:1.75rem; font-weight:700; letter-spacing:-0.03em; line-height:1.25; color:var(--ink);">봄학기 수강생 모집</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">H2 · Subtitle</div>
+      <div style="font-family:'Pretendard',sans-serif; font-size:1.375rem; font-weight:500; letter-spacing:-0.01em; line-height:1.4; color:var(--ink);">캘리그라피 · 펜글씨 · 서예</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">Body · 본문</div>
+      <div style="font-family:'Pretendard',sans-serif; font-size:0.875rem; font-weight:300; letter-spacing:-0.01em; line-height:1.75; color:var(--ink);">글씨를 쓰는 것은 마음을 다듬는 일입니다. 천천히, 한 획 한 획 정성을 담아 써 내려가는 과정 속에서 고요함을 만납니다.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">Caption · 캡션</div>
+      <div style="font-family:'Pretendard',sans-serif; font-size:0.75rem; font-weight:400; letter-spacing:0.08em; line-height:1.55; color:var(--gray);">수업 문의 · 수강 신청 · 작품 갤러리</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">Label · 라벨</div>
+      <div style="font-family:'Pretendard',sans-serif; font-size:0.688rem; font-weight:600; letter-spacing:0.22em; line-height:1.55; color:var(--brown); text-transform:uppercase;">Calligraphy · Workshop · 2026</div>
+    </div>
+  </div>
+
+  <!-- 자간·줄간 규칙 -->
+  <div style="font-family:'Pretendard',sans-serif; font-size:var(--fs-xs); font-weight:600; letter-spacing:var(--ls-wider); color:var(--brown); text-transform:uppercase; margin-bottom:16px;">자간 (Letter Spacing) &amp; 줄간 (Line Height) 규칙</div>
+  <div class="typo-detail">
+    <div class="typo-grid">
+      <div class="typo-item">
+        <div class="typo-item-label">Tight · 제목</div>
+        <div class="typo-item-value">ls: -0.03em</div>
+        <div class="typo-item-demo" style="letter-spacing:-0.03em; font-size:1.25rem; font-weight:700;">봄학기 모집</div>
+      </div>
+      <div class="typo-item">
+        <div class="typo-item-label">Base · 본문</div>
+        <div class="typo-item-value">ls: -0.01em</div>
+        <div class="typo-item-demo" style="letter-spacing:-0.01em;">캘리그라피 수업 안내</div>
+      </div>
+      <div class="typo-item">
+        <div class="typo-item-label">Relaxed · 소제목</div>
+        <div class="typo-item-value">ls: +0.02em</div>
+        <div class="typo-item-demo" style="letter-spacing:0.02em; font-size:0.8rem;">수업 시간표</div>
+      </div>
+      <div class="typo-item">
+        <div class="typo-item-label">Wide · 캡션</div>
+        <div class="typo-item-value">ls: +0.08em</div>
+        <div class="typo-item-demo" style="letter-spacing:0.08em; font-size:0.75rem; color:var(--gray);">작품 갤러리 · 원데이</div>
+      </div>
+      <div class="typo-item">
+        <div class="typo-item-label">Wider · 배지</div>
+        <div class="typo-item-value">ls: +0.14em</div>
+        <div class="typo-item-demo" style="letter-spacing:0.14em; font-size:0.68rem; color:var(--brown); text-transform:uppercase;">Workshop</div>
+      </div>
+      <div class="typo-item">
+        <div class="typo-item-label">Widest · 로고</div>
+        <div class="typo-item-value">ls: +0.22em</div>
+        <div class="typo-item-demo" style="letter-spacing:0.22em; font-size:0.65rem; color:var(--brown); text-transform:uppercase;">Calligraphy</div>
+      </div>
+      <div class="typo-item">
+        <div class="typo-item-label">LH Heading · 제목</div>
+        <div class="typo-item-value">lh: 1.25</div>
+        <div class="typo-item-demo" style="line-height:1.25; font-weight:700; font-size:1rem;">봄학기<br>수강 모집</div>
+      </div>
+      <div class="typo-item">
+        <div class="typo-item-label">LH Body · 본문</div>
+        <div class="typo-item-value">lh: 1.75</div>
+        <div class="typo-item-demo" style="line-height:1.75; font-size:0.8rem; font-weight:300;">글씨를 쓰는 것은<br>마음을 다듬는 일</div>
+      </div>
+      <div class="typo-item">
+        <div class="typo-item-label">LH Loose · 인용</div>
+        <div class="typo-item-value">lh: 2.0</div>
+        <div class="typo-item-demo" style="line-height:2.0; font-size:0.8rem; font-family:'Noto Serif KR',serif; font-weight:300;">"글씨는<br>마음의 거울"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     ② 피드 그리드 전략
+════════════════════════════════════════════════ -->
+<section id="grid" class="section">
+  <div class="section-title">피드 그리드 전략</div>
+  <div class="section-desc">인스타그램 피드는 3열 그리드로 노출됩니다. 작품(밝은 베이지) → 수업(어두운 잉크) → 팁(중간톤) 순서로 반복 배치하면 시각적 리듬과 브랜드 일관성을 동시에 확보할 수 있습니다.</div>
+
+  <!-- 추천 그리드 패턴 A -->
+  <div class="grid-strategy">
+    <div class="strategy-label">Pattern A — 3·3·3 리듬 (권장)</div>
+    <div class="feed-grid">
+      <div class="feed-cell fc-work">
+        <div style="font-family:'Noto Serif KR',serif; font-size:1.2rem; color:var(--ink); opacity:0.8; letter-spacing:-0.02em; line-height:1.3;">心</div>
+        <div class="cell-text" style="color:var(--ink); margin-top:6px;">완성작</div>
+        <span class="type-tag">작품</span>
+      </div>
+      <div class="feed-cell fc-class">
+        <div style="font-family:'Pretendard',sans-serif; font-size:0.72rem; font-weight:500; letter-spacing:0.1em; color:var(--cream); line-height:1.6;">봄학기<br>수강생<br>모집</div>
+        <span class="type-tag">수업</span>
+      </div>
+      <div class="feed-cell fc-tip">
+        <div style="font-family:'Pretendard',sans-serif; font-size:0.7rem; font-weight:400; color:var(--ink); letter-spacing:-0.01em; line-height:1.7;">붓 잡는 법<br>3가지</div>
+        <span class="type-tag">팁</span>
+      </div>
+      <div class="feed-cell fc-quote">
+        <div style="font-family:'Noto Serif KR',serif; font-size:0.82rem; font-weight:300; color:var(--cream); line-height:2.0; letter-spacing:-0.01em; text-align:center;">"하루 한 줄<br>글씨 습관"</div>
+        <span class="type-tag">글귀</span>
+      </div>
+      <div class="feed-cell fc-work">
+        <div style="font-family:'Noto Serif KR',serif; font-size:1.4rem; color:var(--ink); opacity:0.7; letter-spacing:-0.02em;">靜</div>
+        <div class="cell-text" style="color:var(--gray); margin-top:4px; font-size:0.62rem;">수강생 작품</div>
+        <span class="type-tag">작품</span>
+      </div>
+      <div class="feed-cell fc-community">
+        <div style="font-family:'Pretendard',sans-serif; font-size:0.65rem; font-weight:400; color:var(--ink); letter-spacing:0.02em; line-height:1.7;">펜드로잉<br>완성작</div>
+        <span class="type-tag">커뮤니티</span>
+      </div>
+      <div class="feed-cell fc-class">
+        <div style="font-family:'Pretendard',sans-serif; font-size:0.72rem; font-weight:400; color:var(--cream); letter-spacing:0.04em; line-height:1.6;">서예<br>입문반</div>
+        <span class="type-tag">수업</span>
+      </div>
+      <div class="feed-cell fc-tip">
+        <div style="font-family:'Pretendard',sans-serif; font-size:0.65rem; font-weight:400; color:var(--ink); letter-spacing:-0.01em; line-height:1.7;">먹물<br>농도 맞추기</div>
+        <span class="type-tag">팁</span>
+      </div>
+      <div class="feed-cell fc-work">
+        <div style="font-family:'Noto Serif KR',serif; font-size:1.1rem; color:var(--accent); opacity:0.75; letter-spacing:-0.02em;">글씨인</div>
+        <span class="type-tag">작품</span>
+      </div>
+    </div>
+    <div class="grid-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#e8ddd0;"></div> 작품</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--ink);"></div> 수업</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#d4c9bc;"></div> 팁</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent);"></div> 글귀</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#ede7df;"></div> 커뮤니티</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     ③ 작품 카드
+════════════════════════════════════════════════ -->
+<section id="work" class="section">
+  <div class="section-title">작품 카드</div>
+  <div class="section-desc">완성 작품, 수강생 작품, 과정샷을 소개하는 카드입니다. 밝은 크림·베이지 베이스로 작품이 주인공이 되도록 구성합니다.</div>
+
+  <div class="card-showcase">
+    <!-- 타입 1: 한자 작품 -->
+    <div class="card-wrapper">
+      <div class="card-label-top">Type A — 한자 작품</div>
+      <div class="ig-card card-work">
+        <div class="artwork-area">
+          <div class="artwork-text">心</div>
+        </div>
+        <div class="work-info">
+          <div class="work-title">心 · 마음 심</div>
+          <div class="work-meta">먹물 · 화선지 · 2026 봄학기</div>
+        </div>
+      </div>
+      <div class="card-label-sub">대형 한자 한 글자로 여백의 미를 강조. 서예의 정수를 담은 포맷.</div>
+    </div>
+
+    <!-- 타입 2: 한글 문장 작품 -->
+    <div class="card-wrapper">
+      <div class="card-label-top">Type B — 한글 문장</div>
+      <div class="ig-card card-work">
+        <div class="artwork-area">
+          <div class="artwork-text" style="font-size:1.8rem; line-height:1.6; letter-spacing:-0.01em; opacity:0.78;">글씨를 쓰는<br>것은 마음을<br>다듬는 일</div>
+        </div>
+        <div class="work-info">
+          <div class="work-title">붓펜 캘리그라피</div>
+          <div class="work-meta">중급반 수료작 · 2026. 03</div>
+        </div>
+      </div>
+      <div class="card-label-sub">문장형 캘리. 줄간 1.6으로 충분한 호흡을 줌.</div>
+    </div>
+
+    <!-- 타입 3: 과정샷 + 완성 -->
+    <div class="card-wrapper">
+      <div class="card-label-top">Type C — 과정 + 완성</div>
+      <div class="ig-card card-work">
+        <div class="artwork-area" style="flex-direction:column; gap:0;">
+          <div style="flex:1; display:flex; align-items:center; justify-content:center; background:linear-gradient(145deg,#e0d5c5,#cfc3b0);">
+            <div style="font-family:'Noto Serif KR',serif; font-size:2rem; color:var(--ink); opacity:0.4; letter-spacing:-0.02em;">靜</div>
+          </div>
+          <div style="height:2px; background:linear-gradient(90deg,var(--beige),var(--brown),var(--beige));"></div>
+          <div style="flex:1; display:flex; align-items:center; justify-content:center; background:linear-gradient(145deg,#ede4d8,#ddd0c2);">
+            <div style="font-family:'Noto Serif KR',serif; font-size:2rem; color:var(--ink); opacity:0.85; letter-spacing:-0.02em;">靜</div>
+          </div>
+          <div style="position:absolute; top:44%; left:12px; font-family:'Pretendard',sans-serif; font-size:0.6rem; font-weight:500; letter-spacing:0.14em; color:rgba(255,255,255,0.55); text-transform:uppercase;">Before</div>
+          <div style="position:absolute; bottom:22%; left:12px; font-family:'Pretendard',sans-serif; font-size:0.6rem; font-weight:500; letter-spacing:0.14em; color:rgba(255,255,255,0.55); text-transform:uppercase;">After</div>
+        </div>
+        <div class="work-info">
+          <div class="work-title">靜 · 고요 정 — 연습 과정</div>
+          <div class="work-meta">4주 집중 과정 · 서예 기초반</div>
+        </div>
+      </div>
+      <div class="card-label-sub">Before → After 구성으로 성장을 시각화. 학원 설득력 UP.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     ④ 수업 안내 카드
+════════════════════════════════════════════════ -->
+<section id="class" class="section">
+  <div class="section-title">수업 안내 카드</div>
+  <div class="section-desc">수강 신청, 원데이 클래스, 신규 강좌 오픈 등을 알리는 카드입니다. 어두운 잉크 베이스로 정보를 선명하게 전달합니다.</div>
+
+  <div class="card-showcase">
+    <!-- 정규반 -->
+    <div class="card-wrapper">
+      <div class="card-label-top">Type A — 정규 수업</div>
+      <div class="ig-card card-class">
+        <div>
+          <div class="class-badge">봄학기 모집</div>
+          <div class="class-title">붓펜<br>캘리그라피</div>
+          <div class="class-sub">초급부터 중급까지, 나만의 글씨체를 완성하는 과정</div>
+        </div>
+        <div class="class-details">
+          <div class="class-detail-row"><span>일정</span><span>매주 화·목 오전 10시</span></div>
+          <div class="class-detail-row"><span>기간</span><span>12주 과정</span></div>
+          <div class="class-detail-row"><span>정원</span><span>8명 소규모 클래스</span></div>
+          <div class="class-detail-row"><span>준비물</span><span>제공 (첫 수업)</span></div>
+        </div>
+        <div class="class-cta">수강 신청하기</div>
+      </div>
+      <div class="card-label-sub">정보 밀도 높은 포맷. 자간 −0.01em, 줄간 1.55로 가독성 확보.</div>
+    </div>
+
+    <!-- 원데이 클래스 -->
+    <div class="card-wrapper">
+      <div class="card-label-top">Type B — 원데이 클래스</div>
+      <div class="ig-card card-class" style="background: var(--accent);">
+        <div>
+          <div class="class-badge" style="border-color:var(--gold); color:var(--gold);">One-Day Class</div>
+          <div class="class-title" style="font-size:1.5rem; margin-top:20px;">봄날의<br>손글씨 편지</div>
+          <div class="class-sub">소중한 사람에게 전하는<br>따뜻한 한 줄의 마음</div>
+        </div>
+        <div style="margin: 28px 0; padding: 20px 0; border-top:1px solid rgba(255,255,255,0.1); border-bottom:1px solid rgba(255,255,255,0.1);">
+          <div style="font-family:'Pretendard',sans-serif; font-size:0.688rem; font-weight:300; color:var(--beige); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:10px;">DATE &amp; INFO</div>
+          <div style="font-family:'Pretendard',sans-serif; font-size:0.875rem; font-weight:300; color:var(--cream); letter-spacing:-0.01em; line-height:1.85;">2026년 3월 29일 (토)<br>오후 2시 — 5시<br>재료비 포함 · 선착순 12명</div>
+        </div>
+        <div class="class-cta" style="border-color:var(--gold); color:var(--gold);">신청 마감 D-7</div>
+      </div>
+      <div class="card-label-sub">원데이 특성 강조 포맷. 날짜·마감 가시성 최우선.</div>
+    </div>
+
+    <!-- 신규 강좌 -->
+    <div class="card-wrapper">
+      <div class="card-label-top">Type C — 신규 강좌 오픈</div>
+      <div class="ig-card card-class" style="background:linear-gradient(160deg, #2a2420 0%, #1a1a1a 100%); padding:32px 26px;">
+        <div>
+          <div style="font-family:'Pretendard',sans-serif; font-size:0.625rem; font-weight:600; letter-spacing:0.22em; color:var(--gold); text-transform:uppercase; margin-bottom:16px;">NEW OPEN</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:4rem; font-weight:300; color:rgba(255,255,255,0.08); line-height:1; position:absolute; right:20px; top:60px;">書</div>
+          <div class="class-title" style="font-size:1.6rem;">서예<br>입문반</div>
+          <div class="class-sub" style="margin-top:6px;">전통 서예의 아름다움을<br>현대인의 감각으로</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:14px; margin:28px 0;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:6px; height:6px; border-radius:50%; background:var(--gold); flex-shrink:0;"></div>
+            <div style="font-family:'Pretendard',sans-serif; font-size:0.8rem; font-weight:300; color:var(--cream); letter-spacing:-0.01em; line-height:var(--lh-caption);">붓과 먹의 기초부터 시작</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:6px; height:6px; border-radius:50%; background:var(--gold); flex-shrink:0;"></div>
+            <div style="font-family:'Pretendard',sans-serif; font-size:0.8rem; font-weight:300; color:var(--cream); letter-spacing:-0.01em; line-height:var(--lh-caption);">주 1회 · 총 8주 과정</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:6px; height:6px; border-radius:50%; background:var(--gold); flex-shrink:0;"></div>
+            <div style="font-family:'Pretendard',sans-serif; font-size:0.8rem; font-weight:300; color:var(--cream); letter-spacing:-0.01em; line-height:var(--lh-caption);">체험 수업 무료 진행</div>
+          </div>
+        </div>
+        <div class="class-cta">얼리버드 등록 →</div>
+      </div>
+      <div class="card-label-sub">신규 오픈 임팩트. 골드 포인트로 프리미엄 느낌 강화.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     ⑤ 팁/과정 카드
+════════════════════════════════════════════════ -->
+<section id="tip" class="section">
+  <div class="section-title">팁 / 과정 카드</div>
+  <div class="section-desc">글씨 쓰는 방법, 도구 사용법, 연습 루틴 등을 안내하는 정보형 카드입니다. 크림 베이스로 정보 가독성을 최우선합니다.</div>
+
+  <div class="card-showcase">
+    <!-- 3단계 팁 -->
+    <div class="card-wrapper">
+      <div class="card-label-top">Type A — 3단계 팁</div>
+      <div class="ig-card card-tip">
+        <div>
+          <div class="tip-number">03</div>
+          <div class="tip-category">Brush Technique</div>
+          <div class="tip-title">붓을 올바르게<br>잡는 세 가지 법</div>
+        </div>
+        <div class="tip-steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-text"><strong style="font-weight:600;">단구법 (單鉤法)</strong> — 검지 하나로 붓대를 잡는 가장 기본적인 방법. 가는 선에 적합.</div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-text"><strong style="font-weight:600;">쌍구법 (雙鉤法)</strong> — 검지와 중지 두 손가락으로 잡아 안정감 향상. 중간 굵기 선에 권장.</div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-text"><strong style="font-weight:600;">악관법 (握管法)</strong> — 손바닥 전체로 감싸듯 잡아 굵고 강한 선 표현 가능.</div>
+          </div>
+        </div>
+        <div class="tip-footer">글씨인아트센터 · Calligraphy Tip</div>
+      </div>
+      <div class="card-label-sub">번호형 스텝. 단계 번호 자간 0, 본문 자간 −0.01em으로 구분.</div>
+    </div>
+
+    <!-- 준비물 체크리스트 -->
+    <div class="card-wrapper">
+      <div class="card-label-top">Type B — 준비물 리스트</div>
+      <div class="ig-card card-tip" style="background:var(--warm-bg);">
+        <div>
+          <div class="tip-number" style="color:var(--beige);">✓</div>
+          <div class="tip-category">첫 수업 준비물</div>
+          <div class="tip-title" style="font-size:1.2rem;">이것만 있으면<br>충분합니다</div>
+        </div>
+        <div class="tip-steps" style="margin-top:8px;">
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:10px; border-bottom:1px solid var(--light-gray);">
+              <div style="font-family:'Pretendard',sans-serif; font-size:0.82rem; font-weight:400; color:var(--ink); letter-spacing:-0.01em; line-height:var(--lh-caption);">붓펜 (세트 제공)</div>
+              <div style="font-family:'Pretendard',sans-serif; font-size:0.7rem; font-weight:500; letter-spacing:0.06em; color:var(--brown);">INCLUDED</div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:10px; border-bottom:1px solid var(--light-gray);">
+              <div style="font-family:'Pretendard',sans-serif; font-size:0.82rem; font-weight:400; color:var(--ink); letter-spacing:-0.01em; line-height:var(--lh-caption);">연습지 (A4 30매)</div>
+              <div style="font-family:'Pretendard',sans-serif; font-size:0.7rem; font-weight:500; letter-spacing:0.06em; color:var(--brown);">INCLUDED</div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:10px; border-bottom:1px solid var(--light-gray);">
+              <div style="font-family:'Pretendard',sans-serif; font-size:0.82rem; font-weight:400; color:var(--ink); letter-spacing:-0.01em; line-height:var(--lh-caption);">교재 및 예시집</div>
+              <div style="font-family:'Pretendard',sans-serif; font-size:0.7rem; font-weight:500; letter-spacing:0.06em; color:var(--brown);">INCLUDED</div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div style="font-family:'Pretendard',sans-serif; font-size:0.82rem; font-weight:400; color:var(--ink); letter-spacing:-0.01em; line-height:var(--lh-caption);">편한 복장</div>
+              <div style="font-family:'Pretendard',sans-serif; font-size:0.7rem; font-weight:500; letter-spacing:0.06em; color:var(--gray);">PERSONAL</div>
+            </div>
+          </div>
+        </div>
+        <div class="tip-footer">글씨인아트센터 · 수업 안내</div>
+      </div>
+      <div class="card-label-sub">리스트형 체크리스트. 상태 레이블 자간 +0.06em으로 명확히 구분.</div>
+    </div>
+
+    <!-- 일일 루틴 -->
+    <div class="card-wrapper">
+      <div class="card-label-top">Type C — 연습 루틴</div>
+      <div class="ig-card card-tip" style="background:var(--ink); border-color:transparent;">
+        <div>
+          <div class="tip-number" style="color:rgba(255,255,255,0.12);">15</div>
+          <div class="tip-category" style="color:var(--gold);">Daily Routine</div>
+          <div class="tip-title" style="color:var(--cream); font-size:1.2rem;">하루 15분<br>글씨 루틴</div>
+        </div>
+        <div class="tip-steps">
+          <div class="step">
+            <div class="step-num" style="background:var(--brown); font-size:0.6rem;">1</div>
+            <div class="step-text" style="color:var(--beige); font-weight:300;">준비 운동 · 손목 스트레칭 3분</div>
+          </div>
+          <div class="step">
+            <div class="step-num" style="background:var(--brown); font-size:0.6rem;">2</div>
+            <div class="step-text" style="color:var(--beige); font-weight:300;">기본선 반복 연습 5분</div>
+          </div>
+          <div class="step">
+            <div class="step-num" style="background:var(--brown); font-size:0.6rem;">3</div>
+            <div class="step-text" style="color:var(--beige); font-weight:300;">오늘의 글씨 한 문장 쓰기 7분</div>
+          </div>
+        </div>
+        <div class="tip-footer" style="color:var(--gray);">글씨인아트센터 · Daily Practice</div>
+      </div>
+      <div class="card-label-sub">다크 배리에이션. 루틴·습관 형성 콘텐츠에 적용.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     ⑥ 글귀 카드
+════════════════════════════════════════════════ -->
+<section id="quote" class="section">
+  <div class="section-title">글귀 카드</div>
+  <div class="section-desc">마음에 울림을 주는 문구로 팔로워와 감성적 공감대를 형성하는 카드입니다. 글귀는 줄간 2.0으로 충분한 호흡을 줍니다.</div>
+
+  <div class="card-showcase">
+    <!-- 한국어 글귀 -->
+    <div class="card-wrapper">
+      <div class="card-label-top">Type A — 한국어 글귀</div>
+      <div class="ig-card card-quote">
+        <div class="quote-mark">"</div>
+        <div class="quote-text">글씨를 쓰는 것은<br>마음을 다듬는 일</div>
+        <div>
+          <div class="quote-source">— 글씨인아트센터</div>
+          <div class="brand-tag" style="margin-top:16px;">Geulssi Art Center</div>
+        </div>
+      </div>
+      <div class="card-label-sub">한글 글귀. Noto Serif KR, 자간 −0.01em, 줄간 2.0.</div>
+    </div>
+
+    <!-- 서예 명구 -->
+    <div class="card-wrapper">
+      <div class="card-label-top">Type B — 서예 명구</div>
+      <div class="ig-card card-quote" style="background: linear-gradient(160deg, #3d3530 0%, #2a2420 100%);">
+        <div>
+          <div style="font-family:'Noto Serif KR',serif; font-size:4rem; font-weight:600; color:rgba(255,255,255,0.06); line-height:1; letter-spacing:-0.02em; margin-bottom:4px;">書</div>
+          <div style="font-family:'Pretendard',sans-serif; font-size:0.625rem; font-weight:600; letter-spacing:0.22em; color:var(--gold); text-transform:uppercase; margin-bottom:20px;">Calligraphy Quote</div>
+        </div>
+        <div class="quote-text" style="font-size:1.25rem; line-height:1.85; letter-spacing:0.04em;">
+          書者，散也。欲書先散懷抱
+        </div>
+        <div>
+          <div style="font-family:'Pretendard',sans-serif; font-size:0.75rem; font-weight:300; color:var(--cream); letter-spacing:-0.01em; line-height:1.75; margin-top:14px;">글씨는 마음을 푸는 것이다.<br>쓰기 전에 먼저 마음을 편히 하라.</div>
+          <div class="quote-source" style="margin-top:14px; font-size:0.688rem;">— 채옹 (蔡邕), 서론 (書論)</div>
+          <div class="brand-tag" style="margin-top:20px;">Geulssi Art Center</div>
+        </div>
+      </div>
+      <div class="card-label-sub">서예 고전 명구 + 번역. 한자 배경 텍스트로 깊이 추가.</div>
+    </div>
+
+    <!-- 감성 글귀 (밝은 버전) -->
+    <div class="card-wrapper">
+      <div class="card-label-top">Type C — 감성 라이트</div>
+      <div class="ig-card card-quote" style="background:var(--cream); border:1px solid var(--light-gray);">
+        <div class="quote-mark" style="color:var(--beige);">"</div>
+        <div class="quote-text" style="color:var(--ink); font-size:1.1rem; line-height:2.0; letter-spacing:0.02em;">
+          하루 한 줄,<br>오늘도 글씨와<br>함께
+        </div>
+        <div>
+          <div style="width:32px; height:1px; background:var(--brown); margin-bottom:14px;"></div>
+          <div class="quote-source" style="color:var(--brown);">글씨인아트센터</div>
+          <div style="font-family:'Pretendard',sans-serif; font-size:0.625rem; font-weight:400; letter-spacing:0.18em; color:var(--beige); text-transform:uppercase; margin-top:8px;">Calligraphy · Seoul · 2026</div>
+        </div>
+      </div>
+      <div class="card-label-sub">크림 배경 라이트 버전. 따뜻하고 친근한 톤.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     ⑦ 커뮤니티 카드
+════════════════════════════════════════════════ -->
+<section id="community" class="section">
+  <div class="section-title">커뮤니티 카드</div>
+  <div class="section-desc">수강생 작품 공유, 후기, 함께하는 일상을 담는 카드입니다. 따뜻하고 친근한 톤으로 커뮤니티 소속감을 높입니다.</div>
+
+  <div class="card-showcase">
+    <!-- 수강생 작품 공유 -->
+    <div class="card-wrapper">
+      <div class="card-label-top">Type A — 수강생 작품</div>
+      <div class="ig-card card-community">
+        <div class="comm-header">
+          <div class="comm-avatar"></div>
+          <div class="comm-user">
+            이○○ 수강생
+            <span>붓펜 중급반 · 7개월차</span>
+          </div>
+        </div>
+        <div class="comm-artwork">
+          <div class="comm-artwork-text">雅</div>
+        </div>
+        <div class="comm-footer">
+          <div class="comm-tags">
+            <span class="tag">#글씨인아트센터</span>
+            <span class="tag">#붓펜캘리</span>
+            <span class="tag">#수강생작품</span>
+          </div>
+          <div class="comm-caption">7개월간의 연습이 이런 결과로 돌아왔어요. 꾸준히 하니 되더라고요.</div>
+        </div>
+      </div>
+      <div class="card-label-sub">수강생 실명(이니셜) + 수강 기간으로 신뢰감 형성.</div>
+    </div>
+
+    <!-- 수업 현장 -->
+    <div class="card-wrapper">
+      <div class="card-label-top">Type B — 수업 현장</div>
+      <div class="ig-card card-community" style="background:var(--warm-bg);">
+        <div class="comm-header">
+          <div class="comm-avatar" style="background:linear-gradient(135deg, var(--soft-brown), var(--accent));"></div>
+          <div class="comm-user">
+            글씨인아트센터
+            <span>공식 계정 · 수업 현장</span>
+          </div>
+        </div>
+        <div class="comm-artwork" style="background:linear-gradient(145deg, #ddd4c8, #c9bfb3); flex-direction:column; gap:8px;">
+          <div style="display:flex; gap:8px; padding:16px;">
+            <div style="flex:1; background:rgba(255,255,255,0.4); border-radius:2px; height:60px; display:flex; align-items:center; justify-content:center;">
+              <div style="font-family:'Noto Serif KR',serif; font-size:1.2rem; color:var(--ink); opacity:0.6; letter-spacing:-0.02em;">心</div>
+            </div>
+            <div style="flex:1; background:rgba(255,255,255,0.4); border-radius:2px; height:60px; display:flex; align-items:center; justify-content:center;">
+              <div style="font-family:'Noto Serif KR',serif; font-size:1.2rem; color:var(--ink); opacity:0.6; letter-spacing:-0.02em;">靜</div>
+            </div>
+            <div style="flex:1; background:rgba(255,255,255,0.4); border-radius:2px; height:60px; display:flex; align-items:center; justify-content:center;">
+              <div style="font-family:'Noto Serif KR',serif; font-size:1.2rem; color:var(--ink); opacity:0.6; letter-spacing:-0.02em;">雅</div>
+            </div>
+          </div>
+          <div style="font-family:'Pretendard',sans-serif; font-size:0.7rem; font-weight:300; color:var(--accent); letter-spacing:0.06em; opacity:0.7;">화요일 오전반 · 오늘의 글씨</div>
+        </div>
+        <div class="comm-footer">
+          <div class="comm-tags">
+            <span class="tag">#글씨인아트센터</span>
+            <span class="tag">#수업현장</span>
+          </div>
+          <div class="comm-caption">오늘 화요반 수강생들의 작품입니다. 매 수업마다 성장하는 모습이 뿌듯해요.</div>
+        </div>
+      </div>
+      <div class="card-label-sub">원데이 현장감. 소규모 커뮤니티 분위기 전달.</div>
+    </div>
+
+    <!-- 수강 후기 -->
+    <div class="card-wrapper">
+      <div class="card-label-top">Type C — 수강 후기</div>
+      <div class="ig-card card-community" style="justify-content:space-between; padding:28px 24px;">
+        <div>
+          <div style="font-family:'Pretendard',sans-serif; font-size:0.625rem; font-weight:600; letter-spacing:0.22em; color:var(--brown); text-transform:uppercase; margin-bottom:14px;">Student Review</div>
+          <div style="display:flex; gap:2px; margin-bottom:16px;">
+            <span style="color:var(--gold); font-size:0.9rem;">★★★★★</span>
+          </div>
+          <div style="font-family:'Noto Serif KR',serif; font-size:1rem; font-weight:300; color:var(--ink); letter-spacing:-0.01em; line-height:2.0; margin-bottom:20px;">
+            "글씨가 이렇게<br>즐거운 줄 몰랐어요"
+          </div>
+          <div style="font-family:'Pretendard',sans-serif; font-size:0.8rem; font-weight:300; color:var(--gray); letter-spacing:-0.01em; line-height:1.75;">
+            처음에는 자신 없었는데 선생님이 너무 잘 알려주셔서 지금은 매일 쓰고 있어요. 강력 추천합니다.
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--light-gray); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <div style="font-family:'Pretendard',sans-serif; font-size:0.8rem; font-weight:500; color:var(--ink); letter-spacing:var(--ls-base);">박○○</div>
+            <div style="font-family:'Pretendard',sans-serif; font-size:0.7rem; font-weight:300; color:var(--gray); letter-spacing:var(--ls-relaxed); margin-top:2px;">캘리그라피 초급반 · 수강 4개월</div>
+          </div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:300; color:var(--beige);">G</div>
+        </div>
+      </div>
+      <div class="card-label-sub">리뷰형 카드. 인용 줄간 2.0, 본문 줄간 1.75로 명확히 분리.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     ⑧ 콘텐츠 전략표
+════════════════════════════════════════════════ -->
+<section id="strategy" class="section">
+  <div class="section-title">콘텐츠 전략표</div>
+  <div class="section-desc">월간 인스타그램 콘텐츠 운영 계획입니다. 각 유형별 비율과 주기를 지켜 브랜드 일관성을 유지하세요.</div>
+
+  <div style="overflow-x:auto; margin-bottom:52px;">
+    <table class="strategy-table">
+      <thead>
+        <tr>
+          <th>콘텐츠 유형</th>
+          <th>주 목적</th>
+          <th>포맷</th>
+          <th>권장 비율</th>
+          <th>업로드 주기</th>
+          <th>핵심 카피 톤</th>
+          <th>비고</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="content-type-badge badge-work">작품</span></td>
+          <td>브랜드 정체성 · 심미성</td>
+          <td><span class="ratio-pill">4:5</span> 피드</td>
+          <td>30%</td>
+          <td>주 2회</td>
+          <td>여백 있는 단문</td>
+          <td>한자·한글 작품 번갈아</td>
+        </tr>
+        <tr>
+          <td><span class="content-type-badge badge-class">수업</span></td>
+          <td>수강 신청 유도 (CTA)</td>
+          <td><span class="ratio-pill">4:5</span> + 스토리</td>
+          <td>25%</td>
+          <td>주 1~2회</td>
+          <td>명확·정보 중심</td>
+          <td>마감 D-day 활용</td>
+        </tr>
+        <tr>
+          <td><span class="content-type-badge badge-tip">팁·과정</span></td>
+          <td>전문성 · 저장률 UP</td>
+          <td><span class="ratio-pill">4:5</span> 캐러셀</td>
+          <td>20%</td>
+          <td>주 1~2회</td>
+          <td>단계형 · 구체적</td>
+          <td>저장 유도 문구 추가</td>
+        </tr>
+        <tr>
+          <td><span class="content-type-badge badge-quote">글귀</span></td>
+          <td>감성 공감 · 공유</td>
+          <td><span class="ratio-pill">1:1</span> 또는 <span class="ratio-pill">4:5</span></td>
+          <td>15%</td>
+          <td>주 1회</td>
+          <td>시적 · 여운 있는</td>
+          <td>공유율 높은 포맷</td>
+        </tr>
+        <tr>
+          <td><span class="content-type-badge badge-community">커뮤니티</span></td>
+          <td>신뢰 · 소속감 형성</td>
+          <td><span class="ratio-pill">4:5</span> + 릴스</td>
+          <td>10%</td>
+          <td>격주 1회</td>
+          <td>따뜻 · 진솔한</td>
+          <td>수강생 동의 후 게시</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 타이포그래피 적용 요약 -->
+  <div style="font-family:'Pretendard',sans-serif; font-size:var(--fs-xs); font-weight:600; letter-spacing:var(--ls-wider); color:var(--brown); text-transform:uppercase; margin-bottom:20px;">타이포그래피 적용 요약</div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px;">
+    <div style="background:var(--warm-bg); padding:20px 22px; border-radius:6px;">
+      <div style="font-family:'Pretendard',sans-serif; font-size:var(--fs-xs); font-weight:600; color:var(--accent); letter-spacing:var(--ls-wide); margin-bottom:12px;">주 폰트 — Pretendard</div>
+      <div style="font-family:'Pretendard',sans-serif; font-size:var(--fs-xs); font-weight:300; color:var(--gray); letter-spacing:var(--ls-base); line-height:var(--lh-body);">UI 텍스트, 본문, 캡션, 레이블, 배지, 정보형 텍스트 전반에 사용. 한글 최적화 웨이트 300·400·500·600·700 활용.</div>
+    </div>
+    <div style="background:var(--warm-bg); padding:20px 22px; border-radius:6px;">
+      <div style="font-family:'Pretendard',sans-serif; font-size:var(--fs-xs); font-weight:600; color:var(--accent); letter-spacing:var(--ls-wide); margin-bottom:12px;">보조 폰트 — Noto Serif KR</div>
+      <div style="font-family:'Pretendard',sans-serif; font-size:var(--fs-xs); font-weight:300; color:var(--gray); letter-spacing:var(--ls-base); line-height:var(--lh-body);">작품 텍스트, 글귀(인용), 헤더 타이틀 등 전통·감성 맥락에 제한적 사용. 300·600 두 웨이트만 활용.</div>
+    </div>
+    <div style="background:var(--warm-bg); padding:20px 22px; border-radius:6px;">
+      <div style="font-family:'Pretendard',sans-serif; font-size:var(--fs-xs); font-weight:600; color:var(--accent); letter-spacing:var(--ls-wide); margin-bottom:12px;">액센트 폰트 — Cormorant Garamond</div>
+      <div style="font-family:'Pretendard',sans-serif; font-size:var(--fs-xs); font-weight:300; color:var(--gray); letter-spacing:var(--ls-base); line-height:var(--lh-body);">영문 브랜드 네임, 인용 부호, 장식적 숫자에만 사용. Light(300) 웨이트로 고급스러운 포인트 역할.</div>
+    </div>
+    <div style="background:var(--warm-bg); padding:20px 22px; border-radius:6px;">
+      <div style="font-family:'Pretendard',sans-serif; font-size:var(--fs-xs); font-weight:600; color:var(--accent); letter-spacing:var(--ls-wide); margin-bottom:12px;">자간·줄간 원칙</div>
+      <div style="font-family:'Pretendard',sans-serif; font-size:var(--fs-xs); font-weight:300; color:var(--gray); letter-spacing:var(--ls-base); line-height:var(--lh-body);">한글 제목 −0.03em, 본문 −0.01em. 줄간: 제목 1.25, 본문 1.75, 인용 2.0. 영문 레이블은 +0.14~0.22em 으로 명확히 구분.</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+</script>
+</body>
+</html>

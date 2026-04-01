@@ -4,68 +4,143 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+const ease = [0.25, 0.0, 0.0, 1.0] as const;
+const viewport = { once: true, margin: "-80px" };
+
 export function DirectorPreview() {
     return (
-        <section className="py-24 md:py-32 px-6 bg-white">
-            <div className="max-w-4xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8 }}
-                    className="text-center mb-16"
-                >
-                    <p className="text-gray-700 text-xs tracking-[0.3em] uppercase mb-4 font-medium">Director</p>
-                </motion.div>
+        <section className="section-lg" style={{ borderBottom: "var(--line-default)", backgroundColor: "var(--paper-50)" }}>
+            <div className="container">
 
-                <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+                {/* Header */}
+                <motion.p
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={viewport}
+                    transition={{ duration: 0.6, ease }}
+                    style={{
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "var(--text-xs)",
+                        color: "var(--ink-300)",
+                        letterSpacing: "var(--ls-wider)",
+                        marginBottom: "var(--space-12)",
+                    }}
+                >
+                    DIRECTOR
+                </motion.p>
+
+                <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "var(--space-12)",
+                }}
+                    className="md:flex-row md:items-start md:gap-16"
+                >
+                    {/* Portrait */}
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.8 }}
-                        className="w-56 md:w-64 shrink-0"
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={viewport}
+                        transition={{ duration: 0.7, ease }}
+                        style={{ flexShrink: 0, width: "200px" }}
+                        className="w-40 md:w-52"
                     >
-                        <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                        <div style={{
+                            position: "relative",
+                            aspectRatio: "3/4",
+                            overflow: "hidden",
+                            border: "var(--line-default)",
+                            backgroundColor: "var(--paper-100)",
+                        }}>
                             <Image
                                 src="/profile.jpeg"
                                 alt="그리운 작가"
                                 fill
-                                className="object-cover"
-                                sizes="256px"
+                                style={{ objectFit: "cover" }}
+                                sizes="208px"
                             />
                         </div>
                     </motion.div>
 
+                    {/* Info */}
                     <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.8, delay: 0.1 }}
-                        className="text-center md:text-left"
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={viewport}
+                        transition={{ duration: 0.7, delay: 0.1, ease }}
                     >
-                        <h3 className="text-2xl font-serif font-bold text-gray-900 mb-2">그리운</h3>
-                        <p className="text-sm text-gray-400 mb-6">글씨인아트센터 대표 작가</p>
+                        <h3 style={{
+                            fontFamily: "var(--font-serif)",
+                            fontSize: "var(--text-xl)",
+                            fontWeight: 300,
+                            color: "var(--ink-950)",
+                            letterSpacing: "var(--ls-snug)",
+                            marginBottom: "var(--space-2)",
+                        }}>
+                            그리운
+                        </h3>
+                        <p style={{
+                            fontFamily: "var(--font-sans)",
+                            fontSize: "var(--text-sm)",
+                            color: "var(--ink-300)",
+                            letterSpacing: "var(--ls-normal)",
+                            marginBottom: "var(--space-8)",
+                        }}>
+                            글씨인아트센터 대표 작가
+                        </p>
 
-                        <div className="space-y-2 text-sm text-gray-600 mb-8">
-                            <p>사범대 미술교육학과 졸업</p>
-                            <p>대한민국 미술대전(국전) 특선 외 다수</p>
-                            <p>KCDA 교육위원</p>
-                            <p>대한민국 서예술대전 초대작가</p>
+                        <div style={{ marginBottom: "var(--space-8)" }}>
+                            {[
+                                "사범대 미술교육학과 졸업",
+                                "대한민국 미술대전(국전) 특선 외 다수",
+                                "KCDA 교육위원",
+                                "대한민국 서예술대전 초대작가",
+                            ].map((item, i) => (
+                                <p key={i} style={{
+                                    fontFamily: "var(--font-sans)",
+                                    fontSize: "var(--text-sm)",
+                                    color: "var(--ink-500)",
+                                    letterSpacing: "var(--ls-normal)",
+                                    lineHeight: "var(--lh-relaxed)",
+                                    paddingBlock: "var(--space-2)",
+                                    borderBottom: i < 3 ? "var(--line-subtle)" : "none",
+                                }}>
+                                    {item}
+                                </p>
+                            ))}
                         </div>
 
-                        <blockquote className="border-l-2 border-gray-200 pl-4 italic text-gray-500 mb-8">
-                            글씨는 마음의 거울입니다.
-                            <br />
+                        <p style={{
+                            fontFamily: "var(--font-serif)",
+                            fontSize: "var(--text-base)",
+                            fontWeight: 300,
+                            color: "var(--ink-500)",
+                            lineHeight: "var(--lh-loose)",
+                            letterSpacing: "var(--ls-normal)",
+                            borderLeft: "var(--line-default)",
+                            paddingLeft: "var(--space-5)",
+                            marginBottom: "var(--space-8)",
+                        }}>
+                            글씨는 마음의 거울입니다.<br />
                             진실된 마음으로 쓰고, 아름답게 표현하는 길을 함께 걷겠습니다.
-                        </blockquote>
+                        </p>
 
                         <Link
                             href="/about"
-                            className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-black transition-colors border-b border-gray-300 hover:border-black pb-1"
+                            style={{
+                                fontFamily: "var(--font-sans)",
+                                fontSize: "var(--text-sm)",
+                                color: "var(--ink-500)",
+                                textDecoration: "none",
+                                letterSpacing: "var(--ls-wide)",
+                                borderBottom: "var(--line-default)",
+                                paddingBottom: "2px",
+                                transition: "opacity var(--duration-fast) var(--ease-default)",
+                            }}
+                            onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.4"; }}
+                            onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
                         >
-                            더 알아보기
-                            <span>&rarr;</span>
+                            더 알아보기 →
                         </Link>
                     </motion.div>
                 </div>
