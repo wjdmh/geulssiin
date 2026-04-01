@@ -64,7 +64,7 @@ export function Hero() {
                         maxWidth: "640px",
                     }}
                 >
-                    글씨인아트센터
+                    글씨 쓰는 사람들
                 </motion.h1>
 
                 <motion.p
@@ -72,16 +72,16 @@ export function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2, ease }}
                     style={{
-                        fontFamily: "var(--font-sans)",
+                        fontFamily: "var(--font-serif)",
                         fontSize: "var(--text-base)",
-                        color: "rgba(250,248,245,0.6)",
+                        color: "rgba(250,248,245,0.55)",
                         letterSpacing: "var(--ls-normal)",
                         lineHeight: "var(--lh-relaxed)",
                         marginBottom: "var(--space-10)",
                         maxWidth: "400px",
                     }}
                 >
-                    예술이 되는 글씨, 감성이 되는 그림
+                    書如其人&nbsp;&nbsp;글씨는 곧 그 사람이다
                 </motion.p>
 
                 <motion.div

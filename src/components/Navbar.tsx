@@ -79,10 +79,10 @@ export function Navbar({ user, profile }: NavbarProps) {
                         <Image
                             src="/logo_transparent.png"
                             alt="글씨인아트센터"
-                            width={160}
-                            height={48}
+                            width={200}
+                            height={60}
                             style={{
-                                height: "38px",
+                                height: "46px",
                                 width: "auto",
                                 objectFit: "contain",
                                 filter: isTransparent ? "brightness(0) invert(1)" : "none",
