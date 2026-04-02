@@ -13,10 +13,10 @@ import { ContactModal } from "./ContactModal";
 import { signout } from "@/app/auth/signout/actions";
 
 const navLinks = [
-    { href: "/", label: "홈" },
-    { href: "/gallery", label: "갤러리" },
-    { href: "/shop", label: "상품" },
-    { href: "/about", label: "어바웃" },
+    { href: "/", label: "Home" },
+    { href: "/gallery", label: "Gallery" },
+    { href: "/shop", label: "Shop" },
+    { href: "/about", label: "About" },
 ];
 
 const externalLinks = [
@@ -79,10 +79,10 @@ export function Navbar({ user, profile }: NavbarProps) {
                         <Image
                             src="/logo_transparent.png"
                             alt="글씨인아트센터"
-                            width={160}
-                            height={48}
+                            width={200}
+                            height={60}
                             style={{
-                                height: "38px",
+                                height: "46px",
                                 width: "auto",
                                 objectFit: "contain",
                                 filter: isTransparent ? "brightness(0) invert(1)" : "none",
@@ -151,7 +151,7 @@ export function Navbar({ user, profile }: NavbarProps) {
                                     onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.5"; }}
                                     onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
                                 >
-                                    로그아웃
+                                    Logout
                                 </button>
                             </div>
                         ) : (
@@ -168,7 +168,7 @@ export function Navbar({ user, profile }: NavbarProps) {
                                 onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.5"; }}
                                 onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
                             >
-                                로그인
+                                Login
                             </Link>
                         )}
                     </div>
@@ -314,7 +314,7 @@ export function Navbar({ user, profile }: NavbarProps) {
                                                 color: "var(--ink-300)", background: "none", border: "none", cursor: "pointer", padding: 0,
                                             }}
                                         >
-                                            로그아웃
+                                            Logout
                                         </button>
                                     </div>
                                 ) : (
@@ -325,7 +325,7 @@ export function Navbar({ user, profile }: NavbarProps) {
                                             color: "var(--ink-300)", textDecoration: "none", letterSpacing: "var(--ls-wide)",
                                         }}
                                     >
-                                        로그인
+                                        Login
                                     </Link>
                                 )}
                             </div>

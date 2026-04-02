@@ -2,8 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Plus, Minus, X, Clock, Users } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { X } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { classCurriculum } from "@/lib/data";
 
@@ -20,6 +19,9 @@ interface ClassItem {
     current_enrollment: number;
 }
 
+const ease = [0.25, 0.0, 0.0, 1.0] as const;
+const viewport = { once: true, margin: "-60px" };
+
 export function TimetableSection() {
     const [openCurriculum, setOpenCurriculum] = useState<number | null>(null);
     const [classes, setClasses] = useState<ClassItem[]>([]);
@@ -30,7 +32,6 @@ export function TimetableSection() {
         async function fetchClasses() {
             const { data } = await supabase.from('classes').select('*');
             if (data) {
-                // Client-side sort to ensure time order
                 const sorted = (data as ClassItem[]).sort((a, b) => a.start_time.localeCompare(b.start_time));
                 setClasses(sorted);
             }
@@ -38,79 +39,143 @@ export function TimetableSection() {
         fetchClasses();
     }, []);
 
-    // Helper to get classes for a specific day
-    const getClassesForDay = (day: string) => {
-        return classes.filter(c => c.day === day);
-    };
+    const getClassesForDay = (day: string) => classes.filter(c => c.day === day);
 
     return (
-        <section className="py-32 bg-white text-black relative overflow-hidden">
-            {/* Background Elements */}
-            <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
-                <div className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-black/5 to-transparent" />
-                <div className="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-black/5 to-transparent" />
-            </div>
+        <section className="section-lg">
+            <div className="container">
 
-            <div className="container mx-auto px-6 relative z-10">
+                {/* Header */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="mb-24 text-center"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease }}
+                    style={{ marginBottom: "var(--space-16)" }}
                 >
-                    <span className="inline-block py-1 px-3 mb-6 border border-black/10 rounded-full text-[10px] tracking-[0.2em] font-medium text-gray-500 uppercase">
-                        Curriculum
-                    </span>
-                    <h2 className="text-4xl md:text-6xl font-serif font-light text-black mb-6">
-                        교육 과정 <span className="text-black/20">&</span> 시간표
-                    </h2>
-                    <p className="text-gray-500 max-w-xl mx-auto font-light leading-relaxed">
-                        전통과 현대가 공존하는 공간에서 글씨의 본질을 탐구합니다.
+                    <p style={{
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "var(--text-xs)",
+                        color: "var(--ink-300)",
+                        letterSpacing: "var(--ls-wider)",
+                        marginBottom: "var(--space-4)",
+                    }}>
+                        CLASS
+                    </p>
+                    <h1 style={{
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "clamp(var(--text-xl), 3vw, var(--text-2xl))",
+                        fontWeight: 300,
+                        color: "var(--ink-950)",
+                        letterSpacing: "var(--ls-snug)",
+                        marginBottom: "var(--space-4)",
+                    }}>
+                        수업 안내
+                    </h1>
+                    <p style={{
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "var(--text-base)",
+                        color: "var(--ink-500)",
+                        lineHeight: "var(--lh-relaxed)",
+                        letterSpacing: "var(--ls-normal)",
+                    }}>
+                        붓 캘리그라피 · 붓펜 캘리그라피 · 펜드로잉 · 서예
                     </p>
                 </motion.div>
 
-                {/* 1. Chronological Schedule Grid (Columns Only) */}
-                <div className="mb-32">
-                    <div className="flex items-end justify-between mb-8 border-b border-black/10 pb-4">
-                        <h3 className="text-xl font-serif text-black/90">수업 시간표</h3>
-                        <p className="text-xs text-gray-400 font-mono hidden md:block">CLICK FOR DETAILS</p>
-                    </div>
+                {/* Timetable */}
+                <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={viewport}
+                    transition={{ duration: 0.6, ease }}
+                    style={{ marginBottom: "var(--space-24)" }}
+                >
+                    <p style={{
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "var(--text-xs)",
+                        color: "var(--ink-300)",
+                        letterSpacing: "var(--ls-wider)",
+                        marginBottom: "var(--space-6)",
+                    }}>
+                        SCHEDULE
+                    </p>
 
-                    <div className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-200">
-                        <div className="min-w-[800px] grid grid-cols-6 gap-0 border-t border-l border-black/10">
-                            {/* Header Row */}
+                    <div style={{ overflowX: "auto" }}>
+                        <div style={{
+                            minWidth: "640px",
+                            display: "grid",
+                            gridTemplateColumns: `repeat(${SCHEDULE_COLS.length}, 1fr)`,
+                            backgroundColor: "var(--ink-100)",
+                            gap: "1px",
+                            border: "var(--line-default)",
+                        }}>
+                            {/* Header */}
                             {SCHEDULE_COLS.map(day => (
-                                <div key={day} className="p-4 border-b border-r border-black/10 text-center text-sm font-serif font-bold bg-gray-50">
+                                <div key={day} style={{
+                                    padding: "var(--space-4)",
+                                    backgroundColor: "var(--paper-100)",
+                                    fontFamily: "var(--font-sans)",
+                                    fontSize: "var(--text-xs)",
+                                    color: "var(--ink-500)",
+                                    letterSpacing: "var(--ls-wide)",
+                                    textAlign: "center",
+                                }}>
                                     {day}
                                 </div>
                             ))}
 
-                            {/* Class Columns */}
+                            {/* Content */}
                             {SCHEDULE_COLS.map((day) => {
                                 const dayClasses = getClassesForDay(day);
                                 return (
-                                    <div key={day} className="border-r border-b border-black/10 min-h-[300px] p-2 bg-white flex flex-col gap-2">
-                                        {dayClasses.length > 0 ? (
-                                            dayClasses.map((cls) => (
-                                                <motion.button
-                                                    key={cls.id}
-                                                    initial={{ opacity: 0, y: 10 }}
-                                                    whileInView={{ opacity: 1, y: 0 }}
-                                                    viewport={{ once: true }}
-                                                    onClick={() => setSelectedClass(cls)}
-                                                    className="w-full text-left p-3 rounded border border-gray-100 bg-gray-50/50 hover:bg-black hover:text-white hover:border-black transition-all group"
-                                                >
-                                                    <div className="font-bold text-sm mb-1 group-hover:text-white transition-colors">{cls.class_name}</div>
-                                                    <div className="flex items-center gap-1.5 text-xs text-gray-500 font-mono group-hover:text-white/70">
-                                                        <Clock size={10} />
-                                                        {cls.start_time} - {cls.end_time}
-                                                    </div>
-                                                </motion.button>
-                                            ))
-                                        ) : (
-                                            <div className="h-full flex items-center justify-center text-xs text-gray-300 font-light italic">
-                                                -
+                                    <div key={day} style={{
+                                        minHeight: "200px",
+                                        padding: "var(--space-3)",
+                                        backgroundColor: "var(--paper-50)",
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        gap: "var(--space-2)",
+                                    }}>
+                                        {dayClasses.length > 0 ? dayClasses.map((cls) => (
+                                            <button
+                                                key={cls.id}
+                                                onClick={() => setSelectedClass(cls)}
+                                                style={{
+                                                    width: "100%",
+                                                    textAlign: "left",
+                                                    padding: "var(--space-3)",
+                                                    backgroundColor: "var(--paper-100)",
+                                                    border: "var(--line-default)",
+                                                    cursor: "pointer",
+                                                    transition: "background-color var(--duration-fast) var(--ease-default)",
+                                                }}
+                                                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "var(--ink-950)"; e.currentTarget.style.color = "var(--paper-50)"; }}
+                                                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "var(--paper-100)"; e.currentTarget.style.color = "var(--ink-950)"; }}
+                                            >
+                                                <p style={{
+                                                    fontFamily: "var(--font-sans)",
+                                                    fontSize: "var(--text-xs)",
+                                                    letterSpacing: "var(--ls-normal)",
+                                                    marginBottom: "var(--space-1)",
+                                                    color: "inherit",
+                                                }}>
+                                                    {cls.class_name}
+                                                </p>
+                                                <p style={{
+                                                    fontFamily: "var(--font-sans)",
+                                                    fontSize: "10px",
+                                                    color: "var(--ink-300)",
+                                                    letterSpacing: "var(--ls-wide)",
+                                                }}>
+                                                    {cls.start_time}–{cls.end_time}
+                                                </p>
+                                            </button>
+                                        )) : (
+                                            <div style={{
+                                                flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
+                                                fontFamily: "var(--font-sans)", fontSize: "var(--text-xs)", color: "var(--ink-100)",
+                                            }}>
+                                                —
                                             </div>
                                         )}
                                     </div>
@@ -118,55 +183,132 @@ export function TimetableSection() {
                             })}
                         </div>
                     </div>
-                </div>
+                </motion.div>
 
-                {/* 2. Curtain Curriculum (Static) */}
-                <div className="max-w-4xl mx-auto">
-                    <div className="flex items-end justify-between mb-12">
-                        <h3 className="text-xl font-serif text-black/90">상세 커리큘럼</h3>
-                        <p className="text-xs text-gray-400 font-mono">STEP BY STEP</p>
-                    </div>
+                {/* Curriculum */}
+                <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={viewport}
+                    transition={{ duration: 0.6, ease }}
+                >
+                    <p style={{
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "var(--text-xs)",
+                        color: "var(--ink-300)",
+                        letterSpacing: "var(--ls-wider)",
+                        marginBottom: "var(--space-8)",
+                    }}>
+                        CURRICULUM
+                    </p>
 
-                    <div className="space-y-px">
+                    {/* 1px gap accordion */}
+                    <div style={{ display: "flex", flexDirection: "column", gap: "1px", backgroundColor: "var(--ink-100)" }}>
                         {classCurriculum.map((cls, index) => {
                             const isOpen = openCurriculum === index;
                             return (
-                                <motion.div
-                                    key={cls.title}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                                >
+                                <div key={cls.title} style={{ backgroundColor: "var(--paper-50)" }}>
                                     <button
                                         onClick={() => setOpenCurriculum(isOpen ? null : index)}
-                                        className={cn(
-                                            "w-full flex items-center justify-between p-6 md:p-8 text-left transition-all duration-500 border border-black/10 bg-white shadow-sm",
-                                            isOpen ? "bg-gray-50 border-black/20" : "hover:bg-gray-50 hover:border-black/20"
-                                        )}
+                                        style={{
+                                            width: "100%",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "space-between",
+                                            padding: "var(--space-6) 0",
+                                            background: "none",
+                                            border: "none",
+                                            cursor: "pointer",
+                                            textAlign: "left",
+                                        }}
                                     >
-                                        <div className="flex items-center gap-6">
-                                            <span className="text-xs font-mono text-gray-400">0{index + 1}</span>
-                                            <h4 className={cn("text-xl md:text-2xl font-serif", isOpen ? "text-black font-bold" : "text-gray-600")}>{cls.title}</h4>
+                                        <div style={{ display: "flex", alignItems: "baseline", gap: "var(--space-6)" }}>
+                                            <span style={{
+                                                fontFamily: "var(--font-sans)",
+                                                fontSize: "var(--text-xs)",
+                                                color: "var(--ink-300)",
+                                                letterSpacing: "var(--ls-wider)",
+                                                minWidth: "24px",
+                                            }}>
+                                                0{index + 1}
+                                            </span>
+                                            <span style={{
+                                                fontFamily: "var(--font-serif)",
+                                                fontSize: "clamp(var(--text-base), 2vw, var(--text-lg))",
+                                                fontWeight: 300,
+                                                color: isOpen ? "var(--ink-950)" : "var(--ink-500)",
+                                                letterSpacing: "var(--ls-snug)",
+                                                transition: "color var(--duration-fast) var(--ease-default)",
+                                            }}>
+                                                {cls.title}
+                                            </span>
                                         </div>
-                                        <div className={cn("w-8 h-8 flex items-center justify-center rounded-full border transition-all", isOpen ? "bg-black text-white border-black" : "border-black/10")}>
-                                            {isOpen ? <Minus size={14} /> : <Plus size={14} />}
-                                        </div>
+                                        <span style={{
+                                            fontFamily: "var(--font-sans)",
+                                            fontSize: "var(--text-lg)",
+                                            color: "var(--ink-300)",
+                                            lineHeight: 1,
+                                            transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
+                                            transition: "transform var(--duration-base) var(--ease-default)",
+                                            display: "inline-block",
+                                        }}>
+                                            +
+                                        </span>
                                     </button>
+
                                     <AnimatePresence>
                                         {isOpen && (
                                             <motion.div
                                                 initial={{ height: 0, opacity: 0 }}
                                                 animate={{ height: "auto", opacity: 1 }}
                                                 exit={{ height: 0, opacity: 0 }}
-                                                className="overflow-hidden"
+                                                transition={{ duration: 0.4, ease }}
+                                                style={{ overflow: "hidden" }}
                                             >
-                                                <div className="p-6 md:p-8 bg-gray-50/50 border-x border-b border-black/10">
-                                                    <p className="text-gray-600 mb-8 font-light">{cls.description}</p>
-                                                    <div className="grid md:grid-cols-3 gap-4">
+                                                <div style={{
+                                                    paddingBottom: "var(--space-8)",
+                                                    paddingLeft: "calc(24px + var(--space-6))",
+                                                }}>
+                                                    <p style={{
+                                                        fontFamily: "var(--font-sans)",
+                                                        fontSize: "var(--text-sm)",
+                                                        color: "var(--ink-500)",
+                                                        lineHeight: "var(--lh-relaxed)",
+                                                        marginBottom: "var(--space-6)",
+                                                    }}>
+                                                        {cls.description}
+                                                    </p>
+                                                    <div style={{
+                                                        display: "flex",
+                                                        flexDirection: "column",
+                                                        gap: "1px",
+                                                        backgroundColor: "var(--ink-100)",
+                                                        maxWidth: "480px",
+                                                    }}>
                                                         {cls.details.map((d, i) => (
-                                                            <div key={i} className="p-4 bg-white border border-black/5 rounded">
-                                                                <span className="text-xs font-bold text-black block mb-2">{d.level}</span>
-                                                                <span className="text-sm text-gray-500">{d.content}</span>
+                                                            <div key={i} style={{
+                                                                display: "grid",
+                                                                gridTemplateColumns: "100px 1fr",
+                                                                backgroundColor: "var(--paper-100)",
+                                                                padding: "var(--space-4) var(--space-4)",
+                                                                gap: "var(--space-4)",
+                                                            }}>
+                                                                <span style={{
+                                                                    fontFamily: "var(--font-sans)",
+                                                                    fontSize: "var(--text-xs)",
+                                                                    color: "var(--ink-950)",
+                                                                    letterSpacing: "var(--ls-normal)",
+                                                                }}>
+                                                                    {d.level}
+                                                                </span>
+                                                                <span style={{
+                                                                    fontFamily: "var(--font-sans)",
+                                                                    fontSize: "var(--text-xs)",
+                                                                    color: "var(--ink-500)",
+                                                                    lineHeight: "var(--lh-relaxed)",
+                                                                }}>
+                                                                    {d.content}
+                                                                </span>
                                                             </div>
                                                         ))}
                                                     </div>
@@ -174,85 +316,110 @@ export function TimetableSection() {
                                             </motion.div>
                                         )}
                                     </AnimatePresence>
-                                </motion.div>
+                                </div>
                             );
                         })}
                     </div>
-                </div>
+                </motion.div>
             </div>
 
             {/* Class Detail Modal */}
             <AnimatePresence>
                 {selectedClass && (
-                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                    <div style={{ position: "fixed", inset: 0, zIndex: 200, display: "flex", alignItems: "center", justifyContent: "center", padding: "var(--space-6)" }}>
                         <motion.div
                             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                            className="fixed inset-0 bg-black/40 backdrop-blur-sm"
+                            style={{ position: "fixed", inset: 0, backgroundColor: "rgba(15,14,13,0.5)" }}
                             onClick={() => setSelectedClass(null)}
                         />
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                            className="bg-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden relative z-10"
+                            initial={{ opacity: 0, y: 12 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 12 }}
+                            transition={{ duration: 0.4, ease }}
+                            style={{
+                                position: "relative", zIndex: 201,
+                                width: "100%", maxWidth: "400px",
+                                backgroundColor: "var(--paper-50)",
+                                border: "var(--line-default)",
+                                padding: "var(--space-10)",
+                            }}
                         >
-                            <div className="p-6 md:p-8">
-                                <button
-                                    onClick={() => setSelectedClass(null)}
-                                    className="absolute top-4 right-4 text-gray-400 hover:text-black transition-colors"
-                                >
-                                    <X size={24} />
-                                </button>
+                            <button
+                                onClick={() => setSelectedClass(null)}
+                                style={{
+                                    position: "absolute", top: "var(--space-6)", right: "var(--space-6)",
+                                    background: "none", border: "none", cursor: "pointer",
+                                    color: "var(--ink-300)",
+                                    transition: "color var(--duration-fast) var(--ease-default)",
+                                }}
+                                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "var(--ink-950)"; }}
+                                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "var(--ink-300)"; }}
+                            >
+                                <X size={20} strokeWidth={1.5} />
+                            </button>
 
-                                <div className="mb-2 text-xs font-bold tracking-widest text-blue-600 uppercase">Class Detail</div>
-                                <h3 className="text-2xl font-serif font-bold text-black mb-6">{selectedClass.class_name}</h3>
+                            <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-xs)", color: "var(--ink-300)", letterSpacing: "var(--ls-wider)", marginBottom: "var(--space-4)" }}>
+                                CLASS DETAIL
+                            </p>
+                            <h3 style={{
+                                fontFamily: "var(--font-serif)",
+                                fontSize: "var(--text-xl)", fontWeight: 300,
+                                color: "var(--ink-950)",
+                                marginBottom: "var(--space-8)",
+                            }}>
+                                {selectedClass.class_name}
+                            </h3>
 
-                                <div className="space-y-4">
-                                    <div className="flex items-start gap-3">
-                                        <Clock size={20} className="text-gray-400 mt-0.5" />
-                                        <div>
-                                            <span className="block font-medium text-black">{selectedClass.day}요일</span>
-                                            <span className="text-sm text-gray-500">{selectedClass.start_time} - {selectedClass.end_time}</span>
-                                        </div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-4)", paddingTop: "var(--space-6)", borderTop: "var(--line-default)" }}>
+                                {[
+                                    { label: "요일", val: `${selectedClass.day}요일` },
+                                    { label: "시간", val: `${selectedClass.start_time} – ${selectedClass.end_time}` },
+                                    { label: "정원", val: `${selectedClass.current_enrollment} / ${selectedClass.max_capacity || '∞'}` },
+                                ].map(item => (
+                                    <div key={item.label} style={{ display: "flex", justifyContent: "space-between" }}>
+                                        <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-xs)", color: "var(--ink-300)", letterSpacing: "var(--ls-wide)" }}>{item.label}</span>
+                                        <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-xs)", color: "var(--ink-950)" }}>{item.val}</span>
                                     </div>
-
-                                    <div className="flex items-start gap-3">
-                                        <Users size={20} className="text-gray-400 mt-0.5" />
-                                        <div>
-                                            <span className="block font-medium text-black">수강 인원</span>
-                                            <div className="text-sm text-gray-500 mt-1">
-                                                <div className="flex items-center gap-2 mb-1">
-                                                    <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden w-32">
-                                                        <div
-                                                            className="h-full bg-black rounded-full"
-                                                            style={{ width: `${Math.min((selectedClass.current_enrollment / (selectedClass.max_capacity || 1)) * 100, 100)}%` }}
-                                                        />
-                                                    </div>
-                                                    <span className="text-xs font-mono">{selectedClass.current_enrollment} / {selectedClass.max_capacity || '∞'}</span>
-                                                </div>
-                                                {selectedClass.current_enrollment >= (selectedClass.max_capacity || 999) && (
-                                                    <span className="text-xs text-red-500 font-bold">마감되었습니다</span>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {selectedClass.description && (
-                                        <div className="pt-4 border-t border-gray-100 mt-4">
-                                            <p className="text-gray-600 leading-relaxed text-sm">{selectedClass.description}</p>
-                                        </div>
-                                    )}
-                                </div>
-
-                                <div className="mt-8 pt-6 border-t border-gray-100">
-                                    <button
-                                        onClick={() => setSelectedClass(null)}
-                                        className="w-full py-3 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-colors"
-                                    >
-                                        확인
-                                    </button>
-                                </div>
+                                ))}
                             </div>
+
+                            {selectedClass.description && (
+                                <p style={{
+                                    fontFamily: "var(--font-sans)",
+                                    fontSize: "var(--text-sm)",
+                                    color: "var(--ink-500)",
+                                    lineHeight: "var(--lh-relaxed)",
+                                    paddingTop: "var(--space-6)",
+                                    borderTop: "var(--line-subtle)",
+                                    marginTop: "var(--space-6)",
+                                }}>
+                                    {selectedClass.description}
+                                </p>
+                            )}
+
+                            <a
+                                href="https://pf.kakao.com/_xkETdn"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                    display: "block",
+                                    marginTop: "var(--space-8)",
+                                    padding: "14px 0",
+                                    backgroundColor: "var(--ink-950)",
+                                    color: "var(--paper-50)",
+                                    fontFamily: "var(--font-sans)",
+                                    fontSize: "var(--text-sm)",
+                                    letterSpacing: "var(--ls-wide)",
+                                    textDecoration: "none",
+                                    textAlign: "center",
+                                    transition: "opacity var(--duration-fast) var(--ease-default)",
+                                }}
+                                onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.7"; }}
+                                onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
+                            >
+                                수강 문의
+                            </a>
                         </motion.div>
                     </div>
                 )}

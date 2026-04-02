@@ -3,66 +3,106 @@
 import { motion } from "framer-motion";
 
 const meanings = [
-    {
-        key: "in",
-        label: "글씨 + in",
-        description: "글씨 안에 담긴 마음, 글씨 안에 스며든 감정, 글씨 안에 머무는 시간",
-    },
-    {
-        key: "人",
-        label: "글씨 + 인(人)",
-        description: "글씨를 쓰는 사람. 모든 수강생은 글씨를 쓰는 사람이다",
-    },
-    {
-        key: "因",
-        label: "글씨 + 인(因)",
-        description: "글씨로 인하여. 글씨가 원인이 되어 삶에 변화가 시작된다",
-    },
-    {
-        key: "印",
-        label: "글씨인(印)",
-        description: "글씨가 곧 도장. 나만의 글씨가 곧 나라는 사람의 인장이 된다",
-    },
+    { key: "in", label: "글씨 + in", description: "글씨 안에 담긴 마음, 글씨 안에 스며든 감정, 글씨 안에 머무는 시간" },
+    { key: "人", label: "글씨 + 인(人)", description: "글씨를 쓰는 사람. 모든 수강생은 글씨를 쓰는 사람이다" },
+    { key: "因", label: "글씨 + 인(因)", description: "글씨로 인하여. 글씨가 원인이 되어 삶에 변화가 시작된다" },
+    { key: "印", label: "글씨인(印)", description: "글씨가 곧 도장. 나만의 글씨가 곧 나라는 사람의 인장이 된다" },
 ];
+
+const ease = [0.25, 0.0, 0.0, 1.0] as const;
+const viewport = { once: true, margin: "-80px" };
 
 export function NameMeaning() {
     return (
-        <section className="py-24 md:py-32 px-6 bg-[#faf8f5]">
-            <div className="max-w-3xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+        <section className="section-lg" style={{
+            backgroundColor: "var(--paper-100)",
+            borderTop: "var(--line-default)",
+            borderBottom: "var(--line-default)",
+        }}>
+            <div className="container">
+                <motion.p
+                    initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8 }}
-                    className="text-center mb-16"
+                    viewport={viewport}
+                    transition={{ duration: 0.6, ease }}
+                    style={{
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "var(--text-xs)",
+                        color: "var(--ink-300)",
+                        letterSpacing: "var(--ls-wider)",
+                        marginBottom: "var(--space-8)",
+                    }}
                 >
-                    <p className="text-gray-400 text-xs tracking-[0.3em] uppercase mb-4">Name</p>
-                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900">
-                        <span className="font-bold">글씨인</span>이라는 이름
-                    </h2>
-                </motion.div>
+                    NAME
+                </motion.p>
 
-                <div className="space-y-8">
+                <motion.h2
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={viewport}
+                    transition={{ duration: 0.8, delay: 0.1, ease }}
+                    style={{
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "clamp(var(--text-xl), 3vw, var(--text-2xl))",
+                        fontWeight: 300,
+                        color: "var(--ink-950)",
+                        letterSpacing: "var(--ls-snug)",
+                        marginBottom: "var(--space-16)",
+                    }}
+                >
+                    글씨인이라는 이름
+                </motion.h2>
+
+                {/* 1px gap divider grid */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "1px", backgroundColor: "var(--ink-100)" }}>
                     {meanings.map((item, i) => (
                         <motion.div
                             key={item.key}
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.6, delay: i * 0.15 }}
-                            className="flex items-start gap-6 md:gap-8"
+                            initial={{ opacity: 0, y: 12 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={viewport}
+                            transition={{ duration: 0.6, delay: i * 0.08, ease }}
+                            style={{
+                                display: "grid",
+                                gridTemplateColumns: "72px 1fr",
+                                gap: "var(--space-8)",
+                                padding: "var(--space-8) 0",
+                                backgroundColor: "var(--paper-100)",
+                                alignItems: "baseline",
+                            }}
                         >
-                            <span className="shrink-0 w-12 h-12 flex items-center justify-center text-lg font-serif font-bold text-gray-900 border border-gray-200 rounded-full bg-white">
+                            <span style={{
+                                fontFamily: "var(--font-serif)",
+                                fontSize: "var(--text-xl)",
+                                fontWeight: 300,
+                                color: "var(--ink-300)",
+                                letterSpacing: "var(--ls-snug)",
+                            }}>
                                 {item.key}
                             </span>
-                            <div className="pt-1">
-                                <h3 className="text-base font-medium text-gray-900 mb-1">{item.label}</h3>
-                                <p className="text-sm text-gray-500 leading-relaxed">{item.description}</p>
+                            <div>
+                                <p style={{
+                                    fontFamily: "var(--font-sans)",
+                                    fontSize: "var(--text-sm)",
+                                    color: "var(--ink-950)",
+                                    letterSpacing: "var(--ls-normal)",
+                                    marginBottom: "var(--space-2)",
+                                }}>
+                                    {item.label}
+                                </p>
+                                <p style={{
+                                    fontFamily: "var(--font-sans)",
+                                    fontSize: "var(--text-sm)",
+                                    color: "var(--ink-500)",
+                                    lineHeight: "var(--lh-relaxed)",
+                                    letterSpacing: "var(--ls-normal)",
+                                }}>
+                                    {item.description}
+                                </p>
                             </div>
                         </motion.div>
                     ))}
                 </div>
-
             </div>
         </section>
     );
