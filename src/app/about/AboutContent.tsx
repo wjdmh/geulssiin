@@ -7,61 +7,74 @@ interface AboutContentProps {
     content: string;
 }
 
-function renderBlock(block: string) {
-    // Replace **text** with bold spans, remove any stray quotes
-    const cleaned = block.replace(/[""]/g, '');
-    const parts = cleaned.split(/\*\*(.*?)\*\*/g);
-
-    if (parts.length <= 1) {
-        return <>{cleaned}</>;
-    }
-
-    return (
-        <>
-            {parts.map((part, i) =>
-                i % 2 === 1
-                    ? <span key={i} className="font-bold text-black">{part}</span>
-                    : <span key={i}>{part}</span>
-            )}
-        </>
-    );
-}
+const ease = [0.25, 0.0, 0.0, 1.0] as const;
 
 export function AboutContent({ title, content }: AboutContentProps) {
     const blocks = content.split('\n\n').filter(b => b.trim());
-    // Remove quotes from title
-    const cleanTitle = title.replace(/[""「」『』]/g, '');
 
     return (
         <div>
-            {/* Header */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
+            <motion.p
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-16"
+                transition={{ duration: 0.6, ease }}
+                style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "var(--text-xs)",
+                    color: "var(--ink-300)",
+                    letterSpacing: "var(--ls-wider)",
+                    marginBottom: "var(--space-8)",
+                }}
             >
-                <span className="text-gray-400 text-xs tracking-[0.3em] uppercase mb-6 block">
-                    About
-                </span>
-                <h1 className="text-3xl md:text-5xl font-serif font-bold text-black mb-8 leading-tight">
-                    {cleanTitle}
-                </h1>
-                <div className="w-16 h-[1px] bg-black/15 mx-auto"></div>
-            </motion.div>
+                ABOUT
+            </motion.p>
 
-            {/* Content Blocks */}
-            <div className="space-y-10 max-w-2xl mx-auto">
-                {blocks.map((block, index) => (
+            <motion.h1
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1, ease }}
+                style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "clamp(var(--text-xl), 3.5vw, var(--text-3xl))",
+                    fontWeight: 300,
+                    color: "var(--ink-950)",
+                    letterSpacing: "var(--ls-snug)",
+                    lineHeight: "var(--lh-snug)",
+                    marginBottom: "var(--space-8)",
+                }}
+            >
+                {title}
+            </motion.h1>
+
+            <motion.div
+                initial={{ opacity: 0, scaleX: 0 }}
+                animate={{ opacity: 1, scaleX: 1 }}
+                transition={{ duration: 0.6, delay: 0.2, ease }}
+                style={{
+                    width: "32px",
+                    height: "1px",
+                    backgroundColor: "var(--ink-100)",
+                    transformOrigin: "left",
+                    marginBottom: "var(--space-10)",
+                }}
+            />
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-8)" }}>
+                {blocks.map((block, i) => (
                     <motion.p
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.6, delay: index * 0.1 }}
-                        className="text-center text-base md:text-lg text-gray-600 font-light leading-relaxed"
+                        key={i}
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.1 + i * 0.1, ease }}
+                        style={{
+                            fontFamily: "var(--font-sans)",
+                            fontSize: "var(--text-base)",
+                            color: "var(--ink-500)",
+                            lineHeight: "var(--lh-relaxed)",
+                            letterSpacing: "var(--ls-normal)",
+                        }}
                     >
-                        {renderBlock(block.trim())}
+                        {block.trim()}
                     </motion.p>
                 ))}
             </div>

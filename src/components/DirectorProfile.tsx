@@ -38,115 +38,167 @@ const activities = [
     "관공서 및 교육기관 캘리그라피 & 펜그림 출강 다수",
 ];
 
-function TimelineItem({ text, dark = false }: { text: string; dark?: boolean }) {
+const ease = [0.25, 0.0, 0.0, 1.0] as const;
+const viewport = { once: true, margin: "-80px" };
+
+function ListItem({ text }: { text: string }) {
     return (
-        <div className="flex items-start gap-3">
-            <span className={`mt-[6px] w-1.5 h-1.5 rounded-full shrink-0 ${dark ? "bg-black" : "bg-gray-300"}`} />
-            <p className="text-[15px] text-gray-600 font-light leading-relaxed">{text}</p>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: "var(--space-3)" }}>
+            <span style={{
+                marginTop: "8px",
+                width: "4px",
+                height: "4px",
+                flexShrink: 0,
+                backgroundColor: "var(--ink-100)",
+            }} />
+            <p style={{
+                fontFamily: "var(--font-sans)",
+                fontSize: "var(--text-sm)",
+                color: "var(--ink-500)",
+                lineHeight: "var(--lh-relaxed)",
+                letterSpacing: "var(--ls-normal)",
+            }}>
+                {text}
+            </p>
+        </div>
+    );
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+    return (
+        <div style={{ display: "flex", alignItems: "center", gap: "var(--space-4)", marginBottom: "var(--space-6)" }}>
+            <span style={{ width: "20px", height: "1px", backgroundColor: "var(--ink-950)" }} />
+            <p style={{
+                fontFamily: "var(--font-sans)",
+                fontSize: "var(--text-xs)",
+                color: "var(--ink-950)",
+                letterSpacing: "var(--ls-wider)",
+            }}>
+                {children}
+            </p>
         </div>
     );
 }
 
 export function DirectorProfile() {
     return (
-        <section className="py-24 md:py-32 bg-gray-50 border-t border-black/5">
-            <div className="container mx-auto px-6 max-w-5xl">
+        <section className="section-lg" style={{ borderTop: "var(--line-default)" }}>
+            <div className="container">
 
-                {/* Section Header */}
+                {/* Header */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7 }}
-                    className="text-center mb-16"
+                    viewport={viewport}
+                    transition={{ duration: 0.6, ease }}
+                    style={{ marginBottom: "var(--space-16)" }}
                 >
-                    <span className="text-gray-400 text-xs tracking-[0.3em] uppercase mb-4 block">Director</span>
-                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-black mb-4">글씨인아트센터 대표 이보영</h2>
+                    <p style={{
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "var(--text-xs)",
+                        color: "var(--ink-300)",
+                        letterSpacing: "var(--ls-wider)",
+                        marginBottom: "var(--space-4)",
+                    }}>
+                        DIRECTOR
+                    </p>
+                    <h2 style={{
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "clamp(var(--text-xl), 3vw, var(--text-2xl))",
+                        fontWeight: 300,
+                        color: "var(--ink-950)",
+                        letterSpacing: "var(--ls-snug)",
+                    }}>
+                        이보영
+                    </h2>
                 </motion.div>
 
-                <div className="flex flex-col md:flex-row items-start gap-12 md:gap-20">
-                    {/* Image Section */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="w-full md:w-5/12 shrink-0"
-                    >
-                        <div className="relative aspect-[3/4] overflow-hidden bg-gray-200">
-                            <Image
-                                src="/profile.jpeg"
-                                alt="이보영 대표 프로필"
-                                fill
-                                className="object-cover"
-                            />
-                            <div className="absolute inset-4 border border-white/20 z-10" />
+                <div style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr",
+                    gap: "var(--space-16)",
+                }}>
+                    {/* Responsive: portrait left, text right on md+ */}
+                    <div className="md:grid" style={{ display: "contents" }}>
+                        <div style={{
+                            display: "grid",
+                            gridTemplateColumns: "1fr",
+                            gap: "var(--space-16)",
+                        }}>
+                            {/* Image */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 12 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={viewport}
+                                transition={{ duration: 0.8, ease }}
+                                style={{ maxWidth: "320px" }}
+                            >
+                                <div style={{
+                                    position: "relative",
+                                    aspectRatio: "3/4",
+                                    overflow: "hidden",
+                                    backgroundColor: "var(--paper-100)",
+                                    border: "var(--line-default)",
+                                }}>
+                                    <Image
+                                        src="/profile.jpeg"
+                                        alt="이보영 대표"
+                                        fill
+                                        style={{ objectFit: "cover" }}
+                                    />
+                                </div>
+                            </motion.div>
+
+                            {/* Text content */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 12 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={viewport}
+                                transition={{ duration: 0.8, delay: 0.15, ease }}
+                                style={{ display: "flex", flexDirection: "column", gap: "var(--space-12)" }}
+                            >
+                                <div>
+                                    <SectionLabel>자격 및 경력</SectionLabel>
+                                    <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-3)" }}>
+                                        {careers.map((item, i) => <ListItem key={i} text={item} />)}
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <SectionLabel>수상 경력</SectionLabel>
+                                    <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-3)" }}>
+                                        {awards.map((item, i) => <ListItem key={i} text={item} />)}
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <SectionLabel>전시 및 활동</SectionLabel>
+                                    <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-3)" }}>
+                                        {activities.map((item, i) => <ListItem key={i} text={item} />)}
+                                    </div>
+                                </div>
+
+                                {/* Quote */}
+                                <div style={{
+                                    paddingTop: "var(--space-8)",
+                                    borderTop: "var(--line-default)",
+                                    borderLeft: "2px solid var(--ink-100)",
+                                    paddingLeft: "var(--space-6)",
+                                }}>
+                                    <p style={{
+                                        fontFamily: "var(--font-serif)",
+                                        fontSize: "var(--text-sm)",
+                                        color: "var(--ink-300)",
+                                        lineHeight: "var(--lh-relaxed)",
+                                        letterSpacing: "var(--ls-normal)",
+                                    }}>
+                                        글씨는 마음의 거울입니다.<br />
+                                        진실된 마음으로 쓰고, 아름답게 표현하는 길을 함께 걷겠습니다.
+                                    </p>
+                                </div>
+                            </motion.div>
                         </div>
-                    </motion.div>
-
-                    {/* Text Section */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="w-full md:w-7/12"
-                    >
-                        <div className="space-y-10">
-                            {/* Career */}
-                            <div>
-                                <h4 className="text-lg font-serif font-bold text-black mb-6 flex items-center gap-3">
-                                    <span className="w-8 h-[1px] bg-black"></span>
-                                    자격 및 경력
-                                </h4>
-                                <div className="space-y-3">
-                                    {careers.map((item, index) => (
-                                        <TimelineItem key={index} text={item} dark={index < 3} />
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Awards */}
-                            <div>
-                                <h4 className="text-lg font-serif font-bold text-black mb-6 flex items-center gap-3">
-                                    <span className="w-8 h-[1px] bg-black"></span>
-                                    수상 경력
-                                </h4>
-                                <div className="space-y-3">
-                                    {awards.map((item, index) => (
-                                        <TimelineItem key={index} text={item} />
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Activities */}
-                            <div>
-                                <h4 className="text-lg font-serif font-bold text-black mb-6 flex items-center gap-3">
-                                    <span className="w-8 h-[1px] bg-black"></span>
-                                    전시 및 활동
-                                </h4>
-                                <div className="space-y-3">
-                                    {activities.map((item, index) => (
-                                        <TimelineItem key={index} text={item} />
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Quote */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.4 }}
-                            className="mt-12 pt-8 border-t border-black/10"
-                        >
-                            <p className="text-gray-400 italic font-serif text-sm leading-relaxed">
-                                글씨는 마음의 거울입니다. <br />
-                                진실된 마음으로 쓰고, 아름답게 표현하는 길을 함께 걷겠습니다.
-                            </p>
-                        </motion.div>
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </section>

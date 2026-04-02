@@ -7,10 +7,10 @@ import {
 } from "lucide-react";
 
 const internalLinks = [
-    { href: "/", label: "홈" },
-    { href: "/gallery", label: "갤러리" },
-    { href: "/shop", label: "상품" },
-    { href: "/about", label: "어바웃" },
+    { href: "/", label: "Home" },
+    { href: "/gallery", label: "Gallery" },
+    { href: "/shop", label: "Shop" },
+    { href: "/about", label: "About" },
 ];
 
 const externalLinks = [
