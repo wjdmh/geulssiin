@@ -6,7 +6,8 @@ import { X } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { classCurriculum } from "@/lib/data";
 
-const SCHEDULE_COLS = ['월', '화', '수', '목', '금', '토'];
+// 확정 운영 요일 (2026 수업일정표): 수·목·금·토. 월·화·일은 정규 수업 없음.
+const SCHEDULE_COLS = ['수', '목', '금', '토'];
 
 interface ClassItem {
     id: number;
@@ -399,9 +400,7 @@ export function TimetableSection() {
                             )}
 
                             <a
-                                href="https://pf.kakao.com/_xkETdn"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                href="/contact"
                                 style={{
                                     display: "block",
                                     marginTop: "var(--space-8)",
@@ -418,7 +417,7 @@ export function TimetableSection() {
                                 onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.7"; }}
                                 onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
                             >
-                                수강 문의
+                                수업 신청·문의
                             </a>
                         </motion.div>
                     </div>

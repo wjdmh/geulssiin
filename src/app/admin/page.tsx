@@ -14,6 +14,13 @@ export default async function AdminDashboardPage() {
 
     const menuItems = [
         {
+            title: "신청·문의 관리",
+            description: "수업 신청서 확인 및 상담 진행 상태 관리",
+            href: "/admin/inquiries",
+            icon: "📨",
+            color: "bg-red-50 text-red-700"
+        },
+        {
             title: "회원 관리",
             description: "회원 목록 조회 및 등급(수강생) 변경",
             href: "/admin/users",

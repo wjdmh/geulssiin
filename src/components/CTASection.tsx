@@ -69,6 +69,25 @@ export function CTASection() {
                         style={{ display: "flex", gap: "var(--space-4)", flexWrap: "wrap" }}
                     >
                         <a
+                            href="/contact"
+                            style={{
+                                padding: "14px 32px",
+                                backgroundColor: "#B23A30",
+                                color: "var(--paper-50)",
+                                fontFamily: "var(--font-sans)",
+                                fontSize: "var(--text-sm)",
+                                fontWeight: 400,
+                                letterSpacing: "var(--ls-wide)",
+                                textDecoration: "none",
+                                borderRadius: 0,
+                                transition: "opacity var(--duration-base) var(--ease-default)",
+                            }}
+                            onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.85"; }}
+                            onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
+                        >
+                            수업 신청하기
+                        </a>
+                        <a
                             href="https://pf.kakao.com/_xkETdn"
                             target="_blank"
                             rel="noopener noreferrer"

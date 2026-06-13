@@ -38,6 +38,19 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
                         <div className="space-y-4">
                             <a
+                                href="/contact"
+                                className="flex items-center gap-4 p-4 border border-white/10 rounded-lg hover:bg-white/5 transition-colors group"
+                            >
+                                <div className="w-10 h-10 rounded-full flex items-center justify-center transition-colors" style={{ backgroundColor: "#B23A30" }}>
+                                    <span className="text-white text-lg">✍</span>
+                                </div>
+                                <div>
+                                    <p className="text-xs text-gray-500 font-bold uppercase tracking-wider mb-1">Apply</p>
+                                    <p className="text-lg text-white font-medium">수업 신청서 작성</p>
+                                </div>
+                            </a>
+
+                            <a
                                 href="tel:01024974310"
                                 className="flex items-center gap-4 p-4 border border-white/10 rounded-lg hover:bg-white/5 transition-colors group"
                             >

@@ -8,29 +8,9 @@ export const galleryItems = [
     { id: 7, title: "심연 (Abyss)", desc: "깊은 내면의 세계", src: "/images/g7.JPG", size: "col-span-1 row-span-1" },
 ];
 
-export const scheduleCols = ["화요일", "수요일", "목요일", "금요일", "토요일"];
-export const scheduleRows = ["10:00 ~ 12:00", "12:00 ~ 2:00", "3:00~ 5:00", "5:00~ 7:00", "7:00 ~ 9:00"];
-
-// Data representation: Row -> Column -> Content
-// Rows: 10-12, 12-2, 3-5, 5-7, 7-9
-// Cols: Tue, Wed, Thu, Fri, Sat
-export const scheduleData = [
-    // 10:00 ~ 12:00
-    ["", "10:00 ~\n12:00", "", "10:00 ~\n12:00", "10:00 ~\n12:00"],
-    // 12:00 ~ 2:00 (Lunch / Break?)
-    ["", "", "", "", "12:00 ~\n2:00"],
-    // 3:00 ~ 5:00
-    ["3:00~\n5:00", "3:00~\n5:00", "3:00~\n5:00", "", ""],
-    // 5:00 ~ 7:00
-    ["", "5:00~\n7:00", "5:00~\n7:00", "", ""],
-    // 7:00 ~ 9:00
-    ["7:00 ~\n9:00", "", "", "", ""]
-];
-
-export const mergedCells = [
-    // Example for merging if needed. For now, we will render simple grid based on the image visual.
-    // The image has some large empty blocks. We can handle it by CSS grid or just rendering empty cells.
-];
+// 시간표는 Supabase `classes` 테이블이 단일 진실원이다 (admin/schedule에서 편집).
+// 확정 운영 요일: 수·목·금·토 (2026 수업일정표 기준 — 월·화·일 정규 수업 없음).
+// 이전에 있던 하드코딩 schedule 배열(화요일 포함, 미사용 레거시)은 2026-06-12 제거됨.
 
 export const classCurriculum = [
     {
