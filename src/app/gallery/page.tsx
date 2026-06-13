@@ -4,6 +4,7 @@ import { GallerySection } from "@/components/GallerySection";
 export const metadata: Metadata = {
     title: "Gallery",
     description: "글씨인아트센터의 캘리그라피, 서예, 펜드로잉 작품을 만나보세요.",
+    alternates: { canonical: "/gallery" },
 };
 
 export default function GalleryPage() {

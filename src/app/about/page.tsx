@@ -8,6 +8,7 @@ import { CTASection } from "@/components/CTASection";
 export const metadata: Metadata = {
     title: "About",
     description: "書如其人 — 글씨는 곧 그 사람이다. 글씨인아트센터의 철학과 대표 소개.",
+    alternates: { canonical: "/about" },
 };
 
 export default async function AboutPage() {

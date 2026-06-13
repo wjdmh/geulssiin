@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     // naver: 'NAVER_VERIFICATION_CODE_HERE',
   },
   alternates: {
-    canonical: 'https://geulssiin.com',
+    canonical: '/',
   },
 };
 

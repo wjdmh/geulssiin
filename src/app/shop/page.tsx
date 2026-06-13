@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "상품 | 글씨인아트센터",
+    title: "상품",
     description: "글씨인아트센터의 작품과 용품을 만나보세요.",
+    alternates: { canonical: "/shop" },
 };
 
 export default function ShopPage() {
