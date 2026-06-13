@@ -201,7 +201,7 @@ export function ClassPreview() {
                             color: "var(--ink-500)",
                             letterSpacing: "var(--ls-normal)",
                         }}>
-                            2시간 · 50,000원 · 재료 포함<br />
+                            2시간 · 재료 포함<br />
                             부채, 캘리액자, 엽서 & 족자 등 계절별 소품 제작
                         </p>
                         <a
