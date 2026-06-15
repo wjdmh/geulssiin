@@ -133,7 +133,7 @@ export function ContactForm() {
                     </div>
 
                     {error && (
-                        <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-sm)", color: "#B23A30" }}>
+                        <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-sm)", color: "var(--seal)" }}>
                             {error}
                         </p>
                     )}

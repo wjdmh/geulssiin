@@ -72,7 +72,7 @@ export function CTASection() {
                             href="/contact"
                             style={{
                                 padding: "14px 32px",
-                                backgroundColor: "#B23A30",
+                                backgroundColor: "var(--seal)",
                                 color: "var(--paper-50)",
                                 fontFamily: "var(--font-sans)",
                                 fontSize: "var(--text-sm)",

@@ -20,20 +20,20 @@ const navLinks = [
 ];
 
 const externalLinks = [
-    { href: "#", label: "블로그", icon: PenLine },
-    { href: "#", label: "카카오 채널", icon: MessageCircle },
-    { href: "#", label: "쓰레드", icon: AtSign },
-    { href: "#", label: "유튜브", icon: Play },
-    { href: "#", label: "오는길", icon: MapPin },
-    { href: "#", label: "작가 계정", icon: Camera },
-    { href: "#", label: "커뮤니티", icon: Users },
+    { href: "https://blog.naver.com/griuncalli", label: "블로그", icon: PenLine },
+    { href: "https://pf.kakao.com/_xkETdn", label: "카카오 채널", icon: MessageCircle },
+    { href: "https://www.threads.com/@gulssiin_artcenter", label: "쓰레드", icon: AtSign },
+    { href: "https://www.youtube.com/@gulssiin_artcenter", label: "유튜브", icon: Play },
+    { href: "https://new.smartplace.naver.com/bizes/place/3759133?bookingBusinessId=947861", label: "오는길", icon: MapPin },
+    { href: "https://www.instagram.com/griun_callidrawing", label: "작가 계정", icon: Camera },
+    { href: "https://www.instagram.com/gulssiin", label: "커뮤니티", icon: Users },
 ];
 
 const ease = [0.25, 0.0, 0.0, 1.0] as const;
 
 interface NavbarProps {
-    user?: any;
-    profile?: any;
+    user?: { email?: string | null } | null;
+    profile?: { name?: string | null; is_admin?: boolean | null } | null;
 }
 
 export function Navbar({ user, profile }: NavbarProps) {
@@ -171,6 +171,26 @@ export function Navbar({ user, profile }: NavbarProps) {
                                 Login
                             </Link>
                         )}
+
+                        {/* 상시 노출 신청 CTA */}
+                        <Link
+                            href="/contact"
+                            style={{
+                                padding: "9px 20px",
+                                backgroundColor: isTransparent ? "var(--paper-50)" : "var(--ink-950)",
+                                color: isTransparent ? "var(--ink-950)" : "var(--paper-50)",
+                                fontFamily: "var(--font-sans)",
+                                fontSize: "var(--text-xs)",
+                                fontWeight: 500,
+                                letterSpacing: "var(--ls-wide)",
+                                textDecoration: "none",
+                                transition: "opacity var(--duration-fast) var(--ease-default)",
+                            }}
+                            onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.85"; }}
+                            onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
+                        >
+                            수업 신청
+                        </Link>
                     </div>
 
                     {/* Mobile Hamburger */}
@@ -253,6 +273,25 @@ export function Navbar({ user, profile }: NavbarProps) {
                             transition={{ delay: 0.3, duration: 0.4 }}
                             style={{ padding: "24px var(--container-pad-mobile) 48px", borderTop: "var(--line-default)" }}
                         >
+                            <Link
+                                href="/contact"
+                                style={{
+                                    display: "block",
+                                    textAlign: "center",
+                                    padding: "16px 0",
+                                    marginBottom: "24px",
+                                    backgroundColor: "var(--ink-950)",
+                                    color: "var(--paper-50)",
+                                    fontFamily: "var(--font-sans)",
+                                    fontSize: "var(--text-sm)",
+                                    fontWeight: 500,
+                                    letterSpacing: "var(--ls-wide)",
+                                    textDecoration: "none",
+                                }}
+                            >
+                                수업 신청하기
+                            </Link>
+
                             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", marginBottom: "20px" }}>
                                 {externalLinks.map(({ href, label, icon: Icon }, i) => (
                                     <a
@@ -263,6 +302,8 @@ export function Navbar({ user, profile }: NavbarProps) {
                                         style={{
                                             display: "flex", alignItems: "center", gap: "7px",
                                             padding: "11px 0",
+                                            minHeight: "44px",
+                                            boxSizing: "border-box",
                                             fontFamily: "var(--font-sans)",
                                             fontSize: "var(--text-xs)",
                                             color: "var(--ink-300)",

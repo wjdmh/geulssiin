@@ -15,6 +15,9 @@
   --paper-100: #f2efe9;
   --paper-200: #e5e0d8;
 
+  /* ── 강조: 인주(Seal) ── DESIGN.md accent-seal. 도장 한 점처럼 페이지당 핵심 1곳에만. */
+  --seal: #B23A30;
+
   /* ── 레거시 매핑 (기존 코드 호환) ── */
   --background: var(--paper-50);
   --foreground: var(--ink-950);

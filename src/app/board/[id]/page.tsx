@@ -18,14 +18,7 @@ export default async function BoardDetailPage({ params }: BoardDetailPageProps) 
     // Fetch Post with Author Info
     const { data: post, error } = await supabase
         .from("posts")
-        .select(`
-            *,
-            profiles (
-                email,
-                name,
-                role
-            )
-        `)
+        .select("*")
         .eq("id", id)
         .single();
 
@@ -47,9 +40,9 @@ export default async function BoardDetailPage({ params }: BoardDetailPageProps) 
                 <div className="mb-10 pb-6 border-b border-black">
                     <div className="flex gap-2 mb-4">
                         {post.access_level === 'student' ? (
-                            <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-sm">수강생 전용</span>
+                            <span className="px-2 py-1 border border-stone-300 text-stone-600 text-xs font-bold rounded-sm">수강생 전용</span>
                         ) : (
-                            <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs font-bold rounded-sm">전체 공개</span>
+                            <span className="px-2 py-1 bg-stone-100 text-stone-500 text-xs font-bold rounded-sm">전체 공개</span>
                         )}
                     </div>
 
@@ -60,10 +53,10 @@ export default async function BoardDetailPage({ params }: BoardDetailPageProps) 
                     <div className="flex items-center justify-between text-sm text-gray-500">
                         <div className="flex items-center gap-2">
                             <span className="font-medium text-black">
-                                {post.profiles?.name || post.profiles?.email?.split('@')[0] || '익명'}
+                                {post.author_name || '익명'}
                             </span>
-                            {post.profiles?.role === 'student' && <span className="text-[10px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">수강생</span>}
-                            {post.profiles?.role === 'admin' && <span className="text-[10px] bg-red-50 text-red-600 px-1.5 py-0.5 rounded">관리자</span>}
+                            {post.author_role === 'student' && <span className="text-[10px] bg-stone-100 text-stone-600 px-1.5 py-0.5 rounded">수강생</span>}
+                            {post.author_role === 'admin' && <span className="text-[10px] text-white px-1.5 py-0.5 rounded" style={{ backgroundColor: "var(--seal)" }}>관리자</span>}
                         </div>
                         <time>{new Date(post.created_at).toLocaleDateString()} {new Date(post.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</time>
                     </div>

@@ -41,7 +41,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                 href="/contact"
                                 className="flex items-center gap-4 p-4 border border-white/10 rounded-lg hover:bg-white/5 transition-colors group"
                             >
-                                <div className="w-10 h-10 rounded-full flex items-center justify-center transition-colors" style={{ backgroundColor: "#B23A30" }}>
+                                <div className="w-10 h-10 rounded-full flex items-center justify-center transition-colors" style={{ backgroundColor: "var(--seal)" }}>
                                     <span className="text-white text-lg">✍</span>
                                 </div>
                                 <div>

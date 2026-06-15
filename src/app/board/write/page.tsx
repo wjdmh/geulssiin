@@ -17,6 +17,9 @@ export default async function BoardWritePage() {
         const { data: { user } } = await supabase.auth.getUser();
         if (!user) return;
 
+        // 작성자 정보를 글에 스냅샷으로 저장 (profiles 비공개화 후에도 작성자 표시 유지)
+        const { data: author } = await supabase.from("profiles").select("name, email, role").eq("id", user.id).single();
+
         const title = formData.get("title") as string;
         const content = formData.get("content") as string;
         const access_level = formData.get("access_level") as string;
@@ -27,7 +30,9 @@ export default async function BoardWritePage() {
             content,
             author_id: user.id,
             access_level,
-            is_notice
+            is_notice,
+            author_name: author?.name || author?.email?.split("@")[0] || "익명",
+            author_role: author?.role ?? null,
         });
 
         revalidatePath("/board");

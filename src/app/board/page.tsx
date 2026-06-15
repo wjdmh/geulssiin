@@ -13,7 +13,7 @@ export default async function BoardPage() {
 
     const { data: posts } = await supabase
         .from("posts")
-        .select("*, profiles(email, name)")
+        .select("*")
         .order("is_notice", { ascending: false })
         .order("created_at", { ascending: false });
 
@@ -53,18 +53,18 @@ export default async function BoardPage() {
                                 <Link href={`/board/${post.id}`} className="block py-6 px-4">
                                     <div className="flex items-center gap-2 mb-2">
                                         {post.is_notice ? (
-                                            <span className="px-2 py-0.5 bg-black text-white text-[10px] font-bold rounded-sm">공지</span>
+                                            <span className="px-2 py-0.5 bg-stone-900 text-white text-[10px] font-bold rounded-sm">공지</span>
                                         ) : post.access_level === 'student' ? (
-                                            <span className="px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold rounded-sm">수강생 전용</span>
+                                            <span className="px-2 py-0.5 border border-stone-300 text-stone-600 text-[10px] font-bold rounded-sm">수강생 전용</span>
                                         ) : (
-                                            <span className="px-2 py-0.5 bg-gray-100 text-gray-600 text-[10px] font-bold rounded-sm">전체 공개</span>
+                                            <span className="px-2 py-0.5 bg-stone-100 text-stone-500 text-[10px] font-bold rounded-sm">전체 공개</span>
                                         )}
                                         <h2 className={`text-xl font-medium text-black ${post.is_notice ? 'font-bold' : ''}`}>
                                             {post.title}
                                         </h2>
                                     </div>
                                     <div className="flex items-center gap-4 text-xs text-gray-400">
-                                        <span>{post.profiles?.name || post.profiles?.email?.split('@')[0] || '익명'}</span>
+                                        <span>{post.author_name || '익명'}</span>
                                         <span>•</span>
                                         <span>{new Date(post.created_at).toLocaleDateString()}</span>
                                     </div>

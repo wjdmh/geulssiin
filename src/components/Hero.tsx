@@ -90,10 +90,8 @@ export function Hero() {
                     transition={{ duration: 0.8, delay: 0.3, ease }}
                     style={{ display: "flex", gap: "var(--space-4)", flexWrap: "wrap" }}
                 >
-                    <a
-                        href="https://pf.kakao.com/_xkETdn"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <Link
+                        href="/contact"
                         style={{
                             padding: "14px 32px",
                             backgroundColor: "var(--paper-50)",
@@ -110,8 +108,8 @@ export function Hero() {
                         onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.8"; }}
                         onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
                     >
-                        체험 수업 문의
-                    </a>
+                        수업 신청하기
+                    </Link>
                     <Link
                         href="/class"
                         style={{

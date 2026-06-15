@@ -84,6 +84,7 @@ export const metadata: Metadata = {
 
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { JsonLd } from "@/components/JsonLd";
 
 
 export default async function RootLayout({
@@ -105,6 +106,7 @@ export default async function RootLayout({
       <body
         className={`${notoSans.variable} ${notoSerif.variable} antialiased bg-background text-foreground font-sans selection:bg-white/20 selection:text-white`}
       >
+        <JsonLd />
         <Navbar user={user} profile={profile} />
         <main className="min-h-screen relative">{children}</main>
         <Footer />
