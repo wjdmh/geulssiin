@@ -220,7 +220,7 @@ export function ClassPreview() {
                                 letterSpacing: "var(--ls-wide)",
                                 textDecoration: "none",
                                 border: "none",
-                                borderRadius: 0,
+                                borderRadius: "9999px",
                                 marginTop: "var(--space-2)",
                                 cursor: "pointer",
                                 transition: "opacity var(--duration-base) var(--ease-default)",

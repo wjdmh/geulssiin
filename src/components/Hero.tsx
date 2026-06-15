@@ -101,7 +101,7 @@ export function Hero() {
                             fontWeight: 400,
                             letterSpacing: "var(--ls-wide)",
                             textDecoration: "none",
-                            borderRadius: 0,
+                            borderRadius: "9999px",
                             border: "1px solid transparent",
                             transition: "opacity var(--duration-base) var(--ease-default)",
                         }}
@@ -121,7 +121,7 @@ export function Hero() {
                             fontWeight: 400,
                             letterSpacing: "var(--ls-wide)",
                             textDecoration: "none",
-                            borderRadius: 0,
+                            borderRadius: "9999px",
                             border: "1px solid rgba(250,248,245,0.3)",
                             transition: "opacity var(--duration-base) var(--ease-default)",
                         }}

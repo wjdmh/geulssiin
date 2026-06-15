@@ -79,7 +79,7 @@ export function CTASection() {
                                 fontWeight: 400,
                                 letterSpacing: "var(--ls-wide)",
                                 textDecoration: "none",
-                                borderRadius: 0,
+                                borderRadius: "9999px",
                                 transition: "opacity var(--duration-base) var(--ease-default)",
                             }}
                             onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.85"; }}
@@ -100,7 +100,7 @@ export function CTASection() {
                                 letterSpacing: "var(--ls-wide)",
                                 textDecoration: "none",
                                 border: "none",
-                                borderRadius: 0,
+                                borderRadius: "9999px",
                                 cursor: "pointer",
                                 transition: "opacity var(--duration-base) var(--ease-default)",
                             }}
@@ -120,7 +120,7 @@ export function CTASection() {
                                 fontWeight: 400,
                                 letterSpacing: "var(--ls-wide)",
                                 textDecoration: "none",
-                                borderRadius: 0,
+                                borderRadius: "9999px",
                                 border: "1px solid rgba(250,248,245,0.2)",
                                 transition: "opacity var(--duration-base) var(--ease-default)",
                             }}

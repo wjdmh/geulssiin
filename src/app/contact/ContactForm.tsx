@@ -20,31 +20,56 @@ const labelStyle: CSSProperties = {
     marginBottom: "var(--space-2)",
 };
 
+// border/outline은 .form-field(globals.css)에서 관리한다 —
+// 인라인 border 단축속성이 포커스/에러 보더(class 규칙)를 덮어쓰지 않도록.
 const inputStyle: CSSProperties = {
     width: "100%",
     padding: "12px 14px",
     backgroundColor: "var(--paper-50)",
-    border: "1px solid var(--ink-100)",
     fontFamily: "var(--font-sans)",
     fontSize: "var(--text-base)",
     color: "var(--ink-950)",
-    outline: "none",
 };
+
+const helperStyle: CSSProperties = {
+    fontFamily: "var(--font-sans)",
+    fontSize: "var(--text-xs)",
+    color: "var(--seal)",
+    marginTop: "var(--space-2)",
+};
+
+type FieldErrors = { name?: string; phone?: string };
 
 export function ContactForm() {
     const [isPending, startTransition] = useTransition();
     const [done, setDone] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         setError(null);
+
+        // 필드 단위 검증 (DESIGN.md: 에러는 채움이 아닌 보더+헬퍼텍스트로)
+        const name = String(formData.get("name") ?? "").trim();
+        const phone = String(formData.get("phone") ?? "").trim();
+        const errs: FieldErrors = {};
+        if (!name) errs.name = "성함을 입력해 주세요.";
+        if (!phone) errs.phone = "연락처를 입력해 주세요.";
+        else if (!/[0-9]{7,}/.test(phone.replace(/[^0-9]/g, ""))) errs.phone = "연락처를 정확히 입력해 주세요.";
+        setFieldErrors(errs);
+        if (Object.keys(errs).length > 0) return;
+
         startTransition(async () => {
             const result = await submitInquiry(formData);
             if (result.error) setError(result.error);
             else setDone(true);
         });
+    }
+
+    function clearFieldError(field: keyof FieldErrors) {
+        setFieldErrors((prev) => (prev[field] ? { ...prev, [field]: undefined } : prev));
     }
 
     if (done) {
@@ -55,7 +80,7 @@ export function ContactForm() {
                         <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-xs)", color: "var(--ink-300)", letterSpacing: "var(--ls-wider)", marginBottom: "var(--space-6)" }}>
                             THANK YOU
                         </p>
-                        <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "var(--text-2xl)", fontWeight: 300, color: "var(--ink-950)", marginBottom: "var(--space-6)" }}>
+                        <h1 style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-2xl)", fontWeight: 300, color: "var(--ink-950)", marginBottom: "var(--space-6)" }}>
                             신청이 접수되었습니다
                         </h1>
                         <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-base)", color: "var(--ink-500)", lineHeight: "var(--lh-relaxed)" }}>
@@ -75,7 +100,7 @@ export function ContactForm() {
                     <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-xs)", color: "var(--ink-300)", letterSpacing: "var(--ls-wider)", marginBottom: "var(--space-4)" }}>
                         APPLY
                     </p>
-                    <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(var(--text-xl), 3vw, var(--text-2xl))", fontWeight: 300, color: "var(--ink-950)", marginBottom: "var(--space-4)" }}>
+                    <h1 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(var(--text-xl), 3vw, var(--text-2xl))", fontWeight: 300, color: "var(--ink-950)", marginBottom: "var(--space-4)" }}>
                         수업 신청 · 상담 문의
                     </h1>
                     <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-base)", color: "var(--ink-500)", lineHeight: "var(--lh-relaxed)" }}>
@@ -95,17 +120,33 @@ export function ContactForm() {
 
                     <div>
                         <label htmlFor="name" style={labelStyle}>이름 *</label>
-                        <input id="name" name="name" required maxLength={30} placeholder="성함을 입력해 주세요" style={inputStyle} />
+                        <input
+                            id="name" name="name" required maxLength={30}
+                            placeholder="성함을 입력해 주세요" style={inputStyle}
+                            className="form-field"
+                            aria-invalid={!!fieldErrors.name}
+                            aria-describedby={fieldErrors.name ? "name-error" : undefined}
+                            onChange={() => clearFieldError("name")}
+                        />
+                        {fieldErrors.name && <p id="name-error" style={helperStyle}>{fieldErrors.name}</p>}
                     </div>
 
                     <div>
                         <label htmlFor="phone" style={labelStyle}>연락처 *</label>
-                        <input id="phone" name="phone" required type="tel" placeholder="010-0000-0000" style={inputStyle} />
+                        <input
+                            id="phone" name="phone" required type="tel"
+                            placeholder="010-0000-0000" style={inputStyle}
+                            className="form-field"
+                            aria-invalid={!!fieldErrors.phone}
+                            aria-describedby={fieldErrors.phone ? "phone-error" : undefined}
+                            onChange={() => clearFieldError("phone")}
+                        />
+                        {fieldErrors.phone && <p id="phone-error" style={helperStyle}>{fieldErrors.phone}</p>}
                     </div>
 
                     <div>
                         <label htmlFor="interest" style={labelStyle}>관심 클래스</label>
-                        <select id="interest" name="interest" defaultValue="" style={inputStyle}>
+                        <select id="interest" name="interest" defaultValue="" style={inputStyle} className="form-field">
                             <option value="">선택해 주세요</option>
                             {INTERESTS.map(v => <option key={v} value={v}>{v}</option>)}
                         </select>
@@ -113,7 +154,7 @@ export function ContactForm() {
 
                     <div>
                         <label htmlFor="preferred_time" style={labelStyle}>희망 시간대</label>
-                        <select id="preferred_time" name="preferred_time" defaultValue="" style={inputStyle}>
+                        <select id="preferred_time" name="preferred_time" defaultValue="" style={inputStyle} className="form-field">
                             <option value="">선택해 주세요</option>
                             {TIMES.map(v => <option key={v} value={v}>{v}</option>)}
                         </select>
@@ -121,7 +162,7 @@ export function ContactForm() {
 
                     <div>
                         <label htmlFor="source" style={labelStyle}>글씨인을 알게 된 경로</label>
-                        <select id="source" name="source" defaultValue="" style={inputStyle}>
+                        <select id="source" name="source" defaultValue="" style={inputStyle} className="form-field">
                             <option value="">선택해 주세요</option>
                             {SOURCES.map(v => <option key={v} value={v}>{v}</option>)}
                         </select>
@@ -129,7 +170,7 @@ export function ContactForm() {
 
                     <div>
                         <label htmlFor="message" style={labelStyle}>문의 내용</label>
-                        <textarea id="message" name="message" rows={5} maxLength={1000} placeholder="궁금하신 점을 편하게 남겨주세요" style={{ ...inputStyle, resize: "vertical" }} />
+                        <textarea id="message" name="message" rows={5} maxLength={1000} placeholder="궁금하신 점을 편하게 남겨주세요" style={{ ...inputStyle, resize: "vertical" }} className="form-field" />
                     </div>
 
                     {error && (
@@ -149,6 +190,7 @@ export function ContactForm() {
                             fontSize: "var(--text-sm)",
                             letterSpacing: "var(--ls-wide)",
                             border: "none",
+                            borderRadius: "9999px",
                             cursor: isPending ? "wait" : "pointer",
                             opacity: isPending ? 0.6 : 1,
                             transition: "opacity var(--duration-fast) var(--ease-default)",
