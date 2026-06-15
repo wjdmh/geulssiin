@@ -1,20 +1,9 @@
 import type { Metadata } from "next";
-import { Noto_Sans_KR, Noto_Serif_KR } from "next/font/google";
 import "./globals.css";
 
 import { createClient } from "@/lib/supabase/server";
 
-const notoSans = Noto_Sans_KR({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  weight: ["100", "300", "400", "500", "700", "900"],
-});
-
-const notoSerif = Noto_Serif_KR({
-  variable: "--font-serif",
-  subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "900"],
-});
+// 폰트는 Pretendard 단일(globals.css에서 CDN import). 세리프 전면 제거(2026-06-16).
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://geulssiin.com'),
@@ -87,6 +76,7 @@ export const metadata: Metadata = {
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
+import { ChatWidget } from "@/components/ChatWidget";
 
 
 export default async function RootLayout({
@@ -106,12 +96,13 @@ export default async function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`${notoSans.variable} ${notoSerif.variable} antialiased bg-background text-foreground font-sans selection:bg-white/20 selection:text-white`}
+        className={`antialiased bg-background text-foreground font-sans selection:bg-white/20 selection:text-white`}
       >
         <JsonLd />
         <Navbar user={user} profile={profile} />
         <main className="min-h-screen relative">{children}</main>
         <Footer />
+        <ChatWidget />
       </body>
     </html>
   );

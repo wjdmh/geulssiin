@@ -69,6 +69,7 @@ export default async function AdminDashboardPage() {
 
     const iconChip = "bg-stone-100 text-stone-700";
     const menuItems = [
+        { title: "글씨인 에이전트", description: "마케팅 콘텐츠 제작·회고를 대화로 지시", href: "/admin/agent", icon: "✍", color: "bg-[#B23A30]/10 text-[#B23A30]" },
         { title: "신청·문의 관리", description: "수업 신청서 확인 및 상담 진행 상태 관리", href: "/admin/inquiries", icon: "📨", color: iconChip },
         { title: "회원 관리", description: "회원 목록 조회 및 등급(수강생) 변경", href: "/admin/users", icon: "👥", color: iconChip },
         { title: "갤러리 관리", description: "작품 사진 업로드 및 삭제", href: "/admin/gallery", icon: "🖼️", color: iconChip },

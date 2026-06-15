@@ -87,10 +87,9 @@ export function CTASection() {
                         >
                             수업 신청하기
                         </a>
-                        <a
-                            href="https://pf.kakao.com/_xkETdn"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <button
+                            type="button"
+                            onClick={() => window.dispatchEvent(new CustomEvent("open-chat"))}
                             style={{
                                 padding: "14px 32px",
                                 backgroundColor: "var(--paper-50)",
@@ -100,14 +99,16 @@ export function CTASection() {
                                 fontWeight: 400,
                                 letterSpacing: "var(--ls-wide)",
                                 textDecoration: "none",
+                                border: "none",
                                 borderRadius: 0,
+                                cursor: "pointer",
                                 transition: "opacity var(--duration-base) var(--ease-default)",
                             }}
                             onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.8"; }}
                             onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
                         >
-                            카카오톡 문의
-                        </a>
+                            도우미에게 물어보기
+                        </button>
                         <a
                             href="tel:010-2497-4310"
                             style={{

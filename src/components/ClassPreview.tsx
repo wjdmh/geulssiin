@@ -138,24 +138,27 @@ export function ClassPreview() {
                                     letterSpacing: "var(--ls-normal)",
                                     marginBottom: "var(--space-3)",
                                 }}>
-                                    월 150,000원 · 주 1회 · 120분
+                                    주 1회 · 120분 · 수강료 문의
                                 </p>
-                                <a
-                                    href="https://pf.kakao.com/_xkETdn"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                <button
+                                    type="button"
+                                    onClick={() => window.dispatchEvent(new CustomEvent("open-chat"))}
                                     style={{
                                         fontFamily: "var(--font-sans)",
                                         fontSize: "var(--text-sm)",
                                         color: "var(--ink-500)",
                                         textDecoration: "none",
+                                        background: "none",
+                                        border: "none",
+                                        padding: 0,
+                                        cursor: "pointer",
                                         transition: "opacity var(--duration-fast) var(--ease-default)",
                                     }}
                                     onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.4"; }}
                                     onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
                                 >
                                     수업 문의하기 →
-                                </a>
+                                </button>
                             </div>
                         </motion.div>
                     ))}
@@ -204,10 +207,9 @@ export function ClassPreview() {
                             2시간 · 재료 포함<br />
                             부채, 캘리액자, 엽서 & 족자 등 계절별 소품 제작
                         </p>
-                        <a
-                            href="https://pf.kakao.com/_xkETdn"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <button
+                            type="button"
+                            onClick={() => window.dispatchEvent(new CustomEvent("open-chat"))}
                             style={{
                                 padding: "12px 28px",
                                 backgroundColor: "var(--ink-950)",
@@ -217,15 +219,17 @@ export function ClassPreview() {
                                 fontWeight: 400,
                                 letterSpacing: "var(--ls-wide)",
                                 textDecoration: "none",
+                                border: "none",
                                 borderRadius: 0,
                                 marginTop: "var(--space-2)",
+                                cursor: "pointer",
                                 transition: "opacity var(--duration-base) var(--ease-default)",
                             }}
                             onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.7"; }}
                             onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
                         >
                             일정 문의
-                        </a>
+                        </button>
                     </motion.div>
                 )}
 
