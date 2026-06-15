@@ -74,8 +74,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    // Google Search Console 등록 후 아래 값 채우기
-    google: 'GOOGLE_VERIFICATION_CODE_HERE',
+    google: 'wO6uW63ino-Q-Ey1WNFsWSFBWLHLQn2ZcoVP2gf7qNU',
     // naver: 'NAVER_VERIFICATION_CODE_HERE',
   },
   alternates: {
