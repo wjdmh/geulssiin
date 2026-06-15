@@ -2,11 +2,10 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { X } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
 
-interface GalleryItem {
+export interface GalleryItem {
     id: number;
     title: string;
     description: string | null;
@@ -22,28 +21,17 @@ interface GalleryItem {
 }
 
 const ease = [0.25, 0.0, 0.0, 1.0] as const;
-const viewport = { once: true, margin: "-60px" };
 
-export function GallerySection() {
+interface GallerySectionProps {
+    director: GalleryItem[];
+    member: GalleryItem[];
+}
+
+export function GallerySection({ director, member }: GallerySectionProps) {
     const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
     const [activeTab, setActiveTab] = useState<'director' | 'member'>('director');
-    const [images, setImages] = useState<GalleryItem[]>([]);
-    const [loading, setLoading] = useState(true);
-    const supabase = createClient();
-
-    useEffect(() => {
-        async function fetchGallery() {
-            setLoading(true);
-            const { data } = await supabase
-                .from('gallery')
-                .select('*')
-                .eq('category', activeTab)
-                .order('created_at', { ascending: false });
-            if (data) setImages(data as GalleryItem[]);
-            setLoading(false);
-        }
-        fetchGallery();
-    }, [activeTab]);
+    // 작품 데이터는 서버에서 props로 받는다 (검색엔진 노출). 탭 전환은 이미 받은 데이터를 필터링.
+    const images = activeTab === 'director' ? director : member;
 
     const tabs: { key: 'director' | 'member'; label: string; sub: string }[] = [
         { key: 'director', label: '그리운 갤러리', sub: '글씨인아트센터 대표 작가' },
@@ -133,17 +121,7 @@ export function GallerySection() {
 
                 {/* Gallery Grid */}
                 <div style={{ minHeight: "400px" }}>
-                    {loading ? (
-                        <div style={{ display: "flex", justifyContent: "center", padding: "var(--space-20) 0" }}>
-                            <div style={{
-                                width: "24px", height: "24px",
-                                border: "1px solid var(--ink-100)",
-                                borderTop: "1px solid var(--ink-500)",
-                                borderRadius: "50%",
-                                animation: "spin 1s linear infinite",
-                            }} />
-                        </div>
-                    ) : images.length > 0 ? (
+                    {images.length > 0 ? (
                         <div style={{
                             columns: "1",
                             columnGap: "var(--space-6)",

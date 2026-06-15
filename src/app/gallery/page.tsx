@@ -1,5 +1,6 @@
 import { Metadata } from "next";
-import { GallerySection } from "@/components/GallerySection";
+import { GallerySection, type GalleryItem } from "@/components/GallerySection";
+import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
     title: "Gallery",
@@ -7,10 +8,21 @@ export const metadata: Metadata = {
     alternates: { canonical: "/gallery" },
 };
 
-export default function GalleryPage() {
+// 작품 목록을 서버에서 미리 렌더 → 검색엔진이 작품을 읽을 수 있게 한다.
+export default async function GalleryPage() {
+    const supabase = await createClient();
+    const { data } = await supabase
+        .from("gallery")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+    const items = (data ?? []) as GalleryItem[];
+    const director = items.filter((a) => a.category === "director");
+    const member = items.filter((a) => a.category === "member");
+
     return (
         <div style={{ paddingTop: "80px", minHeight: "100vh" }}>
-            <GallerySection />
+            <GallerySection director={director} member={member} />
         </div>
     );
 }
