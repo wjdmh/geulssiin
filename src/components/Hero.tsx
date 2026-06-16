@@ -55,13 +55,13 @@ export function Hero() {
                     transition={{ duration: 0.8, delay: 0.1, ease }}
                     style={{
                         fontFamily: "var(--font-sans)",
-                        fontSize: "clamp(40px, 7vw, var(--text-5xl))",
-                        fontWeight: 300,
+                        fontSize: "clamp(22px, 5vw, 60px)",
+                        fontWeight: 500,
                         color: "var(--paper-50)",
-                        letterSpacing: "var(--ls-normal)",
+                        letterSpacing: "var(--ls-tight)",
                         lineHeight: "var(--lh-tight)",
                         marginBottom: "var(--space-4)",
-                        maxWidth: "640px",
+                        whiteSpace: "nowrap",
                     }}
                 >
                     GEULSSIIN ART CENTER
