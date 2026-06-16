@@ -138,7 +138,7 @@ export function ClassPreview() {
                                     letterSpacing: "var(--ls-normal)",
                                     marginBottom: "var(--space-3)",
                                 }}>
-                                    주 1회 · 120분 · 수강료 문의
+                                    {cls.meta}
                                 </p>
                                 <button
                                     type="button"

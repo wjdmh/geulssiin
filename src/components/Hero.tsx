@@ -54,18 +54,35 @@ export function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.1, ease }}
                     style={{
-                        fontFamily: "var(--font-serif)",
-                        fontSize: "clamp(48px, 8vw, var(--text-5xl))",
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "clamp(40px, 7vw, var(--text-5xl))",
                         fontWeight: 300,
+                        color: "var(--paper-50)",
+                        letterSpacing: "var(--ls-normal)",
+                        lineHeight: "var(--lh-tight)",
+                        marginBottom: "var(--space-4)",
+                        maxWidth: "640px",
+                    }}
+                >
+                    GEULSSIIN ART CENTER
+                </motion.h1>
+
+                <motion.p
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.15, ease }}
+                    style={{
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "clamp(var(--text-lg), 2.4vw, var(--text-2xl))",
+                        fontWeight: 400,
                         color: "var(--paper-50)",
                         letterSpacing: "var(--ls-tight)",
                         lineHeight: "var(--lh-tight)",
                         marginBottom: "var(--space-6)",
-                        maxWidth: "640px",
                     }}
                 >
                     글씨 쓰는 사람들
-                </motion.h1>
+                </motion.p>
 
                 <motion.p
                     initial={{ opacity: 0, y: 12 }}

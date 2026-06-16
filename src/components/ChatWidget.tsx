@@ -25,6 +25,7 @@ export function ChatWidget() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [errored, setErrored] = useState(false);
+  const [showHint, setShowHint] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -34,6 +35,15 @@ export function ChatWidget() {
     window.addEventListener("open-chat", handler);
     return () => window.removeEventListener("open-chat", handler);
   }, []);
+
+  // 처음 방문 시 살짝 말풍선으로 "대화형"임을 알림 (한 번만)
+  useEffect(() => {
+    const t = setTimeout(() => setShowHint(true), 1600);
+    return () => clearTimeout(t);
+  }, []);
+  useEffect(() => {
+    if (open) setShowHint(false);
+  }, [open]);
 
   useEffect(() => {
     if (open) {
@@ -82,36 +92,95 @@ export function ChatWidget() {
 
   return (
     <>
-      {/* ── 런처 버튼 ── */}
-      <motion.button
-        aria-label="글씨인 안내 도우미 열기"
-        onClick={() => setOpen((v) => !v)}
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.4, duration: 0.4 }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        style={{
-          position: "fixed",
-          right: "20px",
-          bottom: "20px",
-          zIndex: 60,
-          width: "56px",
-          height: "56px",
-          borderRadius: "9999px",
-          backgroundColor: "var(--seal)",
-          color: "#fff",
-          boxShadow: "0 6px 24px rgba(178,58,48,0.32)",
-          display: open ? "none" : "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: "22px",
-          border: "none",
-          cursor: "pointer",
-        }}
-      >
-        ✍
-      </motion.button>
+      {/* ── 런처 (말풍선형 챗봇 버튼 + 첫 인사 힌트) ── */}
+      {!open && (
+        <div
+          style={{
+            position: "fixed",
+            right: "20px",
+            bottom: "20px",
+            zIndex: 60,
+            display: "flex",
+            alignItems: "flex-end",
+            gap: "10px",
+          }}
+        >
+          {/* 첫 방문 힌트 말풍선 */}
+          <AnimatePresence>
+            {showHint && (
+              <motion.button
+                key="hint"
+                onClick={() => setOpen(true)}
+                initial={{ opacity: 0, x: 8, scale: 0.96 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: 8, scale: 0.96 }}
+                transition={{ duration: 0.3, ease: [0.25, 0, 0, 1] }}
+                style={{
+                  marginBottom: "8px",
+                  maxWidth: "190px",
+                  textAlign: "left",
+                  backgroundColor: "#fff",
+                  color: "var(--ink-800)",
+                  border: "1px solid var(--ink-100)",
+                  borderRadius: "16px 16px 4px 16px",
+                  boxShadow: "0 6px 20px rgba(15,14,13,0.12)",
+                  padding: "10px 14px",
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "13px",
+                  lineHeight: 1.5,
+                  cursor: "pointer",
+                }}
+              >
+                <span style={{ fontWeight: 600, color: "var(--ink-950)" }}>글씨인 도우미</span>
+                <br />
+                무엇이든 편하게 물어보세요 ☺
+              </motion.button>
+            )}
+          </AnimatePresence>
+
+          {/* 챗봇 런처: 말풍선 모양 + 붓(글씨인) 마크 */}
+          <motion.button
+            aria-label="글씨인 안내 도우미 열기"
+            onClick={() => setOpen(true)}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4, duration: 0.4 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            style={{
+              position: "relative",
+              width: "60px",
+              height: "60px",
+              borderRadius: "20px 20px 20px 6px", /* 말풍선(채팅) 형태 */
+              backgroundColor: "var(--seal)",
+              color: "#fff",
+              boxShadow: "0 8px 26px rgba(178,58,48,0.34)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "24px",
+              border: "none",
+              cursor: "pointer",
+              flexShrink: 0,
+            }}
+          >
+            ✍
+            {/* 온라인 점 */}
+            <span
+              style={{
+                position: "absolute",
+                top: "-2px",
+                right: "-2px",
+                width: "14px",
+                height: "14px",
+                borderRadius: "9999px",
+                backgroundColor: "var(--semantic-success, #3B8C3F)",
+                border: "2.5px solid var(--paper-50)",
+              }}
+            />
+          </motion.button>
+        </div>
+      )}
 
       {/* ── 패널 ── */}
       <AnimatePresence>

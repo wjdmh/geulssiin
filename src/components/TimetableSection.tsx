@@ -63,7 +63,7 @@ export function TimetableSection() {
                         CLASS
                     </p>
                     <h1 style={{
-                        fontFamily: "var(--font-serif)",
+                        fontFamily: "var(--font-sans)",
                         fontSize: "clamp(var(--text-xl), 3vw, var(--text-2xl))",
                         fontWeight: 300,
                         color: "var(--ink-950)",
@@ -79,7 +79,7 @@ export function TimetableSection() {
                         lineHeight: "var(--lh-relaxed)",
                         letterSpacing: "var(--ls-normal)",
                     }}>
-                        붓 캘리그라피 · 붓펜 캘리그라피 · 펜드로잉 · 서예
+                        붓 · 붓펜 캘리그라피 · 펜 · 수묵 드로잉 · 서예 · 단기 클래스
                     </p>
                 </motion.div>
 
@@ -100,6 +100,25 @@ export function TimetableSection() {
                     }}>
                         SCHEDULE
                     </p>
+
+                    {/* 수업 운영 방식 공지 */}
+                    <div style={{
+                        marginBottom: "var(--space-6)",
+                        padding: "var(--space-4) var(--space-5)",
+                        backgroundColor: "var(--paper-100)",
+                        border: "var(--line-default)",
+                        borderRadius: "12px",
+                    }}>
+                        <p style={{
+                            fontFamily: "var(--font-sans)",
+                            fontSize: "var(--text-sm)",
+                            color: "var(--ink-800)",
+                            lineHeight: "var(--lh-relaxed)",
+                        }}>
+                            <strong style={{ color: "var(--seal)" }}>서예반</strong>은 표시된 시간(<strong>수요일 15–19시</strong>)에만 운영됩니다.
+                            그 외 모든 시간에는 붓·붓펜 캘리그라피, 펜·수묵 드로잉, 단기 클래스를 <strong>개별 맞춤</strong>으로 자유롭게 들으실 수 있어요. (서예 상담도 문의 가능)
+                        </p>
+                    </div>
 
                     <div style={{ overflowX: "auto" }}>
                         <div style={{
@@ -153,23 +172,30 @@ export function TimetableSection() {
                                                 onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "var(--ink-950)"; e.currentTarget.style.color = "var(--paper-50)"; }}
                                                 onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "var(--paper-100)"; e.currentTarget.style.color = "var(--ink-950)"; }}
                                             >
+                                                {/* 시간 중심 표기 */}
                                                 <p style={{
                                                     fontFamily: "var(--font-sans)",
-                                                    fontSize: "var(--text-xs)",
+                                                    fontSize: "var(--text-sm)",
+                                                    fontWeight: 500,
                                                     letterSpacing: "var(--ls-normal)",
-                                                    marginBottom: "var(--space-1)",
+                                                    marginBottom: "var(--space-2)",
                                                     color: "inherit",
-                                                }}>
-                                                    {cls.class_name}
-                                                </p>
-                                                <p style={{
-                                                    fontFamily: "var(--font-sans)",
-                                                    fontSize: "10px",
-                                                    color: "var(--ink-300)",
-                                                    letterSpacing: "var(--ls-wide)",
                                                 }}>
                                                     {cls.start_time}–{cls.end_time}
                                                 </p>
+                                                <span style={{
+                                                    display: "inline-block",
+                                                    fontFamily: "var(--font-sans)",
+                                                    fontSize: "10px",
+                                                    letterSpacing: "var(--ls-wide)",
+                                                    padding: "2px 8px",
+                                                    borderRadius: "9999px",
+                                                    color: cls.class_name.startsWith("서예") ? "#fff" : "var(--ink-500)",
+                                                    backgroundColor: cls.class_name.startsWith("서예") ? "var(--seal)" : "transparent",
+                                                    border: cls.class_name.startsWith("서예") ? "none" : "var(--line-default)",
+                                                }}>
+                                                    {cls.class_name}
+                                                </span>
                                             </button>
                                         )) : (
                                             <div style={{
@@ -234,7 +260,7 @@ export function TimetableSection() {
                                                 0{index + 1}
                                             </span>
                                             <span style={{
-                                                fontFamily: "var(--font-serif)",
+                                                fontFamily: "var(--font-sans)",
                                                 fontSize: "clamp(var(--text-base), 2vw, var(--text-lg))",
                                                 fontWeight: 300,
                                                 color: isOpen ? "var(--ink-950)" : "var(--ink-500)",
@@ -364,7 +390,7 @@ export function TimetableSection() {
                                 CLASS DETAIL
                             </p>
                             <h3 style={{
-                                fontFamily: "var(--font-serif)",
+                                fontFamily: "var(--font-sans)",
                                 fontSize: "var(--text-xl)", fontWeight: 300,
                                 color: "var(--ink-950)",
                                 marginBottom: "var(--space-8)",
@@ -376,7 +402,6 @@ export function TimetableSection() {
                                 {[
                                     { label: "요일", val: `${selectedClass.day}요일` },
                                     { label: "시간", val: `${selectedClass.start_time} – ${selectedClass.end_time}` },
-                                    { label: "정원", val: `${selectedClass.current_enrollment} / ${selectedClass.max_capacity || '∞'}` },
                                 ].map(item => (
                                     <div key={item.label} style={{ display: "flex", justifyContent: "space-between" }}>
                                         <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-xs)", color: "var(--ink-300)", letterSpacing: "var(--ls-wide)" }}>{item.label}</span>
