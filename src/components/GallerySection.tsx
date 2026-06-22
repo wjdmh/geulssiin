@@ -25,9 +25,11 @@ const ease = [0.25, 0.0, 0.0, 1.0] as const;
 interface GallerySectionProps {
     director: GalleryItem[];
     member: GalleryItem[];
+    headingLevel?: "h1" | "h2";
 }
 
-export function GallerySection({ director, member }: GallerySectionProps) {
+export function GallerySection({ director, member, headingLevel = "h1" }: GallerySectionProps) {
+    const Heading = headingLevel;
     const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
     const [activeTab, setActiveTab] = useState<'director' | 'member'>('director');
     // 작품 데이터는 서버에서 props로 받는다 (검색엔진 노출). 탭 전환은 이미 받은 데이터를 필터링.
@@ -58,7 +60,7 @@ export function GallerySection({ director, member }: GallerySectionProps) {
                     }}>
                         GALLERY
                     </p>
-                    <h1 style={{
+                    <Heading style={{
                         fontFamily: "var(--font-serif)",
                         fontSize: "clamp(var(--text-xl), 3vw, var(--text-2xl))",
                         fontWeight: 300,
@@ -67,7 +69,7 @@ export function GallerySection({ director, member }: GallerySectionProps) {
                         marginBottom: "var(--space-12)",
                     }}>
                         작품
-                    </h1>
+                    </Heading>
 
                     {/* Tabs */}
                     <div style={{
