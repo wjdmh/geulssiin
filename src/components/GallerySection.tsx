@@ -161,49 +161,25 @@ export function GallerySection({ director, member, headingLevel = "h1" }: Galler
                                     }}
                                     onClick={() => setSelectedImage(art)}
                                 >
+                                    {/* 보이지 않는 정렬 칸 — 박스(배경·테두리) 없이 작품만, 행 정렬 유지 */}
                                     <div
-                                        style={{ position: "relative", aspectRatio: "3 / 4", overflow: "hidden", backgroundColor: "var(--paper-100)", border: "var(--line-default)" }}
-                                        onMouseEnter={(e) => { (e.currentTarget.firstChild as HTMLElement).style.opacity = "0.85"; }}
-                                        onMouseLeave={(e) => { (e.currentTarget.firstChild as HTMLElement).style.opacity = "1"; }}
+                                        style={{ position: "relative", aspectRatio: "4 / 5", overflow: "hidden" }}
+                                        onMouseEnter={(e) => { (e.currentTarget.firstChild as HTMLElement).style.transform = "scale(1.02)"; }}
+                                        onMouseLeave={(e) => { (e.currentTarget.firstChild as HTMLElement).style.transform = "scale(1)"; }}
                                     >
                                         <Image
                                             src={art.image_url}
                                             alt={art.title}
                                             fill
-                                            style={{ objectFit: "contain", padding: "8%", transition: "opacity var(--duration-base) var(--ease-default)" }}
+                                            style={{ objectFit: "contain", transition: "transform var(--duration-base) var(--ease-default)" }}
                                             sizes={activeTab === 'director' ? "(max-width: 768px) 50vw, 33vw" : "(max-width: 768px) 50vw, 25vw"}
                                         />
-                                        {art.is_for_sale && !art.is_sold && (
-                                            <div style={{
-                                                position: "absolute", top: "var(--space-4)", right: "var(--space-4)",
-                                                backgroundColor: "var(--paper-50)",
-                                                padding: "4px 10px",
-                                                fontFamily: "var(--font-sans)",
-                                                fontSize: "var(--text-xs)",
-                                                color: "var(--ink-950)",
-                                                letterSpacing: "var(--ls-wider)",
-                                            }}>
-                                                Available
-                                            </div>
-                                        )}
-                                        {art.is_sold && (
-                                            <div style={{
-                                                position: "absolute", top: "var(--space-4)", right: "var(--space-4)",
-                                                backgroundColor: "var(--ink-950)",
-                                                padding: "4px 10px",
-                                                fontFamily: "var(--font-sans)",
-                                                fontSize: "var(--text-xs)",
-                                                color: "var(--paper-50)",
-                                                letterSpacing: "var(--ls-wider)",
-                                            }}>
-                                                Sold
-                                            </div>
-                                        )}
                                     </div>
-                                    <div style={{ padding: "var(--space-4) 0 var(--space-2)" }}>
+                                    <div style={{ padding: "var(--space-5) 0 var(--space-2)" }}>
                                         <p style={{
-                                            fontFamily: "var(--font-serif)",
+                                            fontFamily: "var(--font-sans)",
                                             fontSize: "var(--text-base)",
+                                            fontWeight: 500,
                                             color: "var(--ink-950)",
                                             letterSpacing: "var(--ls-snug)",
                                             marginBottom: "var(--space-1)",
@@ -216,20 +192,23 @@ export function GallerySection({ director, member, headingLevel = "h1" }: Galler
                                                 fontSize: "var(--text-xs)",
                                                 color: "var(--ink-300)",
                                                 letterSpacing: "var(--ls-wide)",
+                                                marginBottom: "var(--space-1)",
                                             }}>
                                                 {[art.medium, art.dimensions, art.year].filter(Boolean).join(' · ')}
                                             </p>
                                         )}
-                                        {art.is_for_sale && !art.is_sold && (
-                                            <p style={{
-                                                fontFamily: "var(--font-sans)",
-                                                fontSize: "var(--text-xs)",
-                                                color: "var(--ink-500)",
-                                                marginTop: "var(--space-1)",
-                                            }}>
-                                                {art.price === '미정' ? '가격 문의' : art.price}
-                                            </p>
-                                        )}
+                                        <p style={{
+                                            fontFamily: "var(--font-sans)",
+                                            fontSize: "var(--text-xs)",
+                                            color: art.is_sold ? "var(--ink-300)" : "var(--ink-500)",
+                                            letterSpacing: "var(--ls-wide)",
+                                        }}>
+                                            {art.is_sold
+                                                ? "판매완료"
+                                                : art.is_for_sale
+                                                    ? (art.price === '미정' ? '가격 문의' : art.price)
+                                                    : '문의'}
+                                        </p>
                                     </div>
                                 </motion.div>
                             ))}
