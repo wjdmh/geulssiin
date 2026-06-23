@@ -28,7 +28,7 @@ export function Hero() {
                 />
                 <div style={{
                     position: "absolute", inset: 0,
-                    background: "linear-gradient(90deg, rgba(15,14,13,0.8) 0%, rgba(15,14,13,0.55) 55%, rgba(15,14,13,0.4) 100%)",
+                    background: "linear-gradient(90deg, rgba(15,14,13,0.9) 0%, rgba(15,14,13,0.72) 55%, rgba(15,14,13,0.6) 100%)",
                 }} />
             </div>
 
