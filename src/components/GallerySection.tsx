@@ -58,7 +58,7 @@ export function GallerySection({ director, member, headingLevel = "h1" }: Galler
 
     const tabs: { key: 'director' | 'member'; label: string; sub: string }[] = [
         { key: 'director', label: '그리운 갤러리', sub: '글씨인아트센터 대표 작가' },
-        { key: 'member', label: '회원 갤러리', sub: '글씨인아트센터 수강생 작품' },
+        { key: 'member', label: '회원 갤러리', sub: '글씨인아트센터 회원들의 작품을 담은 갤러리입니다.' },
     ];
 
     return (
@@ -186,29 +186,45 @@ export function GallerySection({ director, member, headingLevel = "h1" }: Galler
                                         }}>
                                             {art.title}
                                         </p>
-                                        {(art.medium || art.dimensions || art.year) && (
-                                            <p style={{
-                                                fontFamily: "var(--font-sans)",
-                                                fontSize: "var(--text-xs)",
-                                                color: "var(--ink-300)",
-                                                letterSpacing: "var(--ls-wide)",
-                                                marginBottom: "var(--space-1)",
-                                            }}>
-                                                {[art.medium, art.dimensions, art.year].filter(Boolean).join(' · ')}
-                                            </p>
+                                        {activeTab === 'member' ? (
+                                            // 회원 갤러리: 문의 대신 작가 이름(설명 칸에 입력) 표시
+                                            art.description && (
+                                                <p style={{
+                                                    fontFamily: "var(--font-sans)",
+                                                    fontSize: "var(--text-sm)",
+                                                    color: "var(--ink-500)",
+                                                    letterSpacing: "var(--ls-normal)",
+                                                }}>
+                                                    {art.description}
+                                                </p>
+                                            )
+                                        ) : (
+                                            <>
+                                                {(art.medium || art.dimensions || art.year) && (
+                                                    <p style={{
+                                                        fontFamily: "var(--font-sans)",
+                                                        fontSize: "var(--text-xs)",
+                                                        color: "var(--ink-300)",
+                                                        letterSpacing: "var(--ls-wide)",
+                                                        marginBottom: "var(--space-1)",
+                                                    }}>
+                                                        {[art.medium, art.dimensions, art.year].filter(Boolean).join(' · ')}
+                                                    </p>
+                                                )}
+                                                <p style={{
+                                                    fontFamily: "var(--font-sans)",
+                                                    fontSize: "var(--text-xs)",
+                                                    color: art.is_sold ? "var(--ink-300)" : "var(--ink-500)",
+                                                    letterSpacing: "var(--ls-wide)",
+                                                }}>
+                                                    {art.is_sold
+                                                        ? "판매완료"
+                                                        : art.is_for_sale
+                                                            ? (art.price === '미정' ? '가격 문의' : art.price)
+                                                            : '문의'}
+                                                </p>
+                                            </>
                                         )}
-                                        <p style={{
-                                            fontFamily: "var(--font-sans)",
-                                            fontSize: "var(--text-xs)",
-                                            color: art.is_sold ? "var(--ink-300)" : "var(--ink-500)",
-                                            letterSpacing: "var(--ls-wide)",
-                                        }}>
-                                            {art.is_sold
-                                                ? "판매완료"
-                                                : art.is_for_sale
-                                                    ? (art.price === '미정' ? '가격 문의' : art.price)
-                                                    : '문의'}
-                                        </p>
                                     </div>
                                 </motion.div>
                             ))}
