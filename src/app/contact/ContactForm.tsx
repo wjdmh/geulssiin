@@ -80,7 +80,7 @@ export function ContactForm() {
                         <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-xs)", color: "var(--ink-300)", letterSpacing: "var(--ls-wider)", marginBottom: "var(--space-6)" }}>
                             THANK YOU
                         </p>
-                        <h1 style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-2xl)", fontWeight: 300, color: "var(--ink-950)", marginBottom: "var(--space-6)" }}>
+                        <h1 style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-2xl)", fontWeight: 600, color: "var(--ink-950)", marginBottom: "var(--space-6)" }}>
                             신청이 접수되었습니다
                         </h1>
                         <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-base)", color: "var(--ink-500)", lineHeight: "var(--lh-relaxed)" }}>
@@ -100,7 +100,7 @@ export function ContactForm() {
                     <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-xs)", color: "var(--ink-300)", letterSpacing: "var(--ls-wider)", marginBottom: "var(--space-4)" }}>
                         APPLY
                     </p>
-                    <h1 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(var(--text-xl), 3vw, var(--text-2xl))", fontWeight: 300, color: "var(--ink-950)", marginBottom: "var(--space-4)" }}>
+                    <h1 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(var(--text-xl), 3vw, var(--text-2xl))", fontWeight: 600, color: "var(--ink-950)", marginBottom: "var(--space-4)" }}>
                         수업 신청 · 상담 문의
                     </h1>
                     <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-base)", color: "var(--ink-500)", lineHeight: "var(--lh-relaxed)" }}>

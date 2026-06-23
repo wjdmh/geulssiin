@@ -19,7 +19,7 @@ export function BrandIntro() {
                         style={{
                             fontFamily: "var(--font-serif)",
                             fontSize: "clamp(var(--text-xl), 3.5vw, var(--text-3xl))",
-                            fontWeight: 300,
+                            fontWeight: 600,
                             color: "var(--ink-950)",
                             letterSpacing: "var(--ls-snug)",
                             lineHeight: "var(--lh-snug)",

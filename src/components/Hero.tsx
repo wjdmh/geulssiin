@@ -113,14 +113,14 @@ export function Hero() {
                     style={{ display: "flex", gap: "var(--space-4)", flexWrap: "wrap" }}
                 >
                     <Link
-                        href="/contact"
+                        href="/class"
                         style={{
                             padding: "14px 32px",
                             backgroundColor: "var(--paper-50)",
                             color: "var(--ink-950)",
                             fontFamily: "var(--font-sans)",
                             fontSize: "var(--text-sm)",
-                            fontWeight: 400,
+                            fontWeight: 600,
                             letterSpacing: "var(--ls-wide)",
                             textDecoration: "none",
                             borderRadius: "9999px",
@@ -130,27 +130,27 @@ export function Hero() {
                         onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.8"; }}
                         onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
                     >
-                        수업 신청하기
+                        수업 안내
                     </Link>
                     <Link
-                        href="/class"
+                        href="/contact"
                         style={{
                             padding: "14px 32px",
                             backgroundColor: "transparent",
                             color: "var(--paper-50)",
                             fontFamily: "var(--font-sans)",
                             fontSize: "var(--text-sm)",
-                            fontWeight: 400,
+                            fontWeight: 500,
                             letterSpacing: "var(--ls-wide)",
                             textDecoration: "none",
                             borderRadius: "9999px",
-                            border: "1px solid rgba(250,248,245,0.3)",
+                            border: "1px solid rgba(250,248,245,0.35)",
                             transition: "opacity var(--duration-base) var(--ease-default)",
                         }}
                         onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.6"; }}
                         onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
                     >
-                        수업 안내
+                        수업 신청하기
                     </Link>
                 </motion.div>
             </div>

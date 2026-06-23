@@ -44,7 +44,7 @@ export function NameMeaning() {
                     style={{
                         fontFamily: "var(--font-serif)",
                         fontSize: "clamp(var(--text-xl), 3vw, var(--text-2xl))",
-                        fontWeight: 300,
+                        fontWeight: 600,
                         color: "var(--ink-950)",
                         letterSpacing: "var(--ls-snug)",
                         marginBottom: "var(--space-16)",
@@ -74,7 +74,7 @@ export function NameMeaning() {
                             <span style={{
                                 fontFamily: "var(--font-serif)",
                                 fontSize: "var(--text-xl)",
-                                fontWeight: 300,
+                                fontWeight: 600,
                                 color: "var(--ink-300)",
                                 letterSpacing: "var(--ls-snug)",
                             }}>

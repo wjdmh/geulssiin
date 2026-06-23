@@ -46,7 +46,7 @@ export function ClassPreview() {
                     <h2 style={{
                         fontFamily: "var(--font-serif)",
                         fontSize: "clamp(var(--text-xl), 3vw, var(--text-3xl))",
-                        fontWeight: 300,
+                        fontWeight: 600,
                         color: "var(--ink-950)",
                         letterSpacing: "var(--ls-snug)",
                         lineHeight: "var(--lh-snug)",

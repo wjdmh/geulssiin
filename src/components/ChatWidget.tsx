@@ -122,9 +122,9 @@ export function ChatWidget() {
                   backgroundColor: "#fff",
                   color: "var(--ink-800)",
                   border: "1px solid var(--ink-100)",
-                  borderRadius: "16px 16px 4px 16px",
-                  boxShadow: "0 6px 20px rgba(15,14,13,0.12)",
-                  padding: "10px 14px",
+                  borderRadius: "14px",
+                  boxShadow: "0 6px 24px rgba(15,14,13,0.14)",
+                  padding: "11px 15px",
                   fontFamily: "var(--font-sans)",
                   fontSize: "13px",
                   lineHeight: 1.5,
@@ -133,51 +133,36 @@ export function ChatWidget() {
               >
                 <span style={{ fontWeight: 600, color: "var(--ink-950)" }}>글씨인 도우미</span>
                 <br />
-                무엇이든 편하게 물어보세요 ☺
+                무엇이든 편하게 물어보세요
               </motion.button>
             )}
           </AnimatePresence>
 
-          {/* 챗봇 런처: 말풍선 모양 + 붓(글씨인) 마크 */}
+          {/* 챗봇 런처: 미니멀 원형 + 라인 아이콘 */}
           <motion.button
             aria-label="글씨인 안내 도우미 열기"
             onClick={() => setOpen(true)}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, duration: 0.4 }}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.95 }}
             style={{
-              position: "relative",
-              width: "60px",
-              height: "60px",
-              borderRadius: "20px 20px 20px 6px", /* 말풍선(채팅) 형태 */
-              backgroundColor: "var(--seal)",
+              width: "56px",
+              height: "56px",
+              borderRadius: "9999px",
+              backgroundColor: "var(--ink-950)",
               color: "#fff",
-              boxShadow: "0 8px 26px rgba(178,58,48,0.34)",
+              boxShadow: "0 10px 28px rgba(15,14,13,0.30)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: "24px",
               border: "none",
               cursor: "pointer",
               flexShrink: 0,
             }}
           >
-            ✍
-            {/* 온라인 점 */}
-            <span
-              style={{
-                position: "absolute",
-                top: "-2px",
-                right: "-2px",
-                width: "14px",
-                height: "14px",
-                borderRadius: "9999px",
-                backgroundColor: "var(--semantic-success, #3B8C3F)",
-                border: "2.5px solid var(--paper-50)",
-              }}
-            />
+            <MessageCircle size={23} strokeWidth={1.75} />
           </motion.button>
         </div>
       )}

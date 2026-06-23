@@ -72,7 +72,7 @@ export function DirectorPreview() {
                         <h3 style={{
                             fontFamily: "var(--font-serif)",
                             fontSize: "var(--text-xl)",
-                            fontWeight: 300,
+                            fontWeight: 600,
                             color: "var(--ink-950)",
                             letterSpacing: "var(--ls-snug)",
                             marginBottom: "var(--space-2)",
@@ -113,7 +113,7 @@ export function DirectorPreview() {
                         <p style={{
                             fontFamily: "var(--font-serif)",
                             fontSize: "var(--text-base)",
-                            fontWeight: 300,
+                            fontWeight: 600,
                             color: "var(--ink-500)",
                             lineHeight: "var(--lh-loose)",
                             letterSpacing: "var(--ls-normal)",

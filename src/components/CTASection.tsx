@@ -34,7 +34,7 @@ export function CTASection() {
                         style={{
                             fontFamily: "var(--font-serif)",
                             fontSize: "clamp(var(--text-xl), 3vw, var(--text-3xl))",
-                            fontWeight: 300,
+                            fontWeight: 600,
                             color: "var(--paper-50)",
                             letterSpacing: "var(--ls-snug)",
                             lineHeight: "var(--lh-snug)",

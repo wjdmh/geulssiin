@@ -37,7 +37,7 @@ export function Footer() {
                     <div>
                         <p style={{
                             fontFamily: "var(--font-serif)",
-                            fontSize: "var(--text-lg)", fontWeight: 300,
+                            fontSize: "var(--text-lg)", fontWeight: 600,
                             color: "var(--ink-950)",
                             letterSpacing: "var(--ls-snug)",
                             marginBottom: "var(--space-3)",

@@ -23,7 +23,7 @@ export default function ShopPage() {
                     <h1 style={{
                         fontFamily: "var(--font-serif)",
                         fontSize: "var(--text-3xl)",
-                        fontWeight: 300,
+                        fontWeight: 600,
                         color: "var(--ink-950)",
                         letterSpacing: "var(--ls-tight)",
                         lineHeight: "var(--lh-snug)",

@@ -65,7 +65,7 @@ export function TimetableSection() {
                     <h1 style={{
                         fontFamily: "var(--font-sans)",
                         fontSize: "clamp(var(--text-xl), 3vw, var(--text-2xl))",
-                        fontWeight: 300,
+                        fontWeight: 600,
                         color: "var(--ink-950)",
                         letterSpacing: "var(--ls-snug)",
                         marginBottom: "var(--space-4)",
@@ -262,7 +262,7 @@ export function TimetableSection() {
                                             <span style={{
                                                 fontFamily: "var(--font-sans)",
                                                 fontSize: "clamp(var(--text-base), 2vw, var(--text-lg))",
-                                                fontWeight: 300,
+                                                fontWeight: 600,
                                                 color: isOpen ? "var(--ink-950)" : "var(--ink-500)",
                                                 letterSpacing: "var(--ls-snug)",
                                                 transition: "color var(--duration-fast) var(--ease-default)",
@@ -391,7 +391,7 @@ export function TimetableSection() {
                             </p>
                             <h3 style={{
                                 fontFamily: "var(--font-sans)",
-                                fontSize: "var(--text-xl)", fontWeight: 300,
+                                fontSize: "var(--text-xl)", fontWeight: 600,
                                 color: "var(--ink-950)",
                                 marginBottom: "var(--space-8)",
                             }}>

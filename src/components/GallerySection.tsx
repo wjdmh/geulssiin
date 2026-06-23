@@ -84,7 +84,7 @@ export function GallerySection({ director, member, headingLevel = "h1" }: Galler
                     <Heading style={{
                         fontFamily: "var(--font-serif)",
                         fontSize: "clamp(var(--text-xl), 3vw, var(--text-2xl))",
-                        fontWeight: 300,
+                        fontWeight: 600,
                         color: "var(--ink-950)",
                         letterSpacing: "var(--ls-snug)",
                         marginBottom: "var(--space-12)",
@@ -235,7 +235,7 @@ export function GallerySection({ director, member, headingLevel = "h1" }: Galler
                             animate={{ opacity: 1 }}
                             style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "var(--space-24) 0", gap: "var(--space-3)" }}
                         >
-                            <p style={{ fontFamily: "var(--font-serif)", fontSize: "var(--text-lg)", color: "var(--ink-300)", fontWeight: 300 }}>
+                            <p style={{ fontFamily: "var(--font-serif)", fontSize: "var(--text-lg)", color: "var(--ink-300)", fontWeight: 400 }}>
                                 등록된 작품이 없습니다.
                             </p>
                             <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-sm)", color: "var(--ink-300)" }}>
@@ -340,7 +340,7 @@ export function GallerySection({ director, member, headingLevel = "h1" }: Galler
                                 <h3 style={{
                                     fontFamily: "var(--font-serif)",
                                     fontSize: "var(--text-xl)",
-                                    fontWeight: 300,
+                                    fontWeight: 600,
                                     color: "var(--ink-950)",
                                     letterSpacing: "var(--ls-snug)",
                                     marginBottom: "var(--space-3)",

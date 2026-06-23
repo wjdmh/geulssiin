@@ -37,7 +37,7 @@ export function Testimonials() {
                     <h2 style={{
                         fontFamily: "var(--font-serif)",
                         fontSize: "clamp(var(--text-xl), 3vw, var(--text-3xl))",
-                        fontWeight: 300,
+                        fontWeight: 600,
                         color: "var(--ink-950)",
                         letterSpacing: "var(--ls-snug)",
                         lineHeight: "var(--lh-snug)",
@@ -74,7 +74,7 @@ export function Testimonials() {
                             <p style={{
                                 fontFamily: "var(--font-serif)",
                                 fontSize: "var(--text-base)",
-                                fontWeight: 300,
+                                fontWeight: 400,
                                 color: "var(--ink-800)",
                                 lineHeight: "var(--lh-loose)",
                                 letterSpacing: "var(--ls-normal)",

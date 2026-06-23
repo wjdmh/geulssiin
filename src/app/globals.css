@@ -120,10 +120,10 @@ body {
   position: relative;
 }
 
-/* 헤드라인: Pretendard(sans)로 통일, 가는 무게로 에디토리얼 톤 유지 */
+/* 헤드라인: Pretendard(sans), 세미볼드로 위계 강조(2026-06) */
 h1, h2, h3 {
   font-family: var(--font-sans);
-  font-weight: 300;
+  font-weight: 600;
   letter-spacing: var(--ls-tight);
 }
 

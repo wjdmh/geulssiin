@@ -14,6 +14,7 @@ import { signout } from "@/app/auth/signout/actions";
 
 const navLinks = [
     { href: "/", label: "Home" },
+    { href: "/class", label: "Class" },
     { href: "/gallery", label: "Gallery" },
     { href: "/shop", label: "Shop" },
     { href: "/about", label: "About" },
@@ -254,7 +255,7 @@ export function Navbar({ user, profile }: NavbarProps) {
                                         style={{
                                             display: "block", padding: "20px 0",
                                             fontFamily: "var(--font-serif)",
-                                            fontSize: "var(--text-xl)", fontWeight: 300,
+                                            fontSize: "var(--text-xl)", fontWeight: 600,
                                             letterSpacing: "var(--ls-snug)",
                                             color: pathname === link.href ? "var(--ink-950)" : "var(--ink-300)",
                                             textDecoration: "none",
