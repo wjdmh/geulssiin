@@ -145,12 +145,10 @@ export function GallerySection({ director, member, headingLevel = "h1" }: Galler
                 {/* Gallery Grid */}
                 <div style={{ minHeight: "400px" }}>
                     {images.length > 0 ? (
-                        <div style={{
-                            columnGap: "var(--space-6)",
-                        }}
+                        <div style={{ display: "grid", gap: "var(--space-10)" }}
                             className={activeTab === 'director'
-                                ? "columns-1 md:columns-2 lg:columns-3"
-                                : "columns-2 md:columns-3 lg:columns-4"}
+                                ? "grid-cols-2 md:grid-cols-3"
+                                : "grid-cols-2 md:grid-cols-4"}
                         >
                             {images.map((art, i) => (
                                 <motion.div
@@ -159,24 +157,21 @@ export function GallerySection({ director, member, headingLevel = "h1" }: Galler
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, delay: i * 0.05, ease }}
                                     style={{
-                                        breakInside: "avoid",
-                                        marginBottom: "var(--space-6)",
                                         cursor: "pointer",
                                     }}
                                     onClick={() => setSelectedImage(art)}
                                 >
                                     <div
-                                        style={{ position: "relative", overflow: "hidden", backgroundColor: "var(--paper-100)" }}
+                                        style={{ position: "relative", aspectRatio: "3 / 4", overflow: "hidden", backgroundColor: "var(--paper-100)", border: "var(--line-default)" }}
                                         onMouseEnter={(e) => { (e.currentTarget.firstChild as HTMLElement).style.opacity = "0.85"; }}
                                         onMouseLeave={(e) => { (e.currentTarget.firstChild as HTMLElement).style.opacity = "1"; }}
                                     >
                                         <Image
                                             src={art.image_url}
                                             alt={art.title}
-                                            width={600}
-                                            height={800}
-                                            style={{ width: "100%", height: "auto", objectFit: "cover", display: "block", transition: "opacity var(--duration-base) var(--ease-default)" }}
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                            fill
+                                            style={{ objectFit: "contain", padding: "8%", transition: "opacity var(--duration-base) var(--ease-default)" }}
+                                            sizes={activeTab === 'director' ? "(max-width: 768px) 50vw, 33vw" : "(max-width: 768px) 50vw, 25vw"}
                                         />
                                         {art.is_for_sale && !art.is_sold && (
                                             <div style={{
