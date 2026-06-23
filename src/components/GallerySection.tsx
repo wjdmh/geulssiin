@@ -2,8 +2,8 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
-import { X } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 export interface GalleryItem {
     id: number;
@@ -34,6 +34,27 @@ export function GallerySection({ director, member, headingLevel = "h1" }: Galler
     const [activeTab, setActiveTab] = useState<'director' | 'member'>('director');
     // 작품 데이터는 서버에서 props로 받는다 (검색엔진 노출). 탭 전환은 이미 받은 데이터를 필터링.
     const images = activeTab === 'director' ? director : member;
+
+    // 모달 내 이전/다음 (현재 탭 목록 기준) + 키보드 이동
+    const navTo = useCallback((dir: 1 | -1) => {
+        setSelectedImage((cur) => {
+            if (!cur) return cur;
+            const list = activeTab === 'director' ? director : member;
+            const idx = list.findIndex(a => a.id === cur.id);
+            if (idx < 0 || list.length === 0) return cur;
+            return list[(idx + dir + list.length) % list.length];
+        });
+    }, [activeTab, director, member]);
+    useEffect(() => {
+        if (!selectedImage) return;
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === "ArrowRight") navTo(1);
+            else if (e.key === "ArrowLeft") navTo(-1);
+            else if (e.key === "Escape") setSelectedImage(null);
+        };
+        window.addEventListener("keydown", onKey);
+        return () => window.removeEventListener("keydown", onKey);
+    }, [selectedImage, navTo]);
 
     const tabs: { key: 'director' | 'member'; label: string; sub: string }[] = [
         { key: 'director', label: '그리운 갤러리', sub: '글씨인아트센터 대표 작가' },
@@ -264,7 +285,37 @@ export function GallerySection({ director, member, headingLevel = "h1" }: Galler
                             <X size={24} strokeWidth={1.5} />
                         </button>
 
+                        {images.length > 1 && (
+                            <>
+                                <button
+                                    aria-label="이전 작품"
+                                    onClick={(e) => { e.stopPropagation(); navTo(-1); }}
+                                    style={{
+                                        position: "fixed", top: "50%", left: "var(--space-6)", transform: "translateY(-50%)", zIndex: 201,
+                                        width: "44px", height: "44px", borderRadius: "9999px",
+                                        background: "var(--paper-50)", border: "var(--line-default)", cursor: "pointer",
+                                        display: "flex", alignItems: "center", justifyContent: "center", color: "var(--ink-950)",
+                                    }}
+                                >
+                                    <ChevronLeft size={22} strokeWidth={1.5} />
+                                </button>
+                                <button
+                                    aria-label="다음 작품"
+                                    onClick={(e) => { e.stopPropagation(); navTo(1); }}
+                                    style={{
+                                        position: "fixed", top: "50%", right: "var(--space-6)", transform: "translateY(-50%)", zIndex: 201,
+                                        width: "44px", height: "44px", borderRadius: "9999px",
+                                        background: "var(--paper-50)", border: "var(--line-default)", cursor: "pointer",
+                                        display: "flex", alignItems: "center", justifyContent: "center", color: "var(--ink-950)",
+                                    }}
+                                >
+                                    <ChevronRight size={22} strokeWidth={1.5} />
+                                </button>
+                            </>
+                        )}
+
                         <motion.div
+                            key={selectedImage.id}
                             initial={{ opacity: 0, y: 12 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0 }}

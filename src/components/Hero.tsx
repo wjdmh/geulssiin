@@ -28,7 +28,7 @@ export function Hero() {
                 />
                 <div style={{
                     position: "absolute", inset: 0,
-                    backgroundColor: "rgba(15, 14, 13, 0.6)",
+                    background: "linear-gradient(90deg, rgba(15,14,13,0.8) 0%, rgba(15,14,13,0.55) 55%, rgba(15,14,13,0.4) 100%)",
                 }} />
             </div>
 
@@ -40,10 +40,12 @@ export function Hero() {
                     transition={{ duration: 0.8, ease }}
                     style={{
                         fontFamily: "var(--font-sans)",
-                        fontSize: "var(--text-xs)",
-                        color: "rgba(250,248,245,0.4)",
+                        fontSize: "var(--text-sm)",
+                        fontWeight: 500,
+                        color: "rgba(250,248,245,0.92)",
                         letterSpacing: "var(--ls-wider)",
                         marginBottom: "var(--space-6)",
+                        textShadow: "0 1px 8px rgba(0,0,0,0.45)",
                     }}
                 >
                     KCDA 인증 교육기관
@@ -62,6 +64,7 @@ export function Hero() {
                         lineHeight: "var(--lh-tight)",
                         marginBottom: "var(--space-4)",
                         whiteSpace: "nowrap",
+                        textShadow: "0 2px 16px rgba(0,0,0,0.4)",
                     }}
                 >
                     GEULSSIIN ART CENTER
@@ -79,6 +82,7 @@ export function Hero() {
                         letterSpacing: "var(--ls-tight)",
                         lineHeight: "var(--lh-tight)",
                         marginBottom: "var(--space-6)",
+                        textShadow: "0 1px 10px rgba(0,0,0,0.4)",
                     }}
                 >
                     글씨 쓰는 사람들
@@ -91,11 +95,12 @@ export function Hero() {
                     style={{
                         fontFamily: "var(--font-serif)",
                         fontSize: "var(--text-base)",
-                        color: "rgba(250,248,245,0.55)",
+                        color: "rgba(250,248,245,0.88)",
                         letterSpacing: "var(--ls-normal)",
                         lineHeight: "var(--lh-relaxed)",
                         marginBottom: "var(--space-10)",
                         maxWidth: "400px",
+                        textShadow: "0 1px 10px rgba(0,0,0,0.4)",
                     }}
                 >
                     書如其人&nbsp;&nbsp;글씨는 곧 그 사람이다

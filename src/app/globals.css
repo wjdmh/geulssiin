@@ -6,7 +6,9 @@
   --ink-950: #0f0e0d;
   --ink-800: #2a2825;
   --ink-500: #6b6764;
-  --ink-300: #b5b1ae;
+  /* ink-300: 가독성 보정(2026-06-16) — 기존 #b5b1ae(대비 2.0:1, WCAG 미달)를
+     #67625a로. paper-50/100/200 모든 섹션 배경에서 AA(4.6~5.7:1) 충족. (텍스트 외 사용=스크롤바뿐) */
+  --ink-300: #67625a;
   --ink-100: #e8e5e2;
 
   /* ── 색상: Paper (한지) ── */
@@ -30,9 +32,9 @@
   --font-serif: var(--font-sans);
 
   /* ── 타이포 스케일 ── */
-  --text-xs:   11px;
+  --text-xs:   12px;
   --text-sm:   13px;
-  --text-base: 15px;
+  --text-base: 16px;
   --text-lg:   18px;
   --text-xl:   24px;
   --text-2xl:  32px;
