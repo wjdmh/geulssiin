@@ -11,11 +11,15 @@ const classKeywords: Record<string, string> = {
     "붓 캘리그라피 클래스": "전통의 깊이",
     "붓펜 캘리그라피 클래스": "일상의 실용",
     "펜드로잉 클래스": "선으로 보는 세상",
+    "수묵 드로잉 클래스": "먹과 여백",
     "서예 클래스": "전통의 뿌리",
+    "글씨교정 클래스": "바른 손글씨",
+    "필사 클래스": "마음을 적다",
+    "원데이 클래스": "한 번의 체험",
 };
 
-const regularClasses = classCurriculum.filter(c => c.title !== "원데이 클래스");
-const onedayClass = classCurriculum.find(c => c.title === "원데이 클래스");
+// 원데이 포함 전체를 그리드로 (그리드 빈 칸 채움)
+const allClasses = classCurriculum;
 
 export function ClassPreview() {
     return (
@@ -51,7 +55,7 @@ export function ClassPreview() {
                     </h2>
                 </motion.div>
 
-                {/* Regular Classes */}
+                {/* Classes (원데이 포함 전체) */}
                 <div style={{
                     display: "grid",
                     gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
@@ -60,7 +64,7 @@ export function ClassPreview() {
                     border: "var(--line-default)",
                     marginBottom: "var(--space-2)",
                 }}>
-                    {regularClasses.map((cls, i) => (
+                    {allClasses.map((cls, i) => (
                         <motion.div
                             key={cls.title}
                             initial={{ opacity: 0, y: 12 }}
@@ -84,9 +88,9 @@ export function ClassPreview() {
                                 {classKeywords[cls.title] || ""}
                             </p>
                             <h3 style={{
-                                fontFamily: "var(--font-serif)",
-                                fontSize: "var(--text-lg)",
-                                fontWeight: 300,
+                                fontFamily: "var(--font-sans)",
+                                fontSize: "var(--text-xl)",
+                                fontWeight: 600,
                                 color: "var(--ink-950)",
                                 letterSpacing: "var(--ls-snug)",
                                 marginBottom: "var(--space-4)",
@@ -144,18 +148,23 @@ export function ClassPreview() {
                                     type="button"
                                     onClick={() => window.dispatchEvent(new CustomEvent("open-chat"))}
                                     style={{
+                                        display: "inline-flex",
+                                        alignItems: "center",
+                                        gap: "6px",
+                                        alignSelf: "flex-start",
                                         fontFamily: "var(--font-sans)",
                                         fontSize: "var(--text-sm)",
-                                        color: "var(--ink-500)",
-                                        textDecoration: "none",
-                                        background: "none",
-                                        border: "none",
-                                        padding: 0,
+                                        fontWeight: 500,
+                                        color: "var(--ink-950)",
+                                        background: "transparent",
+                                        border: "1px solid var(--ink-950)",
+                                        borderRadius: "9999px",
+                                        padding: "9px 18px",
                                         cursor: "pointer",
-                                        transition: "opacity var(--duration-fast) var(--ease-default)",
+                                        transition: "background-color var(--duration-fast) var(--ease-default), color var(--duration-fast) var(--ease-default)",
                                     }}
-                                    onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.4"; }}
-                                    onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
+                                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "var(--ink-950)"; e.currentTarget.style.color = "var(--paper-50)"; }}
+                                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "var(--ink-950)"; }}
                                 >
                                     수업 문의하기 →
                                 </button>
@@ -163,75 +172,6 @@ export function ClassPreview() {
                         </motion.div>
                     ))}
                 </div>
-
-                {/* One-day Class */}
-                {onedayClass && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 12 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={viewport}
-                        transition={{ duration: 0.6, ease }}
-                        style={{
-                            border: "var(--line-default)",
-                            padding: "var(--space-10)",
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "flex-start",
-                            gap: "var(--space-4)",
-                            marginBottom: "var(--space-10)",
-                        }}
-                    >
-                        <p style={{
-                            fontFamily: "var(--font-sans)",
-                            fontSize: "var(--text-xs)",
-                            color: "var(--ink-300)",
-                            letterSpacing: "var(--ls-wider)",
-                        }}>
-                            한 번 체험해보고 싶은 분들을 위해
-                        </p>
-                        <h3 style={{
-                            fontFamily: "var(--font-serif)",
-                            fontSize: "var(--text-xl)",
-                            fontWeight: 300,
-                            color: "var(--ink-950)",
-                            letterSpacing: "var(--ls-snug)",
-                        }}>
-                            원데이 클래스
-                        </h3>
-                        <p style={{
-                            fontFamily: "var(--font-sans)",
-                            fontSize: "var(--text-sm)",
-                            color: "var(--ink-500)",
-                            letterSpacing: "var(--ls-normal)",
-                        }}>
-                            2시간 · 재료 포함<br />
-                            부채, 캘리액자, 엽서 & 족자 등 계절별 소품 제작
-                        </p>
-                        <button
-                            type="button"
-                            onClick={() => window.dispatchEvent(new CustomEvent("open-chat"))}
-                            style={{
-                                padding: "12px 28px",
-                                backgroundColor: "var(--ink-950)",
-                                color: "var(--paper-50)",
-                                fontFamily: "var(--font-sans)",
-                                fontSize: "var(--text-sm)",
-                                fontWeight: 400,
-                                letterSpacing: "var(--ls-wide)",
-                                textDecoration: "none",
-                                border: "none",
-                                borderRadius: "9999px",
-                                marginTop: "var(--space-2)",
-                                cursor: "pointer",
-                                transition: "opacity var(--duration-base) var(--ease-default)",
-                            }}
-                            onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.7"; }}
-                            onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
-                        >
-                            일정 문의
-                        </button>
-                    </motion.div>
-                )}
 
                 {/* More link */}
                 <motion.div
