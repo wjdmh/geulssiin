@@ -146,10 +146,11 @@ export function GallerySection({ director, member, headingLevel = "h1" }: Galler
                 <div style={{ minHeight: "400px" }}>
                     {images.length > 0 ? (
                         <div style={{
-                            columns: "1",
                             columnGap: "var(--space-6)",
                         }}
-                            className="md:columns-2 lg:columns-3"
+                            className={activeTab === 'director'
+                                ? "columns-1 md:columns-2 lg:columns-3"
+                                : "columns-2 md:columns-3 lg:columns-4"}
                         >
                             {images.map((art, i) => (
                                 <motion.div
