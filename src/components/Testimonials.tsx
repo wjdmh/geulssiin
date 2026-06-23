@@ -92,21 +92,6 @@ export function Testimonials() {
                         </motion.div>
                     ))}
                 </div>
-
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={viewport}
-                    transition={{ duration: 0.6, delay: 0.3, ease }}
-                    style={{
-                        fontFamily: "var(--font-sans)",
-                        fontSize: "var(--text-xs)",
-                        color: "var(--ink-300)",
-                        letterSpacing: "var(--ls-wide)",
-                    }}
-                >
-                    1,000명 이상의 수강생이 함께하고 있습니다
-                </motion.p>
             </div>
         </section>
     );
