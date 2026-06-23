@@ -138,6 +138,33 @@ h4, h5, h6 {
   overflow-wrap: break-word;
 }
 
+/* ── 갤러리 레일: 모바일=스냅 가로 스크롤(스크롤바 숨김), 데스크톱=정돈된 3-up 그리드 ── */
+.gallery-rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 80%;
+  gap: var(--space-6);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: var(--space-6);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: var(--space-3);
+}
+.gallery-rail::-webkit-scrollbar { display: none; }
+.gallery-rail > * { scroll-snap-align: start; }
+@media (min-width: 640px) {
+  .gallery-rail { grid-auto-columns: 44%; }
+}
+@media (min-width: 1024px) {
+  .gallery-rail {
+    grid-auto-columns: minmax(0, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-flow: row;
+    overflow-x: visible;
+  }
+}
+
 /* ── 폼 필드: 포커스는 링으로, 에러는 인주색 보더로 (DESIGN.md) ── */
 /* border/outline을 여기서 소유한다 — 컴포넌트 인라인 스타일이 보더를 덮으면
    포커스/에러 보더가 적용되지 않으므로, 보더 상태는 전적으로 클래스가 관리. */

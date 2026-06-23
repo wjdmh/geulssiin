@@ -32,9 +32,9 @@ export function CTASection() {
                         viewport={viewport}
                         transition={{ duration: 0.8, delay: 0.1, ease }}
                         style={{
-                            fontFamily: "var(--font-serif)",
+                            fontFamily: "var(--font-sans)",
                             fontSize: "clamp(var(--text-xl), 3vw, var(--text-3xl))",
-                            fontWeight: 600,
+                            fontWeight: 700,
                             color: "var(--paper-50)",
                             letterSpacing: "var(--ls-snug)",
                             lineHeight: "var(--lh-snug)",
@@ -72,11 +72,11 @@ export function CTASection() {
                             href="/contact"
                             style={{
                                 padding: "14px 32px",
-                                backgroundColor: "var(--seal)",
-                                color: "var(--paper-50)",
+                                backgroundColor: "var(--paper-50)",
+                                color: "var(--ink-950)",
                                 fontFamily: "var(--font-sans)",
                                 fontSize: "var(--text-sm)",
-                                fontWeight: 400,
+                                fontWeight: 600,
                                 letterSpacing: "var(--ls-wide)",
                                 textDecoration: "none",
                                 borderRadius: "9999px",

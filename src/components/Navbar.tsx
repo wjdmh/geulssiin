@@ -83,7 +83,7 @@ export function Navbar({ user, profile }: NavbarProps) {
                             width={200}
                             height={60}
                             style={{
-                                height: "46px",
+                                height: "60px",
                                 width: "auto",
                                 objectFit: "contain",
                                 filter: isTransparent ? "brightness(0) invert(1)" : "none",
@@ -173,18 +173,20 @@ export function Navbar({ user, profile }: NavbarProps) {
                             </Link>
                         )}
 
-                        {/* 상시 노출 신청 CTA */}
+                        {/* 상시 노출 신청 CTA — 인주(seal) 알약, 페이지의 유일한 브랜드 강조 */}
                         <Link
                             href="/contact"
                             style={{
-                                padding: "9px 20px",
-                                backgroundColor: isTransparent ? "var(--paper-50)" : "var(--ink-950)",
-                                color: isTransparent ? "var(--ink-950)" : "var(--paper-50)",
+                                padding: "10px 22px",
+                                backgroundColor: "var(--seal)",
+                                color: "#fff",
                                 fontFamily: "var(--font-sans)",
-                                fontSize: "var(--text-xs)",
-                                fontWeight: 500,
+                                fontSize: "var(--text-sm)",
+                                fontWeight: 600,
                                 letterSpacing: "var(--ls-wide)",
                                 textDecoration: "none",
+                                borderRadius: "9999px",
+                                whiteSpace: "nowrap",
                                 transition: "opacity var(--duration-fast) var(--ease-default)",
                             }}
                             onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.85"; }}
@@ -194,15 +196,14 @@ export function Navbar({ user, profile }: NavbarProps) {
                         </Link>
                     </div>
 
-                    {/* Mobile Hamburger */}
+                    {/* Mobile Hamburger — 데스크톱(md+)에서는 숨김 (인라인 display 제거: md:hidden이 먹도록) */}
                     <button
-                        className="md:hidden"
+                        className="flex flex-col items-center justify-center md:hidden"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label="메뉴"
                         style={{
                             background: "none", border: "none", cursor: "pointer",
-                            padding: "4px", display: "flex", flexDirection: "column",
-                            gap: "5px", alignItems: "center", justifyContent: "center",
+                            padding: "4px", gap: "5px",
                         }}
                     >
                         <motion.span

@@ -17,9 +17,9 @@ export function BrandIntro() {
                         viewport={viewport}
                         transition={{ duration: 0.8, ease }}
                         style={{
-                            fontFamily: "var(--font-serif)",
+                            fontFamily: "var(--font-sans)",
                             fontSize: "clamp(var(--text-xl), 3.5vw, var(--text-3xl))",
-                            fontWeight: 600,
+                            fontWeight: 700,
                             color: "var(--ink-950)",
                             letterSpacing: "var(--ls-snug)",
                             lineHeight: "var(--lh-snug)",
