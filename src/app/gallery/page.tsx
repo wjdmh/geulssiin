@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { GallerySection, type GalleryItem } from "@/components/GallerySection";
+import { CTASection } from "@/components/CTASection";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default async function GalleryPage() {
     return (
         <div style={{ paddingTop: "80px", minHeight: "100vh" }}>
             <GallerySection director={director} member={member} />
+            <CTASection />
         </div>
     );
 }

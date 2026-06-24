@@ -56,9 +56,9 @@ export function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.1, ease }}
                     style={{
-                        fontFamily: "var(--font-sans)",
+                        fontFamily: "var(--font-serif)",
                         fontSize: "clamp(22px, 5vw, 60px)",
-                        fontWeight: 500,
+                        fontWeight: 400,
                         color: "var(--paper-50)",
                         letterSpacing: "var(--ls-tight)",
                         lineHeight: "var(--lh-tight)",
@@ -115,27 +115,27 @@ export function Hero() {
                     <Link
                         href="/class"
                         style={{
-                            padding: "14px 32px",
-                            backgroundColor: "var(--paper-50)",
-                            color: "var(--ink-950)",
+                            padding: "14px 28px",
+                            backgroundColor: "var(--primary)",
+                            color: "var(--on-primary)",
                             fontFamily: "var(--font-sans)",
                             fontSize: "var(--text-sm)",
-                            fontWeight: 600,
+                            fontWeight: 500,
                             letterSpacing: "var(--ls-wide)",
                             textDecoration: "none",
-                            borderRadius: "9999px",
+                            borderRadius: "8px",
                             border: "1px solid transparent",
-                            transition: "opacity var(--duration-base) var(--ease-default)",
+                            transition: "background-color var(--duration-base) var(--ease-default)",
                         }}
-                        onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.8"; }}
-                        onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
+                        onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "var(--primary-active)"; }}
+                        onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "var(--primary)"; }}
                     >
                         수업 안내
                     </Link>
                     <Link
                         href="/contact"
                         style={{
-                            padding: "14px 32px",
+                            padding: "14px 28px",
                             backgroundColor: "transparent",
                             color: "var(--paper-50)",
                             fontFamily: "var(--font-sans)",
@@ -143,7 +143,7 @@ export function Hero() {
                             fontWeight: 500,
                             letterSpacing: "var(--ls-wide)",
                             textDecoration: "none",
-                            borderRadius: "9999px",
+                            borderRadius: "8px",
                             border: "1px solid rgba(250,248,245,0.35)",
                             transition: "opacity var(--duration-base) var(--ease-default)",
                         }}

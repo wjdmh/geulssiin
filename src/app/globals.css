@@ -1,23 +1,37 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+KR:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 :root {
-  /* ── 색상: Ink (먹) ── */
-  --ink-950: #0f0e0d;
-  --ink-800: #2a2825;
-  --ink-500: #6b6764;
-  /* ink-300: 가독성 보정(2026-06-16) — 기존 #b5b1ae(대비 2.0:1, WCAG 미달)를
-     #67625a로. paper-50/100/200 모든 섹션 배경에서 AA(4.6~5.7:1) 충족. (텍스트 외 사용=스크롤바뿐) */
-  --ink-300: #67625a;
-  --ink-100: #e8e5e2;
+  /* ── Claude 에디토리얼 시스템(2026-06-24): 크림 + 코랄 + 먹빛 ──
+     기존 토큰 이름(ink/paper/seal)을 유지해 컴포넌트 수정 없이 전역 팔레트를 교체. */
 
-  /* ── 색상: Paper (한지) ── */
-  --paper-50:  #faf8f5;
-  --paper-100: #f2efe9;
-  --paper-200: #e5e0d8;
+  /* Text (warm ink) — 기존 ink-* 토큰을 Claude 텍스트 톤으로 매핑 */
+  --ink-950: #141413;   /* ink — 헤드라인·주 텍스트 */
+  --ink-800: #252523;   /* body-strong */
+  --ink-500: #3d3d3a;   /* body */
+  --ink-300: #6c6a64;   /* muted (아이브로·캡션 하한, AA) */
+  --ink-100: #e6dfd8;   /* hairline (보더 전용) */
 
-  /* ── 강조: 인주(Seal) ── DESIGN.md accent-seal. 도장 한 점처럼 페이지당 핵심 1곳에만. */
-  --seal: #B23A30;
+  /* Surface (cream) — 기존 paper-* 토큰을 크림 표면으로 매핑 */
+  --paper-50:  #faf9f5; /* canvas */
+  --paper-100: #efe9de; /* surface-card */
+  --paper-200: #e8e0d2; /* surface-cream-strong */
+
+  /* Brand accent — 코랄(기존 --seal 자리). 주 CTA·콜아웃에만 희소하게 */
+  --seal: #cc785c;          /* primary coral */
+  --primary: #cc785c;
+  --primary-active: #a9583e;
+  --on-primary: #ffffff;
+  --accent-amber: #e8a55a;
+
+  /* Dark surfaces (먹빛) — 작품 쇼케이스·전시·CTA·푸터 */
+  --surface-dark: #181715;
+  --surface-dark-elevated: #252320;
+  --surface-dark-soft: #1f1e1b;
+  --on-dark: #faf9f5;
+  --on-dark-soft: #a09d96;
+  --muted-soft: #8e8b82;
 
   /* ── 레거시 매핑 (기존 코드 호환) ── */
   --background: var(--paper-50);
@@ -25,11 +39,9 @@
   --muted: var(--ink-500);
   --accent: var(--ink-100);
 
-  /* ── 폰트 ── */
+  /* ── 폰트 ── 디스플레이=Cormorant 세리프, 본문=Pretendard */
   --font-sans:  'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-  /* 세리프 전면 제거(2026-06-16): 기존 var(--font-serif) 참조가 자동으로 Pretendard로
-     렌더되도록 sans에 매핑. 글씨/서예 정체성은 손글씨 이미지·인주색으로 표현. */
-  --font-serif: var(--font-sans);
+  --font-serif: 'Cormorant Garamond', 'Noto Serif KR', 'EB Garamond', Garamond, serif;
 
   /* ── 타이포 스케일 ── */
   --text-xs:   12px;
@@ -74,9 +86,9 @@
   --space-48: 192px;
 
   /* ── 선 ── */
-  --line-strong:  1px solid #2a2825;
-  --line-default: 1px solid #e8e5e2;
-  --line-subtle:  1px solid #f0ece6;
+  --line-strong:  1px solid #252523;
+  --line-default: 1px solid #e6dfd8;
+  --line-subtle:  1px solid #ebe6df;
 
   /* ── 레이아웃 ── */
   --container-max:         960px;
@@ -100,8 +112,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
-  /* 세리프 제거: font-serif 유틸리티도 Pretendard로 (잔존 참조 호환) */
-  --font-serif: var(--font-sans);
+  /* 디스플레이 세리프: Cormorant/명조. (@theme이 :root --font-serif를 덮어쓰지 않도록 동일 스택 명시) */
+  --font-serif: 'Cormorant Garamond', 'Noto Serif KR', 'EB Garamond', Garamond, serif;
 }
 
 /* ── 기본 리셋 ── */
@@ -120,11 +132,11 @@ body {
   position: relative;
 }
 
-/* 헤드라인: Pretendard(sans), 세미볼드로 위계 강조(2026-06) */
+/* 헤드라인: Cormorant/명조 세리프 디스플레이, weight 400, 음수 자간 (Claude 시스템 2026-06-24) */
 h1, h2, h3 {
-  font-family: var(--font-sans);
-  font-weight: 600;
-  letter-spacing: var(--ls-tight);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
 }
 
 h4, h5, h6 {

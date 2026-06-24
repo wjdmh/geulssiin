@@ -3,7 +3,7 @@ import "./globals.css";
 
 import { createClient } from "@/lib/supabase/server";
 
-// 폰트는 Pretendard 단일(globals.css에서 CDN import). 세리프 전면 제거(2026-06-16).
+// 폰트(globals.css CDN): 디스플레이=Cormorant/명조 세리프 400, 본문=Pretendard. (Claude 에디토리얼 시스템 2026-06-24)
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://geulssiin.com'),

@@ -71,10 +71,10 @@ export function DirectorPreview() {
                     >
                         <h3 style={{
                             fontFamily: "var(--font-serif)",
-                            fontSize: "var(--text-xl)",
-                            fontWeight: 600,
+                            fontSize: "var(--text-2xl)",
+                            fontWeight: 400,
                             color: "var(--ink-950)",
-                            letterSpacing: "var(--ls-snug)",
+                            letterSpacing: "var(--ls-tight)",
                             marginBottom: "var(--space-2)",
                         }}>
                             그리운
@@ -112,12 +112,12 @@ export function DirectorPreview() {
 
                         <p style={{
                             fontFamily: "var(--font-serif)",
-                            fontSize: "var(--text-base)",
-                            fontWeight: 600,
-                            color: "var(--ink-500)",
+                            fontSize: "var(--text-lg)",
+                            fontWeight: 400,
+                            color: "var(--ink-800)",
                             lineHeight: "var(--lh-loose)",
-                            letterSpacing: "var(--ls-normal)",
-                            borderLeft: "var(--line-default)",
+                            letterSpacing: "var(--ls-snug)",
+                            borderLeft: "2px solid var(--seal)",
                             paddingLeft: "var(--space-5)",
                             marginBottom: "var(--space-8)",
                         }}>

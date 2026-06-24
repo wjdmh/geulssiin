@@ -105,7 +105,7 @@ export function DirectorProfile() {
                     <h2 style={{
                         fontFamily: "var(--font-serif)",
                         fontSize: "clamp(var(--text-xl), 3vw, var(--text-2xl))",
-                        fontWeight: 600,
+                        fontWeight: 400,
                         color: "var(--ink-950)",
                         letterSpacing: "var(--ls-snug)",
                     }}>

@@ -46,7 +46,7 @@ export function ClassPreview() {
                     <h2 style={{
                         fontFamily: "var(--font-serif)",
                         fontSize: "clamp(var(--text-xl), 3vw, var(--text-3xl))",
-                        fontWeight: 700,
+                        fontWeight: 400,
                         color: "var(--ink-950)",
                         letterSpacing: "var(--ls-snug)",
                         lineHeight: "var(--lh-snug)",
@@ -72,7 +72,7 @@ export function ClassPreview() {
                             viewport={viewport}
                             transition={{ duration: 0.6, delay: i * 0.08, ease }}
                             style={{
-                                backgroundColor: "var(--paper-50)",
+                                backgroundColor: "var(--paper-100)",
                                 padding: "var(--space-8)",
                                 display: "flex",
                                 flexDirection: "column",
@@ -89,8 +89,8 @@ export function ClassPreview() {
                             </p>
                             <h3 style={{
                                 fontFamily: "var(--font-sans)",
-                                fontSize: "var(--text-xl)",
-                                fontWeight: 600,
+                                fontSize: "var(--text-lg)",
+                                fontWeight: 500,
                                 color: "var(--ink-950)",
                                 letterSpacing: "var(--ls-snug)",
                                 marginBottom: "var(--space-4)",

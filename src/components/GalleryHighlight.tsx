@@ -37,7 +37,7 @@ export function GalleryHighlight() {
     if (items.length === 0) return null;
 
     return (
-        <section className="section-lg" style={{ borderBottom: "var(--line-default)", backgroundColor: "var(--paper-100)" }}>
+        <section className="section-lg" style={{ backgroundColor: "var(--surface-dark)" }}>
             <div className="container">
                 {/* Header */}
                 <motion.div
@@ -48,14 +48,14 @@ export function GalleryHighlight() {
                     style={{ marginBottom: "var(--space-10)", display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "var(--space-4)", flexWrap: "wrap" }}
                 >
                     <div>
-                        <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-xs)", color: "var(--ink-300)", letterSpacing: "var(--ls-wider)", marginBottom: "var(--space-5)" }}>
+                        <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-xs)", color: "var(--on-dark-soft)", letterSpacing: "var(--ls-wider)", marginBottom: "var(--space-5)" }}>
                             GALLERY
                         </p>
-                        <h2 style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(var(--text-xl), 3vw, var(--text-3xl))", fontWeight: 700, color: "var(--ink-950)", letterSpacing: "var(--ls-snug)", lineHeight: "var(--lh-snug)" }}>
+                        <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(var(--text-2xl), 3.5vw, var(--text-4xl))", fontWeight: 400, color: "var(--on-dark)", letterSpacing: "var(--ls-tight)", lineHeight: "var(--lh-snug)" }}>
                             작품
                         </h2>
                     </div>
-                    <Link href="/gallery" style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-sm)", fontWeight: 500, color: "var(--ink-950)", textDecoration: "none", borderBottom: "1px solid var(--ink-950)", paddingBottom: "2px", whiteSpace: "nowrap" }}>
+                    <Link href="/gallery" style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-sm)", fontWeight: 500, color: "var(--on-dark)", textDecoration: "none", borderBottom: "1px solid var(--on-dark)", paddingBottom: "2px", whiteSpace: "nowrap" }}>
                         갤러리 전체 보기 →
                     </Link>
                 </motion.div>
@@ -87,11 +87,11 @@ export function GalleryHighlight() {
                                     <div className="hl-overlay" aria-hidden="true"><span>갤러리에서 보기 →</span></div>
                                 </div>
                                 <div style={{ paddingTop: "var(--space-5)" }}>
-                                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-lg)", fontWeight: 600, color: "var(--ink-950)", letterSpacing: "var(--ls-snug)", marginBottom: "var(--space-1)" }}>
+                                    <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-lg)", fontWeight: 500, color: "var(--on-dark)", letterSpacing: "var(--ls-snug)", marginBottom: "var(--space-1)" }}>
                                         {item.title}
                                     </p>
                                     {item.medium && (
-                                        <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-xs)", color: "var(--ink-300)", letterSpacing: "var(--ls-wide)" }}>
+                                        <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-xs)", color: "var(--on-dark-soft)", letterSpacing: "var(--ls-wide)" }}>
                                             {item.medium}{item.year && ` · ${item.year}`}
                                         </p>
                                     )}

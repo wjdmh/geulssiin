@@ -8,7 +8,7 @@ const viewport = { once: true, margin: "-80px" };
 
 export function BrandIntro() {
     return (
-        <section className="section-lg" style={{ borderBottom: "var(--line-default)" }}>
+        <section className="section-lg" style={{ borderBottom: "var(--line-default)", backgroundColor: "var(--paper-100)" }}>
             <div className="container">
                 <div style={{ maxWidth: "560px" }}>
                     <motion.h2
@@ -17,9 +17,9 @@ export function BrandIntro() {
                         viewport={viewport}
                         transition={{ duration: 0.8, ease }}
                         style={{
-                            fontFamily: "var(--font-sans)",
+                            fontFamily: "var(--font-serif)",
                             fontSize: "clamp(var(--text-xl), 3.5vw, var(--text-3xl))",
-                            fontWeight: 700,
+                            fontWeight: 400,
                             color: "var(--ink-950)",
                             letterSpacing: "var(--ls-snug)",
                             lineHeight: "var(--lh-snug)",

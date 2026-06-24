@@ -36,7 +36,7 @@ export function AboutContent({ title, content }: AboutContentProps) {
                 style={{
                     fontFamily: "var(--font-serif)",
                     fontSize: "clamp(var(--text-xl), 3.5vw, var(--text-3xl))",
-                    fontWeight: 600,
+                    fontWeight: 400,
                     color: "var(--ink-950)",
                     letterSpacing: "var(--ls-snug)",
                     lineHeight: "var(--lh-snug)",

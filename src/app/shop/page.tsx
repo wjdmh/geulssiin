@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CTASection } from "@/components/CTASection";
 
 export const metadata: Metadata = {
     title: "상품",
@@ -23,7 +24,7 @@ export default function ShopPage() {
                     <h1 style={{
                         fontFamily: "var(--font-serif)",
                         fontSize: "var(--text-3xl)",
-                        fontWeight: 600,
+                        fontWeight: 400,
                         color: "var(--ink-950)",
                         letterSpacing: "var(--ls-tight)",
                         lineHeight: "var(--lh-snug)",
@@ -43,6 +44,7 @@ export default function ShopPage() {
                     </p>
                 </div>
             </section>
+            <CTASection />
         </main>
     );
 }

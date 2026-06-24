@@ -83,10 +83,10 @@ export function GallerySection({ director, member, headingLevel = "h1" }: Galler
                     </p>
                     <Heading style={{
                         fontFamily: "var(--font-serif)",
-                        fontSize: "clamp(var(--text-xl), 3vw, var(--text-2xl))",
-                        fontWeight: 600,
+                        fontSize: "clamp(var(--text-2xl), 3.5vw, var(--text-3xl))",
+                        fontWeight: 400,
                         color: "var(--ink-950)",
-                        letterSpacing: "var(--ls-snug)",
+                        letterSpacing: "var(--ls-tight)",
                         marginBottom: "var(--space-12)",
                     }}>
                         작품
@@ -339,10 +339,10 @@ export function GallerySection({ director, member, headingLevel = "h1" }: Galler
                             <div style={{ width: "100%", maxWidth: "320px", flexShrink: 0 }}>
                                 <h3 style={{
                                     fontFamily: "var(--font-serif)",
-                                    fontSize: "var(--text-xl)",
-                                    fontWeight: 600,
+                                    fontSize: "var(--text-2xl)",
+                                    fontWeight: 400,
                                     color: "var(--ink-950)",
-                                    letterSpacing: "var(--ls-snug)",
+                                    letterSpacing: "var(--ls-tight)",
                                     marginBottom: "var(--space-3)",
                                 }}>
                                     {selectedImage.title}

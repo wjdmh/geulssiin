@@ -26,7 +26,7 @@ const externalLinks = [
 
 export function Footer() {
     return (
-        <footer style={{ borderTop: "var(--line-default)", backgroundColor: "var(--paper-50)" }}>
+        <footer style={{ backgroundColor: "var(--surface-dark)" }}>
             <div className="container" style={{ paddingBlock: "var(--space-16)" }}>
 
                 <div
@@ -37,9 +37,9 @@ export function Footer() {
                     <div>
                         <p style={{
                             fontFamily: "var(--font-serif)",
-                            fontSize: "var(--text-lg)", fontWeight: 600,
-                            color: "var(--ink-950)",
-                            letterSpacing: "var(--ls-snug)",
+                            fontSize: "var(--text-xl)", fontWeight: 400,
+                            color: "var(--on-dark)",
+                            letterSpacing: "-0.02em",
                             marginBottom: "var(--space-3)",
                         }}>
                             글씨인아트센터
@@ -47,7 +47,7 @@ export function Footer() {
                         <p style={{
                             fontFamily: "var(--font-sans)",
                             fontSize: "var(--text-xs)",
-                            color: "var(--ink-300)",
+                            color: "var(--on-dark-soft)",
                             lineHeight: "var(--lh-relaxed)",
                             letterSpacing: "var(--ls-normal)",
                         }}>
@@ -69,7 +69,7 @@ export function Footer() {
                                 style={{
                                     fontFamily: "var(--font-sans)",
                                     fontSize: "var(--text-sm)",
-                                    color: "var(--ink-500)",
+                                    color: "var(--on-dark-soft)",
                                     textDecoration: "none",
                                     letterSpacing: "var(--ls-normal)",
                                     transition: "opacity var(--duration-fast) var(--ease-default)",
@@ -88,7 +88,7 @@ export function Footer() {
                         style={{
                             display: "grid",
                             gridTemplateColumns: "1fr 1fr",
-                            borderColor: "var(--line-subtle)",
+                            borderColor: "rgba(250,249,245,0.12)",
                             paddingTop: "var(--space-2)",
                         }}
                     >
@@ -103,7 +103,7 @@ export function Footer() {
                                     padding: "9px 0",
                                     fontFamily: "var(--font-sans)",
                                     fontSize: "var(--text-xs)",
-                                    color: "var(--ink-300)",
+                                    color: "var(--on-dark-soft)",
                                     textDecoration: "none",
                                     letterSpacing: "var(--ls-wide)",
                                     transition: "opacity var(--duration-fast) var(--ease-default)",
@@ -122,7 +122,7 @@ export function Footer() {
                 <div style={{
                     marginTop: "var(--space-12)",
                     paddingTop: "var(--space-6)",
-                    borderTop: "var(--line-subtle)",
+                    borderTop: "1px solid rgba(250,249,245,0.12)",
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
@@ -130,7 +130,7 @@ export function Footer() {
                     <p style={{
                         fontFamily: "var(--font-sans)",
                         fontSize: "var(--text-xs)",
-                        color: "var(--ink-300)",
+                        color: "var(--on-dark-soft)",
                         letterSpacing: "var(--ls-wide)",
                     }}>
                         © {new Date().getFullYear()} 글씨인아트센터
@@ -138,7 +138,7 @@ export function Footer() {
                     <p style={{
                         fontFamily: "var(--font-serif)",
                         fontSize: "var(--text-xs)",
-                        color: "var(--ink-300)",
+                        color: "var(--on-dark-soft)",
                         letterSpacing: "var(--ls-wide)",
                     }}>
                         書如其人

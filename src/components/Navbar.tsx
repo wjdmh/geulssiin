@@ -76,14 +76,14 @@ export function Navbar({ user, profile }: NavbarProps) {
             >
                 <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                     {/* Logo */}
-                    <Link href="/" style={{ display: "flex", alignItems: "center" }}>
+                    <Link href="/" style={{ display: "flex", alignItems: "center", marginRight: "var(--space-12)" }}>
                         <Image
                             src="/logo_transparent.png"
                             alt="글씨인아트센터"
                             width={200}
                             height={60}
                             style={{
-                                height: "60px",
+                                height: "46px",
                                 width: "auto",
                                 objectFit: "contain",
                                 filter: isTransparent ? "brightness(0) invert(1)" : "none",
@@ -94,7 +94,7 @@ export function Navbar({ user, profile }: NavbarProps) {
                     </Link>
 
                     {/* Desktop Nav */}
-                    <div className="hidden md:flex" style={{ alignItems: "center", gap: "40px" }}>
+                    <div className="hidden md:flex" style={{ alignItems: "center", gap: "32px" }}>
                         {navLinks.map((link) => {
                             const isActive = pathname === link.href;
                             const color = isTransparent
@@ -173,24 +173,24 @@ export function Navbar({ user, profile }: NavbarProps) {
                             </Link>
                         )}
 
-                        {/* 상시 노출 신청 CTA — 인주(seal) 알약, 페이지의 유일한 브랜드 강조 */}
+                        {/* 상시 노출 신청 CTA — 코랄 button-primary(8px), 페이지의 핵심 강조 */}
                         <Link
                             href="/contact"
                             style={{
-                                padding: "10px 22px",
-                                backgroundColor: "var(--seal)",
-                                color: "#fff",
+                                padding: "10px 20px",
+                                backgroundColor: "var(--primary)",
+                                color: "var(--on-primary)",
                                 fontFamily: "var(--font-sans)",
                                 fontSize: "var(--text-sm)",
-                                fontWeight: 600,
+                                fontWeight: 500,
                                 letterSpacing: "var(--ls-wide)",
                                 textDecoration: "none",
-                                borderRadius: "9999px",
+                                borderRadius: "8px",
                                 whiteSpace: "nowrap",
-                                transition: "opacity var(--duration-fast) var(--ease-default)",
+                                transition: "background-color var(--duration-fast) var(--ease-default)",
                             }}
-                            onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.85"; }}
-                            onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
+                            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "var(--primary-active)"; }}
+                            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "var(--primary)"; }}
                         >
                             수업 신청
                         </Link>
@@ -256,8 +256,8 @@ export function Navbar({ user, profile }: NavbarProps) {
                                         style={{
                                             display: "block", padding: "20px 0",
                                             fontFamily: "var(--font-serif)",
-                                            fontSize: "var(--text-xl)", fontWeight: 600,
-                                            letterSpacing: "var(--ls-snug)",
+                                            fontSize: "var(--text-2xl)", fontWeight: 400,
+                                            letterSpacing: "-0.02em",
                                             color: pathname === link.href ? "var(--ink-950)" : "var(--ink-300)",
                                             textDecoration: "none",
                                         }}
@@ -282,13 +282,14 @@ export function Navbar({ user, profile }: NavbarProps) {
                                     textAlign: "center",
                                     padding: "16px 0",
                                     marginBottom: "24px",
-                                    backgroundColor: "var(--ink-950)",
-                                    color: "var(--paper-50)",
+                                    backgroundColor: "var(--primary)",
+                                    color: "var(--on-primary)",
                                     fontFamily: "var(--font-sans)",
                                     fontSize: "var(--text-sm)",
                                     fontWeight: 500,
                                     letterSpacing: "var(--ls-wide)",
                                     textDecoration: "none",
+                                    borderRadius: "8px",
                                 }}
                             >
                                 수업 신청하기

@@ -7,7 +7,7 @@ const viewport = { once: true, margin: "-80px" };
 
 export function CTASection() {
     return (
-        <section className="section-lg" style={{ backgroundColor: "var(--ink-950)" }}>
+        <section className="section-lg" style={{ backgroundColor: "var(--primary)" }}>
             <div className="container">
                 <div style={{ maxWidth: "480px" }}>
                     <motion.p
@@ -18,7 +18,7 @@ export function CTASection() {
                         style={{
                             fontFamily: "var(--font-sans)",
                             fontSize: "var(--text-xs)",
-                            color: "rgba(250,248,245,0.3)",
+                            color: "rgba(255,255,255,0.7)",
                             letterSpacing: "var(--ls-wider)",
                             marginBottom: "var(--space-6)",
                         }}
@@ -32,10 +32,10 @@ export function CTASection() {
                         viewport={viewport}
                         transition={{ duration: 0.8, delay: 0.1, ease }}
                         style={{
-                            fontFamily: "var(--font-sans)",
+                            fontFamily: "var(--font-serif)",
                             fontSize: "clamp(var(--text-xl), 3vw, var(--text-3xl))",
-                            fontWeight: 700,
-                            color: "var(--paper-50)",
+                            fontWeight: 400,
+                            color: "#ffffff",
                             letterSpacing: "var(--ls-snug)",
                             lineHeight: "var(--lh-snug)",
                             marginBottom: "var(--space-5)",
@@ -52,7 +52,7 @@ export function CTASection() {
                         style={{
                             fontFamily: "var(--font-sans)",
                             fontSize: "var(--text-base)",
-                            color: "rgba(250,248,245,0.4)",
+                            color: "rgba(255,255,255,0.85)",
                             letterSpacing: "var(--ls-normal)",
                             lineHeight: "var(--lh-relaxed)",
                             marginBottom: "var(--space-10)",
@@ -71,18 +71,18 @@ export function CTASection() {
                         <a
                             href="/contact"
                             style={{
-                                padding: "14px 32px",
+                                padding: "14px 28px",
                                 backgroundColor: "var(--paper-50)",
                                 color: "var(--ink-950)",
                                 fontFamily: "var(--font-sans)",
                                 fontSize: "var(--text-sm)",
-                                fontWeight: 600,
+                                fontWeight: 500,
                                 letterSpacing: "var(--ls-wide)",
                                 textDecoration: "none",
-                                borderRadius: "9999px",
+                                borderRadius: "8px",
                                 transition: "opacity var(--duration-base) var(--ease-default)",
                             }}
-                            onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.85"; }}
+                            onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.88"; }}
                             onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
                         >
                             수업 신청하기
@@ -91,40 +91,40 @@ export function CTASection() {
                             type="button"
                             onClick={() => window.dispatchEvent(new CustomEvent("open-chat"))}
                             style={{
-                                padding: "14px 32px",
-                                backgroundColor: "var(--paper-50)",
-                                color: "var(--ink-950)",
+                                padding: "14px 28px",
+                                backgroundColor: "rgba(255,255,255,0.14)",
+                                color: "#ffffff",
                                 fontFamily: "var(--font-sans)",
                                 fontSize: "var(--text-sm)",
-                                fontWeight: 400,
+                                fontWeight: 500,
                                 letterSpacing: "var(--ls-wide)",
                                 textDecoration: "none",
                                 border: "none",
-                                borderRadius: "9999px",
+                                borderRadius: "8px",
                                 cursor: "pointer",
-                                transition: "opacity var(--duration-base) var(--ease-default)",
+                                transition: "background-color var(--duration-base) var(--ease-default)",
                             }}
-                            onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.8"; }}
-                            onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
+                            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.22)"; }}
+                            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.14)"; }}
                         >
                             도우미에게 물어보기
                         </button>
                         <a
                             href="tel:010-2497-4310"
                             style={{
-                                padding: "14px 32px",
+                                padding: "14px 28px",
                                 backgroundColor: "transparent",
-                                color: "var(--paper-50)",
+                                color: "#ffffff",
                                 fontFamily: "var(--font-sans)",
                                 fontSize: "var(--text-sm)",
-                                fontWeight: 400,
+                                fontWeight: 500,
                                 letterSpacing: "var(--ls-wide)",
                                 textDecoration: "none",
-                                borderRadius: "9999px",
-                                border: "1px solid rgba(250,248,245,0.2)",
+                                borderRadius: "8px",
+                                border: "1px solid rgba(255,255,255,0.45)",
                                 transition: "opacity var(--duration-base) var(--ease-default)",
                             }}
-                            onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.6"; }}
+                            onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.7"; }}
                             onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
                         >
                             전화 문의
@@ -139,7 +139,7 @@ export function CTASection() {
                         style={{
                             fontFamily: "var(--font-sans)",
                             fontSize: "var(--text-xs)",
-                            color: "rgba(250,248,245,0.2)",
+                            color: "rgba(255,255,255,0.6)",
                             letterSpacing: "var(--ls-normal)",
                             marginTop: "var(--space-6)",
                         }}

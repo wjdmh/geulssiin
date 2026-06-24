@@ -63,11 +63,11 @@ export function TimetableSection() {
                         CLASS
                     </p>
                     <h1 style={{
-                        fontFamily: "var(--font-sans)",
-                        fontSize: "clamp(var(--text-xl), 3vw, var(--text-2xl))",
-                        fontWeight: 600,
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "clamp(var(--text-3xl), 5vw, var(--text-4xl))",
+                        fontWeight: 400,
                         color: "var(--ink-950)",
-                        letterSpacing: "var(--ls-snug)",
+                        letterSpacing: "var(--ls-tight)",
                         marginBottom: "var(--space-4)",
                     }}>
                         수업 안내
@@ -260,11 +260,11 @@ export function TimetableSection() {
                                                 0{index + 1}
                                             </span>
                                             <span style={{
-                                                fontFamily: "var(--font-sans)",
-                                                fontSize: "clamp(var(--text-base), 2vw, var(--text-lg))",
-                                                fontWeight: 600,
+                                                fontFamily: "var(--font-serif)",
+                                                fontSize: "clamp(var(--text-lg), 2.4vw, var(--text-2xl))",
+                                                fontWeight: 400,
                                                 color: isOpen ? "var(--ink-950)" : "var(--ink-500)",
-                                                letterSpacing: "var(--ls-snug)",
+                                                letterSpacing: "var(--ls-tight)",
                                                 transition: "color var(--duration-fast) var(--ease-default)",
                                             }}>
                                                 {cls.title}
@@ -390,9 +390,10 @@ export function TimetableSection() {
                                 CLASS DETAIL
                             </p>
                             <h3 style={{
-                                fontFamily: "var(--font-sans)",
-                                fontSize: "var(--text-xl)", fontWeight: 600,
+                                fontFamily: "var(--font-serif)",
+                                fontSize: "var(--text-2xl)", fontWeight: 400,
                                 color: "var(--ink-950)",
+                                letterSpacing: "var(--ls-tight)",
                                 marginBottom: "var(--space-8)",
                             }}>
                                 {selectedClass.class_name}
@@ -430,17 +431,19 @@ export function TimetableSection() {
                                     display: "block",
                                     marginTop: "var(--space-8)",
                                     padding: "14px 0",
-                                    backgroundColor: "var(--ink-950)",
-                                    color: "var(--paper-50)",
+                                    backgroundColor: "var(--primary)",
+                                    color: "var(--on-primary)",
                                     fontFamily: "var(--font-sans)",
                                     fontSize: "var(--text-sm)",
+                                    fontWeight: 500,
                                     letterSpacing: "var(--ls-wide)",
                                     textDecoration: "none",
                                     textAlign: "center",
-                                    transition: "opacity var(--duration-fast) var(--ease-default)",
+                                    borderRadius: "8px",
+                                    transition: "background-color var(--duration-fast) var(--ease-default)",
                                 }}
-                                onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.7"; }}
-                                onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
+                                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "var(--primary-active)"; }}
+                                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "var(--primary)"; }}
                             >
                                 수업 신청·문의
                             </a>
