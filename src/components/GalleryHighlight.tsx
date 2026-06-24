@@ -73,18 +73,18 @@ export function GalleryHighlight() {
                             <Link
                                 href="/gallery"
                                 aria-label={`${item.title} — 갤러리에서 보기`}
-                                style={{ display: "block", textDecoration: "none" }}
-                                onMouseEnter={(e) => { const im = e.currentTarget.querySelector("img"); if (im) im.style.transform = "scale(1.03)"; }}
-                                onMouseLeave={(e) => { const im = e.currentTarget.querySelector("img"); if (im) im.style.transform = "scale(1)"; }}
+                                className="hl-card"
                             >
-                                <div style={{ position: "relative", aspectRatio: "4 / 5", overflow: "hidden", backgroundColor: "var(--paper-50)" }}>
+                                {/* edge-to-edge 이미지 + 호버 시 리빌 오버레이(CSS) */}
+                                <div className="hl-frame">
                                     <Image
                                         src={item.image_url}
                                         alt={item.title}
                                         fill
-                                        style={{ objectFit: "contain", padding: "7%", transition: "transform var(--duration-slow) var(--ease-default)" }}
+                                        style={{ objectFit: "cover", objectPosition: "center" }}
                                         sizes="(max-width: 640px) 80vw, (max-width: 1024px) 44vw, 33vw"
                                     />
+                                    <div className="hl-overlay" aria-hidden="true"><span>갤러리에서 보기 →</span></div>
                                 </div>
                                 <div style={{ paddingTop: "var(--space-5)" }}>
                                     <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-lg)", fontWeight: 600, color: "var(--ink-950)", letterSpacing: "var(--ls-snug)", marginBottom: "var(--space-1)" }}>

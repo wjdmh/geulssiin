@@ -153,6 +153,28 @@ h4, h5, h6 {
 }
 .gallery-rail::-webkit-scrollbar { display: none; }
 .gallery-rail > * { scroll-snap-align: start; }
+
+/* ── 작품 카드 호버 리빌 (award-gallery류, CSS만 — 성능 안전) ── */
+.hl-card { display: block; text-decoration: none; }
+.hl-card .hl-frame { position: relative; aspect-ratio: 4 / 5; overflow: hidden; }
+.hl-card .hl-frame img { transition: transform 0.7s var(--ease-default); }
+.hl-card:hover .hl-frame img { transform: scale(1.045); }
+.hl-card .hl-overlay {
+  position: absolute; inset: 0;
+  display: flex; align-items: flex-end; justify-content: flex-start;
+  padding: var(--space-5);
+  background: linear-gradient(to top, rgba(15,14,13,0.55) 0%, rgba(15,14,13,0) 45%);
+  opacity: 0; transition: opacity 0.4s var(--ease-default);
+  pointer-events: none;
+}
+.hl-card:hover .hl-overlay { opacity: 1; }
+.hl-card .hl-overlay span {
+  color: #fff; font-family: var(--font-sans); font-size: var(--text-sm);
+  font-weight: 600; letter-spacing: var(--ls-wide);
+  transform: translateY(8px); transition: transform 0.4s var(--ease-default);
+}
+.hl-card:hover .hl-overlay span { transform: translateY(0); }
+@media (hover: none) { .hl-card .hl-overlay { display: none; } }
 @media (min-width: 640px) {
   .gallery-rail { grid-auto-columns: 44%; }
 }
